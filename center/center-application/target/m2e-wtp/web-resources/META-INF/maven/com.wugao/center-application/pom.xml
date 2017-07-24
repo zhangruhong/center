@@ -7,4 +7,18 @@
   </parent>
   <artifactId>center-application</artifactId>
   <packaging>war</packaging>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.wugao</groupId>
+  		<artifactId>center-infrastructure</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>com.wugao</groupId>
+  		<artifactId>center-domain</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  </dependencies>
 </project>
