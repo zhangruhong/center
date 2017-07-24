@@ -1,15 +1,23 @@
 /* 閫氱敤 */
+body{min-width: 400px;}
 html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transparent;}
 
 /* 顶部登录及导航条*/
-.navbar .navbar-top{height: 24px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;}
-.navbar .navbar-top .navbar-auth, .navbar .navbar-top .navbar-link{height: 100%; line-height: 24px;}
-.navbar .navbar-top .navbar-link{padding-right: 15px;}
+.navbar .navbar-top{height: 60px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;}
+.navbar .navbar-top .navbar-auth, .navbar .navbar-top .navbar-link{height: 100%; line-height: 60px;}
+.navbar .navbar-top .navbar-auth{padding-left: 20px;}
+.navbar .navbar-top .navbar-link{padding-right: 15px;list-style: none;float: right;}
+.navbar .navbar-top .navbar-link > li{display: inline-block;}
 .navbar .navbar-top .navbar-auth a, .navbar .navbar-top .navbar-link a{color: #999999;margin-right: 25px;float: left;}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {background-color: #01a6e0;}
+.navbar-default .navbar-toggle:hover .icon-bar, .navbar-default .navbar-toggle:focus .icon-bar{background-color: white;}
+.navbar-header{z-index: 2;}
+.collapse.in{position: absolute;z-index: 1000;right: 0; top: 60px;background: white;}
+.navbar-collapse.in{border: 1px solid #ccc;}
 .navbar .navbar-top a:hover{color: #282828;}
 .tao-icon{
 	float: left;
-    margin: 3px 2px 0 0;
+    margin: 21px 2px 0 0;
     width: 16px;
     height: 16px;
     overflow: hidden;
@@ -20,11 +28,31 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 	float: left;
     width: 10px;
     height: 15px;
-    margin: 4px 2px 0 0;
+    margin: 21px 2px 0 0;
     overflow: hidden;
 }
 .navbar-auth .khd .khd_icon{background-position: -37px -32px;}
 .navbar-auth .khd:hover .khd_icon{background-position: -37px -48px;}
+@media(min-width: 768px){
+	.collapse.in{position: relative;z-index: 0;right: 0; top: 0;}
+	.navbar .navbar-top{height: 24px;}
+	.navbar .navbar-top .navbar-auth, .navbar .navbar-top .navbar-link{line-height: 24px;}
+	.navbar .navbar-top .navbar-auth{padding-left: 0px;}
+	.tao-icon{
+		float: left;
+	    margin: 3px 2px 0 0;
+	    width: 16px;
+	    height: 16px;
+	    overflow: hidden;
+	}
+	.khd_icon{
+		float: left;
+	    width: 10px;
+	    height: 15px;
+	    margin: 4px 2px 0 0;
+	    overflow: hidden;
+	}
+}
 
 /* 顶部logo及搜索框 */
 .navbar{background: white;}
@@ -36,22 +64,24 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
     line-height: 60px;
     height: 60px;
 }
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #01a6e0;
-}
-.navbar-default .navbar-toggle:hover .icon-bar, .navbar-default .navbar-toggle:focus .icon-bar{background-color: white;}
+
 .navbar .navbar-logo{display: inline-block; height: 60px; width: 60px;vertical-align: top;}
 
 .navbar .user-photo{height: 20px;width: 20px;border: none;vertical-align: top;}
-.navbar .navbar-form .form-control{box-shadow: none;border: 2px solid #f50;}
-.navbar .navbar-form .input-group-addon{background: #f50;border: none;color: white;}
+.navbar .search-form{padding:0;margin-top: 0;margin-bottom: 0;position: absolute; right: 15px;top: 0px;width: 300px;height: 40px; padding: 10px;}
+.navbar .search-form .form-group{margin-bottom: 0;}
+.navbar .search-form .form-control{box-shadow: none;border: 2px solid #f50;height: 40px;}
+.navbar .search-form .input-group-addon{background: #f50;border: none;color: white;}
+
 
 @media(min-width: 768px){
 	.navbar.navbar-transparent{background: transparent!important;border: none;}
 	.navbar .navbar-form .form-control{width: 300px;height: 44px;}
+	.navbar .navbar-form{padding: 0;margin-top: 8px;margin-bottom: 8px;}
 }
 
-#content-wrapper{margin-top: 74px;padding: 20px 0px;}
+/* 主体内容*/
+#content-wrapper{margin-top: 120px;padding: 20px 0px;}
 .category-menu{list-style: none;position: relative;}
 .category-menu:before,.category-menu:after{content: '';clear: both;}
 .category-menu > li{padding:10px 20px;font-size: 16px;position: relative;float: left;}
@@ -59,5 +89,9 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 .category-menu > li > a:hover{text-decoration: none;color: #f50;cursor: pointer;}
 .category-menu > li::after{position: absolute; content: '';bottom: -2px;left: 0; background: #f50;width: 100%;height: 5px;z-index: 2;border-radius: 2px;transition: transform 0.2s ease-out;transform: scale(0);}
 .category-menu > li.active::after, .category-menu > li:hover::after{height: 4px;transform: scale(1)}
+@media(min-width: 768px){
+	#content-wrapper{margin-top: 74px;}
+}
+
 
 .banner-container{width: 100%;margin: 0 -15px;height: 200px;border-top: 2px solid black;}
