@@ -1,0 +1,58 @@
+/* 閫氱敤 */
+html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transparent;}
+a:hover{color: #282828!important;}
+
+/* 顶部登录及导航条*/
+.navbar .navbar-top{height: 24px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;}
+.navbar .navbar-top .navbar-auth{height: 100%; line-height: 24px;float: left;}
+.navbar .navbar-top .navbar-auth a{color: #999999;margin-right: 25px;float: left;}
+.tao-icon{
+	float: left;
+    margin: 3px 2px 0 0;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+}
+.navbar-auth .tao .tao-icon{background-position: -37px -64px;}
+.navbar-auth .tao:hover .tao-icon{background-position: -37px -81px;}
+.khd_icon{
+	float: left;
+    width: 10px;
+    height: 15px;
+    margin: 4px 2px 0 0;
+    overflow: hidden;
+}
+.navbar-auth .khd .khd_icon{background-position: -37px -32px;}
+.navbar-auth .khd:hover .khd_icon{background-position: -37px -48px;}
+
+/* 顶部logo及搜索框 */
+.navbar{background: white;}
+.navbar .brand{
+	font-size: 30px;
+	background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fd6b22), to(#ff5500));
+	-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 50px;
+    height: 50px;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #01a6e0;
+}
+.navbar-default .navbar-toggle:hover .icon-bar, .navbar-default .navbar-toggle:focus .icon-bar{background-color: white;}
+.navbar .navbar-logo{display: inline-block; height: 50px; width: 50px;vertical-align: top;}
+
+.navbar .user-photo{height: 20px;width: 20px;border: none;vertical-align: top;}
+.navbar .navbar-form .form-control{box-shadow: none;border: 2px solid #f50;}
+.navbar .navbar-form .input-group-addon{background: #f50;border: none;color: white;}
+
+@media(min-width: 768px){
+	.navbar.navbar-transparent{background: transparent!important;border: none;}
+	.navbar .navbar-form .form-control{width: 300px;}
+}
+
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+	background: #a3ffff;
+}
+
+#content-wrapper{background: #f5f5f5;margin-top: 74px;border-top: 3px solid #black;}
