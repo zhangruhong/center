@@ -93,5 +93,6 @@
 <script src="<%=request.getContextPath()%>/js/custom/utils/util.js"></script>
 <script src="<%=request.getContextPath()%>/js/custom/utils/date.js"></script>
 <script src="<%=request.getContextPath()%>/js/custom/utils/websocket.js"></script>
+<script src="<%=request.getContextPath()%>/js/custom/common.js"></script>
 
 

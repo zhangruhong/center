@@ -11,10 +11,15 @@
 <body>
 	<div class="container">
 		<ul class="category-menu">
-			<li class="active"><a href="<%=request.getContextPath()%>">首页</a></li>
+			<li class="active category-default"><a href="<%=request.getContextPath()%>">首页</a></li>
 			<li><a class="<%=request.getContextPath() %>/clothes">男女服饰</a></li>
 			<li><a class="<%=request.getContextPath() %>/clothes">母婴用品</a></li>
 		</ul>
+	</div>
+	<div class="container-fluid">
+		<div class="banner-container">
+			
+		</div>
 	</div>
 </body>
 </html>
