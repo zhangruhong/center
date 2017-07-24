@@ -10,7 +10,9 @@
 </head>
 <body>
 	<div class="container">
-		<div class="category"></div>
+		<ul class="category-menu">
+			<li class=""></li>
+		</ul>
 	</div>
 </body>
 </html>

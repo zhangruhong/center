@@ -2,7 +2,7 @@
 <div class="navbar navbar-default navbar-transparent navbar-fixed-top">
 	<div class="navbar-top">
 		<div class="container">
-			<div class="navbar-auth">
+			<div class="navbar-auth navbar-left">
 				<a href="javascript: void(0);" class="tao">
 					<span class="tao-icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
 					<span>淘宝账号登录</span>
@@ -11,6 +11,11 @@
 					<span class="khd_icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
 					<span>手机号登录</span>
 				</a>
+			</div>
+			<div class="navbar-link navbar-right">
+				<a href="">新手教程</a>
+				<a href="">关注微信</a>
+				<a href="">联系客服</a>
 			</div>
 		</div>
 	</div>

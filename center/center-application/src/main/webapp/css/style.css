@@ -4,8 +4,9 @@ a:hover{color: #282828!important;}
 
 /* 顶部登录及导航条*/
 .navbar .navbar-top{height: 24px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;}
-.navbar .navbar-top .navbar-auth{height: 100%; line-height: 24px;float: left;}
-.navbar .navbar-top .navbar-auth a{color: #999999;margin-right: 25px;float: left;}
+.navbar .navbar-top .navbar-auth, .navbar .navbar-top .navbar-link{height: 100%; line-height: 24px;}
+.navbar .navbar-top .navbar-link{padding-right: 15px;}
+.navbar .navbar-top .navbar-auth a, .navbar .navbar-top .navbar-link a{color: #999999;margin-right: 25px;float: left;}
 .tao-icon{
 	float: left;
     margin: 3px 2px 0 0;
@@ -48,11 +49,6 @@ a:hover{color: #282828!important;}
 @media(min-width: 768px){
 	.navbar.navbar-transparent{background: transparent!important;border: none;}
 	.navbar .navbar-form .form-control{width: 300px;}
-}
-
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
-	background: #a3ffff;
 }
 
 #content-wrapper{background: #f5f5f5;margin-top: 74px;border-top: 3px solid #black;}
