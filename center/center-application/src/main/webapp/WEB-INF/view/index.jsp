@@ -11,7 +11,9 @@
 <body>
 	<div class="container">
 		<ul class="category-menu">
-			<li class=""></li>
+			<li class="active"><a href="<%=request.getContextPath()%>">首页</a></li>
+			<li><a class="<%=request.getContextPath() %>/clothes">男女服饰</a></li>
+			<li><a class="<%=request.getContextPath() %>/clothes">母婴用品</a></li>
 		</ul>
 	</div>
 </body>
