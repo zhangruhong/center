@@ -94,4 +94,15 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 }
 
 
-.banner-container{width: 100%;margin: 0 -15px;height: 200px;border-top: 2px solid black;}
+.banner-container{position: relative; margin: 0 -15px;height: 200px;border-top: 2px solid black;}
+.banner{position: absolute; left: 0px; right: 0px;top: 0px;bottom: 0px;z-index: 0;}
+.banner-controller-container{display: block; position: absolute; height: 28px;width: 100%; text-align: center;bottom: 10px;left: 0px;}
+.banner-controller{display: inline-block; list-style: none;width: auto;height: 28px; padding: 4px;margin: 0 auto;}
+.banner-controller > li{float: left;height: 20px; line-height: 20px;margin-left: 5px;}
+.banner-controller > li > a{display: inline-block;border: 1px solid #ccc; background: transparent;width: 12px; height: 12px; border-radius: 6px;}
+.banner-controller > li.active > a{background: rgba(180,180,180,0.5);}
+
+
+
+
+

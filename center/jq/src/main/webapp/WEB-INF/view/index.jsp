@@ -18,7 +18,20 @@
 	</div>
 	<div class="container-fluid">
 		<div class="banner-container">
-			
+			<div class="banner" style="background-image: url(<%=request.getContextPath()%>/image/banner1.png); background-repeat: no-repeat;background-size: 100% 100%;"></div>
+			<div class="banner"></div>
+			<div class="banner"></div>
+			<div class="banner"></div>
+			<div class="banner"></div>
+			<div class="banner-controller-container">
+				<ul class="banner-controller">
+					<li class="active"><a href="javascript: void(0);"></a></li>
+					<li><a href="javascript: void(0);"></a></li>
+					<li><a href="javascript: void(0);"></a></li>
+					<li><a href="javascript: void(0);"></a></li>
+					<li><a href="javascript: void(0);"></a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </body>
