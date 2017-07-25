@@ -7,6 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>时尚空间</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -18,18 +19,16 @@
 	</div>
 	<div class="container-fluid">
 		<div class="banner-container">
-			<div class="banner" style="background-image: url(<%=request.getContextPath()%>/image/banner1.png); background-repeat: no-repeat;background-size: 100% 100%;"></div>
-			<div class="banner"></div>
-			<div class="banner"></div>
-			<div class="banner"></div>
-			<div class="banner"></div>
+			<div class="banner active" style="background-image: url(<%=request.getContextPath()%>/image/banner1.png);"><a href="javascript: void(0);"></a></div>
+			<div class="banner" style="background-image: url(<%=request.getContextPath()%>/image/banner2.png);"><a href="javascript: void(0);"></a></div>
+			<div class="banner" style="background-image: url(<%=request.getContextPath()%>/image/banner3.png);"><a href="javascript: void(0);"></a></div>
+			<div class="banner" style="background-image: url(<%=request.getContextPath()%>/image/banner4.png);"><a href="javascript: void(0);"></a></div>
 			<div class="banner-controller-container">
 				<ul class="banner-controller">
-					<li class="active"><a href="javascript: void(0);"></a></li>
-					<li><a href="javascript: void(0);"></a></li>
-					<li><a href="javascript: void(0);"></a></li>
-					<li><a href="javascript: void(0);"></a></li>
-					<li><a href="javascript: void(0);"></a></li>
+					<li class="active"></li>
+					<li></li>
+					<li></li>
+					<li></li>
 				</ul>
 			</div>
 		</div>
