@@ -1,5 +1,5 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
-<div class="navbar navbar-default navbar-transparent navbar-fixed-top">
+<div class="navbar navbar-default navbar-transparent">
 	<div class="navbar-top">
 		<div class="container">
 			<div class="navbar-header">

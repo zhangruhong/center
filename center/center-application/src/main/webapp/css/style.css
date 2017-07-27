@@ -1,9 +1,11 @@
 /* 閫氱敤 */
-body{min-width: 400px;}
 html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transparent;}
+.row{margin-left: 0px; margin-right: 0px;}
+[class*=col-]{padding-left: 0px; padding-right: 0px;}
+a:hover{cursor: pointer;}
 
 /* 顶部登录及导航条*/
-.navbar .navbar-top{height: 60px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;}
+.navbar .navbar-top{height: 60px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;margin-bottom: 10px;}
 .navbar .navbar-top .navbar-auth, .navbar .navbar-top .navbar-link{height: 100%; line-height: 60px;}
 .navbar .navbar-top .navbar-auth{padding-left: 20px;}
 .navbar .navbar-top .navbar-link{padding-right: 15px;list-style: none;float: right;}
@@ -55,7 +57,7 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 }
 
 /* 顶部logo及搜索框 */
-.navbar{background: white;}
+.navbar{background: white;margin-bottom: 0px;}
 .navbar .brand{
 	font-size: 30px;
 	background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fd6b22), to(#ff5500));
@@ -81,7 +83,7 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 }
 
 /* 主体内容*/
-#content-wrapper{margin-top: 120px;padding: 20px 0px;}
+#content-wrapper{padding: 10px 0px;}
 .category-menu{list-style: none;position: relative;}
 .category-menu:before,.category-menu:after{content: '';clear: both;}
 .category-menu > li{padding:10px 20px;font-size: 16px;position: relative;float: left;}
@@ -89,11 +91,9 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 .category-menu > li > a:hover{text-decoration: none;color: #f50;cursor: pointer;}
 .category-menu > li::after{position: absolute; content: '';bottom: -2px;left: 0; background: #f50;width: 100%;height: 5px;z-index: 2;border-radius: 2px;transition: transform 0.2s ease-out;transform: scale(0);}
 .category-menu > li.active::after, .category-menu > li:hover::after{height: 4px;transform: scale(1)}
-@media(min-width: 768px){
-	#content-wrapper{margin-top: 74px;}
-}
 
 
+/* 横条栏 */
 .banner-container{position: relative; margin: 0 -15px;height: 200px;border-top: 2px solid black;}
 .banner{position: absolute; left: 0px; right: 0px;top: 0px;bottom: 0px;z-index: 0;background-repeat: no-repeat;background-size: cover;background-position: center;transition: all 0.3s ease-in;opacity: 0;}
 .banner.active{z-index: 1;opacity: 1;}
@@ -104,6 +104,54 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 .banner-controller > li{display: inline-block;border: 1px solid #ccc; background: transparent;width: 12px; height: 12px; border-radius: 6px;}
 .banner-controller > li.active{background: rgba(180,180,180,0.5);}
 .banner-controller > li:hover{background: rgba(180,180,180, 0.3);cursor: pointer;}
+
+/* 介绍栏 */
+.intro-container{position: relative;margin: 10px -15px 0px;height: 100px;}
+.intro-container .intro-item{height: 100%;}
+.intro-container .intro-item .intro-image,.intro-container .intro-item .intro-info{float: left;}
+.intro-container .intro-item:hover{cursor: pointer;}
+.intro-container .intro-item .intro-image{height: 100%;width: 100px;background-position: center; background-size: cover;background-repeat: no-repeat;}
+.intro-container .intro-item:nth-child(1) .intro-image{background-image: url(../image/shopping-cart.png);}
+.intro-container .intro-item:nth-child(2) .intro-image{background-image: url(../image/money.png);}
+.intro-container .intro-item:nth-child(3) .intro-image{background-image: url(../image/recommend.png);}
+.intro-container .intro-item:nth-child(4) .intro-image{background-image: url(../image/return.png);}
+.intro-container .intro-item:nth-child(1):hover .intro-image{background-image: url(../image/shopping-cart-on.png);}
+.intro-container .intro-item:nth-child(2):hover .intro-image{background-image: url(../image/money-on.png);}
+.intro-container .intro-item:nth-child(3):hover .intro-image{background-image: url(../image/recommend-on.png);}
+.intro-container .intro-item:nth-child(4):hover .intro-image{background-image: url(../image/return-on.png);}
+.intro-container .intro-item .intro-info{height:100%; width: calc(100% - 100px);}
+.intro-container .intro-item .intro-info .intro-title{font-size: 18px;padding-top: 25px;}
+.intro-container .intro-item .intro-info .intro-desc{color: #ccc;}
+
+/* 商品展示区 */
+.section{width: 100%;position: relative;padding-top: 10px; padding-bottom: 10px;}
+/* 区域标题*/
+.section-title{height:40px;border-bottom: 2px solid #000;}
+.section-title > [class$=-title]{float: left;height:40px;}
+.section-title > .main-title{font-size: 20px; font-weight: bold;line-height: 40px;color: #282828;}
+.section-title > .sub-title{line-height: 45px;margin-left: 5px;color: #ccc;}
+.section-title > .section-title-tabs{float: left;list-style: none;margin: 0;padding: 0;}
+.section-title > .section-title-tabs > .title-tab{float: left;font-size: 20px;line-height:40px;height: 40px;padding: 0 20px;position: relative;font-weight: bold;}
+.section-title > .section-title-tabs > .title-tab.active::after{position: absolute;content: '';border-bottom: 2px solid #f50;bottom: 0px;left:0px;width: 100%;z-index: 1;}
+.section-title > .section-title-tabs > .title-tab > a{color: #f50;}
+.section-title > .section-title-tabs > .title-tab > a:hover{text-decoration: none;}
+.section-title > .op{float: right; height: 40px;}
+.section-title > .op .tag{height: 30px; padding: 0 30px;border: 1px solid #f50;color: #f50;line-height: 30px;}
+.section-title > .op .tag a{color: #f50;text-decoration: none;}
+
+/* 区域内容*/
+.section-content{float: left;width:100%;}
+.goods-container{width: 250px; height: 380px;margin: 10px;border: 1px solid #ccc;float: left;}
+.goods-image{width: 100%; height: 260px;background-position: center; background-size: cover;background-repeat: no-repeat;display: block;}
+.goods-name{height: 50px;padding: 5px;color: #282828;border-bottom: 1px solid #ddd;text-overflow: ellipsis;}
+.goods-original-price{font-size: 20px;padding-left: 6px;}
+.goods-price{height: 70px;}
+.goods-price > .goods-off-price{color: #f50;padding:0 10px;float: left;font-size: 18px;}
+.goods-price > .goods-real-price{background: url(../image/chat-frame.png) no-repeat 10% center;background-size: cover;padding:0 8px 0 12px;width: 100px; height: 25px;color: #f50;float: left;text-align: center;line-height: 25px;}
+.goods-price > .goods-sold-count{float: right;height: 25px; line-height: 25px;padding: 0 8px;}
+
+
+
 
 
 
