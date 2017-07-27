@@ -17,8 +17,10 @@ public class User implements Serializable {
 	@NotBlank
 	@Length(max = 20)
 	private String username;
-
+	
 	private String password;
+	
+	private String alipayNo;
 
 	@NotNull
 	@NotBlank
@@ -34,6 +36,16 @@ public class User implements Serializable {
 	@NotNull
 	private Boolean enabled;
 	
+	
+	
+	public String getAlipayNo() {
+		return alipayNo;
+	}
+
+	public void setAlipayNo(String alipayNo) {
+		this.alipayNo = alipayNo;
+	}
+
 	public String getId() {
 		return id;
 	}

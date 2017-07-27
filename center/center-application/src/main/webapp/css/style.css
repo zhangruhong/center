@@ -3,6 +3,7 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 .row{margin-left: 0px; margin-right: 0px;}
 [class*=col-]{padding-left: 0px; padding-right: 0px;}
 a:hover{cursor: pointer;}
+a:focus, a:visited{text-decoration: none;}
 
 /* 顶部登录及导航条*/
 .navbar .navbar-top{height: 60px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;margin-bottom: 10px;}
@@ -70,7 +71,7 @@ a:hover{cursor: pointer;}
 .navbar .navbar-logo{display: inline-block; height: 60px; width: 60px;vertical-align: top;}
 
 .navbar .user-photo{height: 20px;width: 20px;border: none;vertical-align: top;}
-.navbar .search-form{padding:0;margin-top: 0;margin-bottom: 0;position: absolute; right: 15px;top: 0px;width: 300px;height: 40px; padding: 10px;}
+.navbar .search-form{padding:0;margin-top: 0;margin-bottom: 0;position: absolute; right: 15px;top: 0px;width: 500px;height: 40px; padding: 10px;}
 .navbar .search-form .form-group{margin-bottom: 0;}
 .navbar .search-form .form-control{box-shadow: none;border: 2px solid #f50;height: 40px;}
 .navbar .search-form .input-group-addon{background: #f50;border: none;color: white;}
@@ -134,7 +135,7 @@ a:hover{cursor: pointer;}
 .section-title > .section-title-tabs > .title-tab{float: left;font-size: 20px;line-height:40px;height: 40px;padding: 0 20px;position: relative;font-weight: bold;}
 .section-title > .section-title-tabs > .title-tab.active::after{position: absolute;content: '';border-bottom: 2px solid #f50;bottom: 0px;left:0px;width: 100%;z-index: 1;}
 .section-title > .section-title-tabs > .title-tab > a{color: #f50;}
-.section-title > .section-title-tabs > .title-tab > a:hover{text-decoration: none;}
+.section-title > .section-title-tabs > .title-tab > a:hover, .section-title > .section-title-tabs > .title-tab > a:focus{text-decoration: none;}
 .section-title > .op{float: right; height: 40px;}
 .section-title > .op .tag{height: 30px; padding: 0 30px;border: 1px solid #f50;color: #f50;line-height: 30px;}
 .section-title > .op .tag a{color: #f50;text-decoration: none;}

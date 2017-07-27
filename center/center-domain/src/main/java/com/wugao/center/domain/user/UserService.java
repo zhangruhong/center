@@ -1,9 +1,5 @@
 package com.wugao.center.domain.user;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.validation.Valid;
@@ -31,9 +27,6 @@ public class UserService {
 
 	public User saveUser(@Valid User user) {
 		// 用户名
-		if (!isLegalUsername(user.getUsername())) {
-			throw new AppException("账号必须英文或数字开头，并且不能包含中文及特殊字符");
-		}
 		if (userRepo.getByUsername(user.getUsername()) != null) {
 			throw new AppException("账号已存在");
 		}
@@ -61,24 +54,10 @@ public class UserService {
 		savedUser.setEmail(user.getEmail());
 		// 状态
 		savedUser.setEnabled(user.getEnabled() == null ? savedUser.getEnabled() : user.getEnabled());
+		//支付宝账号
+		savedUser.setAlipayNo(user.getAlipayNo());
 		// 保存更新
 		userRepo.update(savedUser);
-	}
-
-	public void resetUserPassword(String userId) {
-		User user = userRepo.getById(userId);
-		if (user == null) {
-			throw new AppException("用户不存在");
-		}
-		user.setPassword(passwordEncoder.encode(DEFAULT_PASSSORD));
-		/* user.setPasswordChangeTime(new Date()); */
-		userRepo.update(user);
-	}
-
-	private static boolean isLegalUsername(String username) {
-		String regex = "^[A-Za-z0-9_-]{1,20}$";
-		Pattern p = Pattern.compile(regex);
-		return p.matcher(username).matches();
 	}
 
 }
