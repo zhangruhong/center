@@ -10,6 +10,4 @@
 	<!-- 登录后的装饰页面 -->
 	<mapping path="/v/login" decorator="/WEB-INF/view/decorator/frame.jsp"></mapping>
 	
-	<mapping path="/*" exclude="true"></mapping>
-	
 </sitemesh>

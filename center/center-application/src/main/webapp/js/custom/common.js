@@ -23,7 +23,9 @@ $(function(){
 						$(this).css({marginLeft: realMargin + 10 + 'px'});
 					}
 				});
-			})
+				$('.pagination', $(this)).css({marginRight: realMargin + 10 + 'px'});
+			});
+			
 		}).trigger('resize');
 		
 	}

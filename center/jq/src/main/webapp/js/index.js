@@ -1,5 +1,7 @@
 $(function(){
 	
+	var off = 0.7;
+	
 	$.fn.extend({
 		initBanner : function(){
 			if($(this)[0].tagName === 'DIV'){
@@ -28,8 +30,55 @@ $(function(){
 					});
 				});
 			}
+		},
+		initGoodsContainer : function(objects){
+			var $goodsList = $(this);
+			$('.goods-container', $goodsList).remove();
+			$.each(objects, function(i, g){
+				var $goodsContainer = $('<div class="goods-container"></div>').prependTo($goodsList);
+				var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.tbkShortUrl + '"></a>').appendTo($goodsContainer);
+				var $goodsName = $('<div class="goods-name">' + g.name +'</div>').appendTo($goodsContainer);
+				var $goodsOriginalPrice = $('<div class="goods-original-price">￥' + g.originalPrice.toFixed(2) +'</div>').appendTo($goodsContainer);
+				var $goodsPrice = $('<div class="goods-price"></div>').appendTo($goodsContainer);
+				var $goodsOffPrice = $('<div class="goods-off-price">' + (g.incoming * 0.7).toFixed(2)  + '</div>').appendTo($goodsPrice);
+				var $goodsRealPrice = $('<div class="goods-real-price">到手价:<span class="num">' + (g.originalPrice - g.incoming * 0.7).toFixed(2) +'</span></div>').appendTo($goodsPrice);
+				var $soldCount = $('<div class="goods-sold-count">月销量:<span class="num">' + g.soldCountPerMonth +'</span></div>').appendTo($goodsPrice);
+			});
+			$(window).trigger('resize');
 		}
 	});
 	$('.banner-container').initBanner();
+	
+	/**
+	 * 初始化销量王
+	 */
+	var initTopSale = function(){
+		$('#top-sale-search-form').searchForm({
+			url: '/index/getGoodsByTopSale',
+			pagination: '#top-pagination',
+			pageSize: 12,
+			success: function(objects){
+				$('#top-sale-list').initGoodsContainer(objects);
+			}
+		}).trigger('submit');
+	}
+	
+	/**
+	 * 初始化商品列表
+	 */
+	var initGoods = function(){
+		$('#search-form').searchForm({
+			url: '/index/getGoodsByHighReturn',
+			pagination: '#pagination',
+			pageSize: 24,
+			success: function(objects){
+				$('#goods-list').initGoodsContainer(objects);
+			}
+		}).trigger('submit');
+	}
+	
+	
+	initGoods();
+	initTopSale();
 	
 });

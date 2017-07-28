@@ -1,4 +1,4 @@
-package com.wugao.center.infrastruture.spring.web.method;
+package com.wugao.center.support.spring.web.method;
 
 import javax.servlet.http.HttpServletRequest;
 

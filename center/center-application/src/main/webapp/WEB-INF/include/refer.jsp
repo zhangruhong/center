@@ -46,9 +46,12 @@
 <script src="<%=request.getContextPath()%>/js/vendor/slimScroll-1.3.8/jquery.slimscroll.min.js"></script>
 
 <!-- 自定义的库 -->
+<script src="<%=request.getContextPath()%>/js/custom/jquery-form/jquery.form.js"></script>
+<script src="<%=request.getContextPath()%>/js/custom/jquery-ajax/jquery.ajax.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 <script src="<%=request.getContextPath()%>/js/custom/utils/util.js"></script>
 <script src="<%=request.getContextPath()%>/js/custom/utils/date.js"></script>
+
 <script src="<%=request.getContextPath()%>/js/custom/common.js"></script>
 
 

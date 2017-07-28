@@ -1,5 +1,6 @@
 package com.wugao.center.domain.goods;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +17,11 @@ import org.springframework.util.StringUtils;
 import com.wugao.center.infrastruture.mybatis.Pagination;
 
 @Repository
-@CacheConfig(cacheNames = "query:center:com.wugao.center.domain.user.UserRepo")
+@CacheConfig(cacheNames = "query:center:com.wugao.center.domain.goods.GoodsRepo")
 public class GoodsRepo {
 
-	private static final String NS = "com.wugao.center.domain.user.UserRepo.";
+	private static final String NS = "com.wugao.center.domain.goods.GoodsRepo.";
+	private static final int BATCH_SIZE = 200;
 
 	@Autowired
 	
@@ -48,11 +50,6 @@ public class GoodsRepo {
 	}
 
 	@Cacheable
-	public Goods getByUsername(String username) {
-		return StringUtils.isEmpty(username) ? null : sqlSessionTemplate.selectOne(NS + "getByUsername", username);
-	}
-
-	@Cacheable
 	public List<Goods> getList(String search) {
 		Map<String, Object> param = new HashMap<>();
 		param.put("search", search);
@@ -65,6 +62,32 @@ public class GoodsRepo {
 		param.put("search", search);
 		param.put("enabled", enabled);
 		return sqlSessionTemplate.selectList(NS + "getList", param, pagination.toRowBounds());
+	}
+
+	public void saveBatch(List<Goods> toBeAddList) {
+		List<Goods> temp = new ArrayList<>();
+		for(int i = 0; i < toBeAddList.size(); i++) {
+			temp.add(toBeAddList.get(i));
+			if(temp.size() % BATCH_SIZE == 0 || i == toBeAddList.size() -1) {
+				sqlSessionTemplate.insert(NS + "saveBatch", temp);
+				temp.clear();
+			}
+		}
+		
+	}
+
+	public List<Goods> getListByHighReturn(Pagination pagination) {
+		if(pagination != null) {
+			return sqlSessionTemplate.selectList(NS + "getGoodsByHighReturn", null, pagination.toRowBounds());
+		}
+		return sqlSessionTemplate.selectList(NS + "getGoodsByHighReturn");
+	}
+
+	public List<Goods> getListByTopSale(Pagination pagination) {
+		if(pagination != null) {
+			return sqlSessionTemplate.selectList(NS + "getListByTopSale", null, pagination.toRowBounds());
+		}
+		return sqlSessionTemplate.selectList(NS + "getListByTopSale");
 	}
 
 }

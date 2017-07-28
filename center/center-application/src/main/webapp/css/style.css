@@ -1,9 +1,11 @@
-/* 閫氱敤 */
+/* 通用 */
 html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transparent;}
 .row{margin-left: 0px; margin-right: 0px;}
 [class*=col-]{padding-left: 0px; padding-right: 0px;}
 a:hover{cursor: pointer;}
 a:focus, a:visited{text-decoration: none;}
+/*分页*/
+.data-pagination{text-align: right}
 
 /* 顶部登录及导航条*/
 .navbar .navbar-top{height: 60px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;margin-bottom: 10px;}
@@ -147,9 +149,9 @@ a:focus, a:visited{text-decoration: none;}
 .goods-name{height: 50px;padding: 5px;color: #282828;border-bottom: 1px solid #ddd;text-overflow: ellipsis;}
 .goods-original-price{font-size: 20px;padding-left: 6px;}
 .goods-price{height: 70px;}
-.goods-price > .goods-off-price{color: #f50;padding:0 10px;float: left;font-size: 18px;}
-.goods-price > .goods-real-price{background: url(../image/chat-frame.png) no-repeat 10% center;background-size: cover;padding:0 8px 0 12px;width: 100px; height: 25px;color: #f50;float: left;text-align: center;line-height: 25px;}
-.goods-price > .goods-sold-count{float: right;height: 25px; line-height: 25px;padding: 0 8px;}
+.goods-price > .goods-off-price{color: #f50;padding:0 8px;float: left;font-size: 18px;}
+.goods-price > .goods-real-price{background: url(../image/chat-frame.png) no-repeat 10% center;background-size: cover;padding:0 0 0 5px;width: 100px; height: 25px;color: #f50;float: left;text-align: center;line-height: 25px;}
+.goods-price > .goods-sold-count{float: right;height: 25px; line-height: 25px;padding: 0 5px;font-size: 12px;color: #444;}
 
 
 

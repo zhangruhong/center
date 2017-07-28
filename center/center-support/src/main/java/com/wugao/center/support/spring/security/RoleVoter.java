@@ -1,4 +1,4 @@
-package com.wugao.center.infrastruture.spring.security;
+package com.wugao.center.support.spring.security;
 
 import java.util.Collection;
 

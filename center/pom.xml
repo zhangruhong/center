@@ -397,7 +397,7 @@
 		    <artifactId>yauaa</artifactId>
 		    <version>1.2</version>
 		</dependency>
-
+		
 	</dependencies>
 	
 	<build>
@@ -432,6 +432,7 @@
 	<module>center-application</module>
 	<module>center-domain</module>
 	<module>jq</module>
+	<module>center-support</module>
 	</modules>
 	
 </project>

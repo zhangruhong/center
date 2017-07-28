@@ -1,4 +1,4 @@
-package com.wugao.center.infrastruture.spring.web.authentication;
+package com.wugao.center.support.spring.web.authentication;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;

@@ -1,0 +1,195 @@
+(function($) {
+	
+	
+	$.fn.dictionary = function(op) {
+		var option = {};
+		$.extend(option, op);
+		return this.each(function() {
+			var type = $(this).attr('data-dict');
+			if (typeof(type) == 'undefined') { return false; }
+			var tagName = $(this).get(0).tagName;
+			if (tagName == 'SELECT' || tagName == 'select') {
+				$(this).attr('lastone', 'true');
+				$.ajax({url: ('/public/dictionaries/' + type + '/all')}).done($.proxy(function(items) {
+					$(this).empty().append('<option value="">-</option>');
+					$.each(items, $.proxy(function(i, item) { $(this).append('<option value="'+ item.code +'">'+ item.name +'</option>'); }, this));
+					if (typeof($(this).attr('data-value')) != 'undefined') { $(this).val($(this).attr('data-value')).removeAttr('data-value'); }
+				}, this));
+			} else {
+				// 有下拉框，则初始化
+				if ($(this).children('select').length > 0) {
+					$(this).children('select').attr('lastone', 'false');
+					$(this).children('select:last').attr('lastone', 'true');
+					var first = $(this).children('select:first');
+					$(this).children('select').each(function(i, n) {
+						if (i > 0) {
+							$(n).prev().on('change', function() {
+								$(n).empty().append('<option value="">-</option>');
+								if ($(this).val() == '') {
+									$(n).trigger('change');
+								} else {
+									$.ajax({url: ('/public/dictionaries/' + type + '/children?parentCode=' + $(this).val())}).done(function(children) {
+										$.each(children, function(j, child) { $(n).append('<option value="'+ child.code +'">'+ child.name +'</option>'); });
+										if (typeof($(n).attr('data-value')) != 'undefined') { $(n).val($(n).attr('data-value')).removeAttr('data-value'); }
+										$(n).trigger('change');
+									});
+								}
+							});
+						}
+					});
+					$.ajax({url: ('/public/dictionaries/' + type + '/roots')}).done(function(roots) {
+						$(first).empty().append('<option value="">-</option>');
+						$.each(roots, function(i, root) { $(first).append('<option value="'+ root.code +'">'+ root.name +'</option>'); });
+						if (typeof($(first).attr('data-value')) != 'undefined') { $(first).val($(first).attr('data-value')).removeAttr('data-value'); }
+						$(first).trigger('change');
+					});
+				} else {
+					// 同时具有data-trans、data-value，需要翻译
+					var code = $(this).attr('data-value');
+					var trans = $(this).attr('data-trans');
+					if (typeof(trans) == 'undefined') { trans = 'names'; }
+					if (typeof(code) != 'undefined' && code.length > 0) {
+						$.ajax({url: ('/public/dictionaries/' + type + '/'+ code +'/text?trans=' + trans)}).done($.proxy(function(obj) {
+							$(this).text(obj.text);
+						}, this));
+					}
+				}
+			}
+		});
+	};
+	
+	
+	$.fn.selection = function(op) {
+		var option = {
+			items			:	[],
+			value			:	'id',
+			text			:	'name',
+			complete		:	$.noop
+		};
+		$.extend(option, op);
+		return this.each(function() {
+			$('option[value!=""]', this).remove();
+			//
+			var sb = new StringBuffer();
+			if (option.items && $.isArray(option.items)) {
+				$.each(option.items, function(i, obj) {
+					if ($.isFunction(option.text)) {
+						sb.append('<option value=' + obj[option.value] + '>' + option.text(obj) + '</option>');
+					} else {
+						sb.append('<option value=' + obj[option.value] + '>' + obj[option.text] + '</option>');
+					}
+				});
+			}
+			$(this).append(sb.toString());
+			// 
+			if (option.complete) {
+				option.complete();
+			}
+		});
+	};
+	
+	
+	$.fn.validate = function(error) {
+		return this.each(function() {
+			$('.validation-error', this).removeClass('validation-error');
+			if (error) {
+				for (var key in error) {
+					var $target = $('[name="'+ key +'"]', this);
+					if ($target.length) {
+						$target.addClass('validation-error');
+						$('label[for="'+ key +'"]', this).addClass('validation-error')
+						
+						$target.attr('title', error[key]).data('toggle', 'tooltip').data('placement', 'top');
+						if($('.tooltip[id=' + $target.attr('aria-describedby') + ']')){$('.tooltip[id=' + $target.attr('aria-describedby') + ']').remove()};
+						$target.tooltip().tooltip('fixTitle').tooltip('show');
+						
+					} else {
+						swal({title: '错误！', text: error[key], type: 'error'});
+					}
+				}
+			}
+		});
+	};
+	
+	
+	$.fn.searchForm = function(op) {
+		var options = {
+			url				:	'/',
+			pagination		:	false,
+			pageSize		:	10,
+			success			:	$.noop,
+			triggerEvent	: 	true
+		};
+		$.extend(options, op);
+		return this.each(function() {
+			// 分页参数及事件
+			var paging = {};
+			if (options.pagination) {
+				paging = {
+					total					:	0,
+					pageSize				:	(options.pagination ? options.pageSize : 10),
+					// 以下参数为分页插件所用
+					currentPage				:	1,
+			        totalPages				:	1,
+			        numberOfPages			:	5,
+			        bootstrapMajorVersion	:	3,
+			        size					:	'small',
+			        onPageClicked			:	$.proxy(function(e, originalEvent, type, page) { e.stopImmediatePropagation(); paging.currentPage = page; $(this).trigger('submit'); }, this),
+			        tooltipTitles			:	function (type, page, current) {
+			            switch (type) {
+			            case 'first': return '首页';
+			            case 'prev': return '上一页';
+			            case 'next': return '下一页';
+			            case 'last': return '尾页';
+			            case 'page': return '第' + page + '页';
+			            }
+			        }
+				};
+			}
+			// 表单提交
+			$(this).on('submit', function(e) {
+				e.preventDefault();
+				// 
+				var pageUrl = options.url;
+				if ($.isFunction(pageUrl)) {pageUrl = pageUrl();}
+				if (options.pagination) { 
+					if (pageUrl.indexOf('?') > 0) {
+						pageUrl = pageUrl + '&' + 'page=' + paging.currentPage + '&pageSize=' + paging.pageSize;
+					} else {
+						pageUrl = pageUrl + '?' + 'page=' + paging.currentPage + '&pageSize=' + paging.pageSize;
+					}
+				}
+				$.ajax({
+					dataType	:	'json',
+					url			:	pageUrl,
+					data		:	this
+				}).done(function(result) {
+					// 数据集
+					var objects = result;
+					// 分页计算
+					if (options.pagination) {
+						paging.total = result.total;
+						paging.totalPages = Math.ceil(paging.total / paging.pageSize) || 1;
+						if (paging.currentPage > paging.totalPages) { paging.currentPage = paging.totalPages; }
+						objects = result.rows;
+						// 生成分页条
+						$(options.pagination).bootstrapPaginator(paging);
+					}
+					// 回调
+					options.success(objects, (options.pagination ? paging : null));
+				});
+			});
+			// 下拉框change触发提交
+			if(options.triggerEvent){
+				$('select', this).on('change', $.proxy(function() {
+					$(this).trigger('submit');
+				}, this));
+			}
+			
+		});
+	};
+	
+	
+})(jQuery);
+
+

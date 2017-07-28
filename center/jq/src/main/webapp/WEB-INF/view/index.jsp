@@ -75,47 +75,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="section-content">
-					<div class="goods-container">
-						<a class="goods-image" style="background-image: url(http://img.alicdn.com/bao/uploaded/i3/TB1y9tRRpXXXXcoaXXXXXXXXXXX_!!0-item_pic.jpg)" href="https://s.click.taobao.com/HSjbdew" target="_blank"></a>
-						<div class="goods-name">2017夏季新款韩版时尚夏装两件套女装夏天小清新雪纺上衣短裤套装</div>
-						<div class="goods-original-price">￥55.00</div>
-						<div class="goods-price">
-							<div class="goods-off-price">3.11</div>
-							<div class="goods-real-price">到手价<span class="num">51.99</span></div>
-							<div class="goods-sold-count">月销量:<span class="num">9363</span></div>
-						</div>
-					</div>
-					<div class="goods-container">
-						<a class="goods-image" style="background-image: url(http://img.alicdn.com/bao/uploaded/i3/TB1y9tRRpXXXXcoaXXXXXXXXXXX_!!0-item_pic.jpg)" href="https://s.click.taobao.com/HSjbdew" target="_blank"></a>
-						<div class="goods-name">2017夏季新款韩版时尚夏装两件套女装夏天小清新雪纺上衣短裤套装</div>
-						<div class="goods-original-price">￥55.00</div>
-						<div class="goods-price">
-							<div class="goods-off-price">3.11</div>
-							<div class="goods-real-price">到手价<span class="num">51.99</span></div>
-							<div class="goods-sold-count">月销量:<span class="num">9363</span></div>
-						</div>
-					</div>
-					<div class="goods-container">
-						<a class="goods-image" style="background-image: url(http://img.alicdn.com/bao/uploaded/i3/TB1y9tRRpXXXXcoaXXXXXXXXXXX_!!0-item_pic.jpg)" href="https://s.click.taobao.com/HSjbdew" target="_blank"></a>
-						<div class="goods-name">2017夏季新款韩版时尚夏装两件套女装夏天小清新雪纺上衣短裤套装</div>
-						<div class="goods-original-price">￥55.00</div>
-						<div class="goods-price">
-							<div class="goods-off-price">3.11</div>
-							<div class="goods-real-price">到手价<span class="num">51.99</span></div>
-							<div class="goods-sold-count">月销量:<span class="num">9363</span></div>
-						</div>
-					</div>
-					<div class="goods-container">
-						<a class="goods-image" style="background-image: url(http://img.alicdn.com/bao/uploaded/i3/TB1y9tRRpXXXXcoaXXXXXXXXXXX_!!0-item_pic.jpg)" href="https://s.click.taobao.com/HSjbdew" target="_blank"></a>
-						<div class="goods-name">2017夏季新款韩版时尚夏装两件套女装夏天小清新雪纺上衣短裤套装</div>
-						<div class="goods-original-price">￥55.00</div>
-						<div class="goods-price">
-							<div class="goods-off-price">3.11</div>
-							<div class="goods-real-price">到手价<span class="num">51.99</span></div>
-							<div class="goods-sold-count">月销量:<span class="num">9363</span></div>
-						</div>
-					</div>
+				<div class="section-content" id="top-sale-list">
+					<nav class="data-pagination hide">
+						<ul id="top-pagination" class="pagination"></ul>
+					</nav>
 				</div>
 			</div>
 		</div>
@@ -128,50 +91,15 @@
 						<li class="title-tab"><a href="#">特卖商品</a></li>
 					</ul>
 				</div>
-				<div class="section-content">
-					<div class="goods-container">
-						<a class="goods-image" style="background-image: url(http://img.alicdn.com/bao/uploaded/i3/TB1y9tRRpXXXXcoaXXXXXXXXXXX_!!0-item_pic.jpg)" href="https://s.click.taobao.com/HSjbdew" target="_blank"></a>
-						<div class="goods-name">2017夏季新款韩版时尚夏装两件套女装夏天小清新雪纺上衣短裤套装</div>
-						<div class="goods-original-price">￥55.00</div>
-						<div class="goods-price">
-							<div class="goods-off-price">3.11</div>
-							<div class="goods-real-price">到手价<span class="num">51.99</span></div>
-							<div class="goods-sold-count">月销量:<span class="num">9363</span></div>
-						</div>
-					</div>
-					<div class="goods-container">
-						<a class="goods-image" style="background-image: url(http://img.alicdn.com/bao/uploaded/i3/TB1y9tRRpXXXXcoaXXXXXXXXXXX_!!0-item_pic.jpg)" href="https://s.click.taobao.com/HSjbdew" target="_blank"></a>
-						<div class="goods-name">2017夏季新款韩版时尚夏装两件套女装夏天小清新雪纺上衣短裤套装</div>
-						<div class="goods-original-price">￥55.00</div>
-						<div class="goods-price">
-							<div class="goods-off-price">3.11</div>
-							<div class="goods-real-price">到手价<span class="num">51.99</span></div>
-							<div class="goods-sold-count">月销量:<span class="num">9363</span></div>
-						</div>
-					</div>
-					<div class="goods-container">
-						<a class="goods-image" style="background-image: url(http://img.alicdn.com/bao/uploaded/i3/TB1y9tRRpXXXXcoaXXXXXXXXXXX_!!0-item_pic.jpg)" href="https://s.click.taobao.com/HSjbdew" target="_blank"></a>
-						<div class="goods-name">2017夏季新款韩版时尚夏装两件套女装夏天小清新雪纺上衣短裤套装</div>
-						<div class="goods-original-price">￥55.00</div>
-						<div class="goods-price">
-							<div class="goods-off-price">3.11</div>
-							<div class="goods-real-price">到手价<span class="num">51.99</span></div>
-							<div class="goods-sold-count">月销量:<span class="num">9363</span></div>
-						</div>
-					</div>
-					<div class="goods-container">
-						<a class="goods-image" style="background-image: url(http://img.alicdn.com/bao/uploaded/i3/TB1y9tRRpXXXXcoaXXXXXXXXXXX_!!0-item_pic.jpg)" href="https://s.click.taobao.com/HSjbdew" target="_blank"></a>
-						<div class="goods-name">2017夏季新款韩版时尚夏装两件套女装夏天小清新雪纺上衣短裤套装</div>
-						<div class="goods-original-price">￥55.00</div>
-						<div class="goods-price">
-							<div class="goods-off-price">3.11</div>
-							<div class="goods-real-price">到手价<span class="num">51.99</span></div>
-							<div class="goods-sold-count">月销量:<span class="num">9363</span></div>
-						</div>
-					</div>
+				<div class="section-content" id="goods-list">
+					<nav class="data-pagination">
+						<ul id="pagination" class="pagination"></ul>
+					</nav>
 				</div>
 			</div>
 		</div>
+		<form id="top-sale-search-form" class="hide" data-name="highReturn"></form>
+		<form id="search-form" class="hide" data-name="highReturn"></form>
 	</div>
 </body>
 </html>

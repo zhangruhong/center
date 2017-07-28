@@ -11,6 +11,11 @@
   <dependencies>
   	<dependency>
   		<groupId>com.wugao</groupId>
+  		<artifactId>center-support</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.wugao</groupId>
   		<artifactId>center-application</artifactId>
   		<version>${project.version}</version>
   		<type>war</type>

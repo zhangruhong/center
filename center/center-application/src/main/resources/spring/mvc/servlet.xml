@@ -14,12 +14,12 @@
 	
 	<mvc:annotation-driven conversion-service="conversionService">
 		<mvc:argument-resolvers>
-			<bean class="com.wugao.center.infrastruture.spring.web.method.MethodArgumentResolver" />
+			<bean class="com.wugao.center.support.spring.web.method.MethodArgumentResolver" />
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 	
 	<mvc:default-servlet-handler />
-	<mvc:view-controller path="/" view-name="home/home" />
+	<mvc:view-controller path="/" view-name="index" />
 	<mvc:view-controller path="/login" view-name="login/login"/>
 	<mvc:view-controller path="/index" view-name="index"/>
 	
@@ -37,6 +37,7 @@
 			<mvc:mapping path="/**/*.woff" />
 			<mvc:mapping path="/**/*.woff2" />
 			<mvc:mapping path="/**/*.ttf" />
+			<mvc:exclude-mapping path="/root.txt"/>
 			
 			<bean class="org.springframework.web.servlet.mvc.WebContentInterceptor">
 				<property name="cacheSeconds" value="3600" />

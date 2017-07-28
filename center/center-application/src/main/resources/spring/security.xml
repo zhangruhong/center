@@ -39,12 +39,13 @@
 		<security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/doLogin" access="permitAll" />
 		<security:intercept-url pattern="/index" access="permitAll" />
+		<security:intercept-url pattern="/" access="permitAll" />
 		
 		<!-- 访问规则：认证后允许 -->
 		<security:intercept-url pattern="/home" access="isAuthenticated()"/>
 		
 		<!-- 访问规则：以上未配置的其它请求总是拒绝 -->
-		<security:intercept-url pattern="/**" access="denyAll" />
+		
 	</security:http>
 	
 	<!-- 认证入口 -->
@@ -58,7 +59,7 @@
 	<!-- 加密方式 -->
 	<bean id="passwordEncoder" class="com.wugao.center.infrastruture.spring.security.PasswordEncoder" />
 	<!-- 用来验证用户信息 -->
-	<bean id="userDetailsService" class="com.wugao.center.infrastruture.spring.web.authentication.UserDetailsService" />
+	<bean id="userDetailsService" class="com.wugao.center.support.spring.web.authentication.UserDetailsService" />
 	<!-- 登录成功 -->
 	<bean id="authenticationSuccessHandler" class="com.wugao.center.infrastruture.spring.web.authentication.AuthenticationSuccessHandler" />
 	<bean id="authenticationFailureHandler" class="com.wugao.center.infrastruture.spring.web.authentication.AuthenticationFailureHandler" />
@@ -70,7 +71,7 @@
 		<constructor-arg name="decisionVoters">
 			<list>
 				<bean class="org.springframework.security.web.access.expression.WebExpressionVoter" />
-				<bean class="com.wugao.center.infrastruture.spring.security.RoleVoter" />
+				<bean class="com.wugao.center.support.spring.security.RoleVoter" />
 			</list>
 		</constructor-arg>
 	</bean>
