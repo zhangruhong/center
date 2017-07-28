@@ -36,7 +36,7 @@ $(function(){
 			$('.goods-container', $goodsList).remove();
 			$.each(objects, function(i, g){
 				var $goodsContainer = $('<div class="goods-container"></div>').prependTo($goodsList);
-				var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.tbkShortUrl + '"></a>').appendTo($goodsContainer);
+				var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.tbkShortUrl + '" target="_blank"></a>').appendTo($goodsContainer);
 				var $goodsName = $('<div class="goods-name">' + g.name +'</div>').appendTo($goodsContainer);
 				var $goodsOriginalPrice = $('<div class="goods-original-price">￥' + g.originalPrice.toFixed(2) +'</div>').appendTo($goodsContainer);
 				var $goodsPrice = $('<div class="goods-price"></div>').appendTo($goodsContainer);
@@ -45,9 +45,20 @@ $(function(){
 				var $soldCount = $('<div class="goods-sold-count">月销量:<span class="num">' + g.soldCountPerMonth +'</span></div>').appendTo($goodsPrice);
 			});
 			$(window).trigger('resize');
+		},
+		initType: function(){
+			var cookieType = $.cookie('type');
+			if(cookieType){
+				$('[name=type]', this).val(cookieType);
+			}else{
+				$('[name=type]', this).val('highReturn');
+			}
 		}
 	});
+	/* 品牌/活动展示banner*/
 	$('.banner-container').initBanner();
+	/* 初始化显示那个类型的内容*/
+	$('#search-form').initType();
 	
 	/**
 	 * 初始化销量王
@@ -68,7 +79,7 @@ $(function(){
 	 */
 	var initGoods = function(){
 		$('#search-form').searchForm({
-			url: '/index/getGoodsByHighReturn',
+			url: '/index/getGoods',
 			pagination: '#pagination',
 			pageSize: 24,
 			success: function(objects){
@@ -80,5 +91,11 @@ $(function(){
 	
 	initGoods();
 	initTopSale();
+	
+	$('#type-tabs > li').on('click', function(){
+		$.cookie('type', $(this).data('type'), {expires: 1});
+		$(this).addClass('active').siblings('li.active').removeClass('active');
+		$('#search-form').find('[name=type]').val($(this).data('type')).trigger('submit');
+	});
 	
 });

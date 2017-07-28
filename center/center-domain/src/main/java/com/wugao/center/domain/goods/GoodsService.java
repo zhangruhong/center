@@ -43,7 +43,7 @@ public class GoodsService {
 	
 	public void saveBatch(HSSFWorkbook workbook) {
 		List<Goods> toBeAddList = new ArrayList<>();
-		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
 		try {
 			workbook = new HSSFWorkbook(this.getClass().getClassLoader().getResourceAsStream("xlsx/女装-2017-07-27.xls"));
 			HSSFSheet sheet = workbook.getSheetAt(0);

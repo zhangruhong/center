@@ -85,10 +85,10 @@
 		<div class="container">
 			<div class="section">
 				<div class="section-title">
-					<ul class="section-title-tabs">
-						<li class="title-tab active"><a href="#">超高返利</a></li>
-						<li class="title-tab"><a href="#">十元店</a></li>
-						<li class="title-tab"><a href="#">特卖商品</a></li>
+					<ul class="section-title-tabs" id="type-tabs">
+						<li class="title-tab active" data-type="highReturn"><a href="#">超高返利</a></li>
+						<li class="title-tab" data-type="superTicket"><a href="#">超级券</a></li>
+						<li class="title-tab" data-type="TenYuan"><a href="#">特卖商品</a></li>
 					</ul>
 				</div>
 				<div class="section-content" id="goods-list">
@@ -99,7 +99,9 @@
 			</div>
 		</div>
 		<form id="top-sale-search-form" class="hide" data-name="highReturn"></form>
-		<form id="search-form" class="hide" data-name="highReturn"></form>
+		<form id="search-form" class="hide">
+			<input type="hidden" name="type" value="highReturn">
+		</form>
 	</div>
 </body>
 </html>

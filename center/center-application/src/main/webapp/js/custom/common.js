@@ -10,13 +10,13 @@ $(function(){
 		}).trigger('mouseleave');
 		
 		
-		var $goodsContainer = $('.goods-container');
+		
 		$(window).on('resize', function(){
-			var singleWidth = 270;
-			var parentWidth = $goodsContainer.parent().width();
-			var colNumPerRow = Math.floor(parentWidth / singleWidth);
-			var realMargin = (parentWidth - (singleWidth *  colNumPerRow ))/2;
 			$('.section-content').each(function(index, value){
+				var singleWidth = 270;
+				var parentWidth = $(this).width();
+				var colNumPerRow = Math.floor(parentWidth / singleWidth);
+				var realMargin = (parentWidth - (singleWidth *  colNumPerRow ))/2;
 				$('.goods-container', $(this)).each(function(i,v){
 					$(this).css({marginLeft: '10px'});
 					if(i % colNumPerRow == 0){
@@ -26,7 +26,7 @@ $(function(){
 				$('.pagination', $(this)).css({marginRight: realMargin + 10 + 'px'});
 			});
 			
-		}).trigger('resize');
+		});
 		
 	}
 	init();

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+	<properties>
+		<property name="LOG_HOME">/usr/local/logs/jq</property>
+	</properties>
+
+	<Appenders>
+		<Console name="stdoutAppender" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d [%p] %c - %m%n" />
+		</Console>
+		<RollingRandomAccessFile name="errorAppender" fileName="${LOG_HOME}/error.log" filePattern="${LOG_HOME}/error-%i.log">
+			<PatternLayout pattern="%d [%p] %c - %m%n" />
+			<SizeBasedTriggeringPolicy size="10 MB" />
+			<DefaultRolloverStrategy max="3" />
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<!-- root -->
+		<Root level="DEBUG"><AppenderRef ref="stdoutAppender" /><AppenderRef ref="errorAppender" level="info" /></Root>
+		<logger name="org" level="info"></logger>
+		<logger name="com.wugao.center.domain" level="DEBUG"/>
+		<logger name="com.wugao.jq.domain" level="DEBUG"/>
+	</Loggers>
+
+</Configuration>

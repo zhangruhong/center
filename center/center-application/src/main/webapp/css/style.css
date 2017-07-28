@@ -5,7 +5,7 @@ html,body,p,div,h1,h2,h3,h4,h5,h6,table{margin: 0;padding: 0;background: transpa
 a:hover{cursor: pointer;}
 a:focus, a:visited{text-decoration: none;}
 /*分页*/
-.data-pagination{text-align: right}
+.data-pagination{text-align: right; clear: both;}
 
 /* 顶部登录及导航条*/
 .navbar .navbar-top{height: 60px;background: #f6f6f6;width: 100%;color: #999999;border-bottom: 1px solid #e5e5e5;margin-bottom: 10px;}

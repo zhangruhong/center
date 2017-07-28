@@ -38,7 +38,7 @@ create table T_GOODS
    primary key (id)
 );
 
-alter table T_GOODS comment 'ÉÌÆ·ÏêÇé';
+alter table T_GOODS comment 'å•†å“è¡¨';
 
 /*==============================================================*/
 /* Table: T_SYS_USER                                            */
@@ -47,11 +47,14 @@ create table T_SYS_USER
 (
    id                   varchar(100) not null,
    username             varchar(100),
-   aliUsername          varchar(200),
+   alipayNo		        varchar(200),
    alipayUsername       varchar(200),
-   phone                varchar(20),
+   password				varchar(200),
+   nickname				varchar(200),
+   mobile                varchar(20),
+   enabled				int,
    primary key (id)
 );
 
-alter table T_SYS_USER comment 'ÏµÍ³ÓÃ»§±í';
+alter table T_SYS_USER comment 'ç”¨æˆ·ä¿¡æ¯è¡¨';
 
