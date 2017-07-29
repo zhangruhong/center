@@ -1,4 +1,4 @@
-package com.wugao.center.domain.goods;
+package com.wugao.jq.domain.goods;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,12 +15,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.wugao.center.infrastruture.mybatis.Pagination;
+import com.wugao.jq.domain.vo.search.SearchVo;
 
 @Repository
-@CacheConfig(cacheNames = "query:center:com.wugao.center.domain.goods.GoodsRepo")
+@CacheConfig(cacheNames = "query:center:com.wugao.jq.domain.goods.GoodsRepo")
 public class GoodsRepo {
 
-	private static final String NS = "com.wugao.center.domain.goods.GoodsRepo.";
+	private static final String NS = "com.wugao.jq.domain.goods.GoodsRepo.";
 	private static final int BATCH_SIZE = 200;
 
 	@Autowired
@@ -110,6 +111,15 @@ public class GoodsRepo {
 			return sqlSessionTemplate.selectList(NS + "getListByTenYuan", null, pagination.toRowBounds());
 		}
 		return sqlSessionTemplate.selectList(NS + "getListByTenYuan");
+	}
+
+	public List<Goods> getListBySearch(SearchVo searchVo, Pagination pagination) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchVo", searchVo);
+		if(pagination != null) {
+			return sqlSessionTemplate.selectList(NS + "getListBySearch", param, pagination.toRowBounds());
+		}
+		return sqlSessionTemplate.selectList(NS + "getListBySearch", param);
 	}
 
 }

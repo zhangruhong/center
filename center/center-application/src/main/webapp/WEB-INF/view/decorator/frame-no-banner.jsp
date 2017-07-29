@@ -12,8 +12,8 @@
 <jsp:include page="/WEB-INF/include/refer.jsp"></jsp:include>
 <sitemesh:write property='head' />
 </head>
-<body>
-	<jsp:include page="/WEB-INF/include/header.jsp"></jsp:include>
+<body class="no-banner">
+	<jsp:include page="/WEB-INF/include/header-no-banner.jsp"></jsp:include>
 	<div id="content-wrapper" class="container-fluid">
 		<sitemesh:write property='body' />
 	</div>

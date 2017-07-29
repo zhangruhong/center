@@ -39,14 +39,36 @@
 		      		 </p>
 			      </div>
 			</div>
-			<form class="search-form">
-		         <div class="form-group">
-		         	 <div class="input-group">
-	          	     	<input type="text" class="form-control" placeholder="搜索淘宝天猫商品标题或关键字开始购物">
-	          	     	<span id="search-goods" class="input-group-addon">搜索</span>
-	          	     </div>
-		         </div>
-	      	</form>
+			<div class="intro-container">
+				<div class="col-xs-3 intro-item">
+					<div class="intro-image"></div>
+					<div class="intro-info">
+						<p class="intro-title">超高返利</p>
+						<p class="intro-desc">全场最高返利97%</p>
+					</div>
+				</div>
+				<div class="col-xs-3 intro-item">
+					<div class="intro-image"></div>
+					<div class="intro-info">
+						<p class="intro-title">返利购物</p>
+						<p class="intro-desc">绑定支付宝，返利直接到账</p>
+					</div>
+				</div>
+				<div class="col-xs-3 intro-item">
+					<div class="intro-image"></div>
+					<div class="intro-info">
+						<p class="intro-title">全网精选</p>
+						<p class="intro-desc">淘宝天猫优质精选商品</p>
+					</div>
+				</div>
+				<div class="col-xs-3 intro-item">
+					<div class="intro-image"></div>
+					<div class="intro-info">
+						<p class="intro-title">无忧退货</p>
+						<p class="intro-desc">7天无理由退货</p>
+					</div>
+				</div>
+			</div>
 		       
 	    </div>
 	</div>

@@ -29,6 +29,7 @@ public class ClassGenarator {
 		typeMapping.put("decimal", "Double");
 		typeMapping.put("int", "Integer");
 		typeMapping.put("nvarchar", "String");
+		typeMapping.put("varchar", "String");
 		typeMapping.put("char", "String");
 		typeMapping.put("smallint", "Integer");
 		typeMapping.put("text", "String");
@@ -100,7 +101,7 @@ public class ClassGenarator {
 	}
 	
 	public static void main(String[] args) {
-		ClassGenarator genarator = new ClassGenarator("test" , "rmc_enterprise_out", "EnterpriseOut" ,"jdbc:sqlserver://192.168.1.25:1433;databaseName=hdic;", "dev", "dev");
+		ClassGenarator genarator = new ClassGenarator("vank" , "t_category", "Category" ,"jdbc:mysql://127.0.0.1:3306/vank?characterEncoding=utf8&useSSL=true&serverTimezone=UTC", "root", "123456");
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(new FileOutputStream(new File("/usr/java/" + genarator.getClassName() + ".java")));

@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.wugao.center.domain.goods.Goods;
-
 public class SqlGenerator<T> {
 	
 	public static String[] excludeType = {"java.util.List","java.util.Set","java.util.Map"};
@@ -124,7 +122,7 @@ public class SqlGenerator<T> {
 		System.out.println(sb.toString());
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter(new FileOutputStream(new File("/usr/xml/" + this.clz.getSimpleName() + "Mapper.xml")));
+			pw = new PrintWriter(new FileOutputStream(new File("E:/usr/xml/" + this.clz.getSimpleName() + "Mapper.xml")));
 			pw.println(sb.toString());
 			pw.flush();
 		} catch (FileNotFoundException e) {
@@ -143,11 +141,4 @@ public class SqlGenerator<T> {
 		this.conditionsMap = conditionsMap;
 	}
 
-	public static void main(String[] args) throws Exception {
-		SqlGenerator<Goods> generator = new SqlGenerator("rmc_enterprise_out", "", Goods.class);
-//		Map<String, String> param = new HashMap<>();
-//		param.put("name", "searchVo.name");
-//		generator.setConditionsMap(param);
-		generator.generateXmlFile();
-	}
 }

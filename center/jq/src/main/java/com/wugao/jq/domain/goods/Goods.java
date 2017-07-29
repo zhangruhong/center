@@ -1,4 +1,4 @@
-package com.wugao.center.domain.goods;
+package com.wugao.jq.domain.goods;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -31,6 +31,8 @@ public class Goods implements Serializable{
 	private String ticketTaoToken;
 	private String ticketShortUrl;
 	private Boolean isPromotion;
+	private String categoryPid;
+	private String categoryId;
 	public String getId() {
 		return id;
 	}
@@ -162,6 +164,18 @@ public class Goods implements Serializable{
 	}
 	public void setIsPromotion(Boolean isPromotion) {
 		this.isPromotion = isPromotion;
+	}
+	public String getCategoryPid() {
+		return categoryPid;
+	}
+	public void setCategoryPid(String categoryPid) {
+		this.categoryPid = categoryPid;
+	}
+	public String getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	

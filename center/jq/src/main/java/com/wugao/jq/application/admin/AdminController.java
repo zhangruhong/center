@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wugao.center.domain.goods.GoodsService;
+import com.wugao.jq.domain.goods.GoodsService;
 
 @RestController
 @RequestMapping("admin")

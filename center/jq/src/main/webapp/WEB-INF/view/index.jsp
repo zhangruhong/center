@@ -6,15 +6,17 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>时尚空间</title>
+<title>万客达超高返利 - 万种高返超级券等你来抢</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
 </head>
 <body>
 	<div class="container">
 		<ul class="category-menu">
-			<li class="active category-default"><a href="<%=request.getContextPath()%>">首页</a></li>
-			<li><a class="<%=request.getContextPath() %>/clothes">男女服饰</a></li>
-			<li><a class="<%=request.getContextPath() %>/clothes">母婴用品</a></li>
+			<li class="active category-default"><a href="<%=request.getContextPath()%>/">首页</a></li>
+			<li><a href="<%=request.getContextPath() %>/v/search/highReturn">超高返利</a></li>
+			<li><a href="<%=request.getContextPath() %>/v/search/superTicket">超级券</a></li>
+			<li><a href="<%=request.getContextPath() %>/v/search/tenYuan">十元购</a></li>
+			<li><a href="<%=request.getContextPath() %>/v/introduce">淘宝返利</a></li>
 		</ul>
 	</div>
 	<div class="container-fluid">
@@ -86,9 +88,9 @@
 			<div class="section">
 				<div class="section-title">
 					<ul class="section-title-tabs" id="type-tabs">
-						<li class="title-tab active" data-type="highReturn"><a href="#">超高返利</a></li>
-						<li class="title-tab" data-type="superTicket"><a href="#">超级券</a></li>
-						<li class="title-tab" data-type="TenYuan"><a href="#">特卖商品</a></li>
+						<li class="title-tab active" data-type="highReturn"><a href="javascript: void(0);">超高返利</a></li>
+						<li class="title-tab" data-type="superTicket"><a href="javascript: void(0);">超级券</a></li>
+						<li class="title-tab" data-type="TenYuan"><a href="javascript: void(0);">特卖商品</a></li>
 					</ul>
 				</div>
 				<div class="section-content" id="goods-list">

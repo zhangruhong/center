@@ -1,26 +1,18 @@
-package com.wugao.center.domain.goods;
+package com.wugao.jq.domain.goods;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
-import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
-
-import com.wugao.center.infrastruture.exception.AppException;
 
 @Validated
 @Service

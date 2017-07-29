@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wugao.center.domain.goods.GoodsRepo;
 import com.wugao.center.infrastruture.mybatis.Pagination;
+import com.wugao.jq.domain.goods.GoodsRepo;
 
 @RestController
 @RequestMapping(value = "index")
