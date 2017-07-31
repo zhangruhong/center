@@ -1,5 +1,6 @@
 package com.wugao.jq.domain.goods;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
+
+import com.taobao.api.response.TbkDgItemCouponGetResponse.TbkCoupon;
 
 @Validated
 @Service
@@ -72,6 +75,33 @@ public class GoodsService {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public List<Goods> parseCouponToGoods(List<TbkCoupon> items){
+		DecimalFormat decimalFormat = new DecimalFormat("0.00");
+		List<Goods> list = new ArrayList<Goods>();
+		for(TbkCoupon item : items) {
+			Goods goods = new Goods();
+			goods.setId(item.getNumIid().toString());
+			goods.setName(item.getTitle());
+			goods.setMainImageUrl(item.getPictUrl());
+			goods.setDetailUrl(item.getItemUrl());
+			goods.setOriginalPrice(Double.valueOf(item.getZkFinalPrice()));
+			goods.setShopName(item.getShopTitle());
+			goods.setSoldCountPerMonth(item.getVolume().intValue());
+			goods.setIncomingRate(Double.valueOf(item.getCommissionRate()) / 100);
+			goods.setIncoming(Double.valueOf(decimalFormat.format(goods.getOriginalPrice() * goods.getIncomingRate())));
+			goods.setSalerWang(item.getNick());
+			goods.setTbkLongUrl(item.getCouponClickUrl());
+			goods.setTbkShortUrl(item.getCouponClickUrl());
+			goods.setTaoToken(null);
+			goods.setTicketTotal(item.getCouponTotalCount().intValue());
+			goods.setTicketLeft(item.getCouponRemainCount().intValue());
+			goods.setTicketValue(item.getCouponInfo());
+			goods.setTicketUrl(item.getCouponClickUrl());
+			list.add(goods);
+		} 
+		return list;
 	}
 
 }

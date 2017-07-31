@@ -177,6 +177,17 @@ public class Goods implements Serializable{
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
+	@Override
+	public String toString() {
+		return "Goods [id=" + id + ", name=" + name + ", mainImageUrl=" + mainImageUrl + ", detailUrl=" + detailUrl
+				+ ", shopName=" + shopName + ", originalPrice=" + originalPrice + ", soldCountPerMonth="
+				+ soldCountPerMonth + ", incomingRate=" + incomingRate + ", incoming=" + incoming + ", salerWang="
+				+ salerWang + ", tbkShortUrl=" + tbkShortUrl + ", tbkLongUrl=" + tbkLongUrl + ", taoToken=" + taoToken
+				+ ", ticketTotal=" + ticketTotal + ", ticketLeft=" + ticketLeft + ", ticketValue=" + ticketValue
+				+ ", ticketStartTime=" + ticketStartTime + ", ticketEndTime=" + ticketEndTime + ", ticketUrl="
+				+ ticketUrl + ", ticketTaoToken=" + ticketTaoToken + ", ticketShortUrl=" + ticketShortUrl
+				+ ", isPromotion=" + isPromotion + ", categoryPid=" + categoryPid + ", categoryId=" + categoryId + "]";
+	}
 	
 	
 }
