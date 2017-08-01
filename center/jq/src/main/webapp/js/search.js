@@ -8,7 +8,7 @@ $(function(){
 	$('.banner-container').initBanner();
 	
 	$('#search-form').searchForm({
-		url: '/search',
+		url: '/search/searchInTicket',
 		pagination: '#pagination',
 		pageSize: 24,
 		success: function(objects){

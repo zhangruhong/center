@@ -88,12 +88,13 @@ public class SearchController {
 		return categoryRepo.getChildren(id);
 	}
 	
-	@RequestMapping(value = "search/searchInTao", method = RequestMethod.GET)
-	public Pagination searchInTao(String title, Pagination pagination){
+	@RequestMapping(value = "search/searchInTicket", method = RequestMethod.GET)
+	public Pagination searchInTicket(String title, Pagination pagination){
 		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
 		TbkDgItemCouponGetRequest req = new TbkDgItemCouponGetRequest();
 		req.setAdzoneId(Long.valueOf(adzoneId));
 		req.setPlatform(1L);
+		req.setQ(title);
 		req.setPageSize(Long.valueOf(pagination.getPageSize()));
 		req.setPageNo(Long.valueOf(pagination.getPage()));
 		TbkDgItemCouponGetResponse rsp;
@@ -106,26 +107,6 @@ public class SearchController {
 			e.printStackTrace();
 			return null;
 		}
-		
-	}
-	
-	public static void main(String[] args) throws ApiException, ParseException {
-		GoodsService goodsService = new GoodsService();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String url = "http://gw.api.taobao.com/router/rest";
-		String appkey = "24567059";
-		String secret = "4268ffd18a509977d95095092fb610bc";
-		String adzoneId = "122394295";
-		TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
-		TbkJuTqgGetRequest req = new TbkJuTqgGetRequest();
-		req.setAdzoneId(Long.valueOf(adzoneId));
-		req.setFields("click_url,pic_url,reserve_price,zk_final_price,total_amount,sold_num,title,category_name,start_time,end_time");
-		req.setStartTime(simpleDateFormat.parse("2016-07-01 00:00:00"));
-		req.setEndTime(simpleDateFormat.parse("2017-09-01 00:00:00"));
-		req.setPageNo(1L);
-		req.setPageSize(96L);
-		TbkJuTqgGetResponse rsp = client.execute(req);
-		System.out.println(rsp.getResults().get(1).getClickUrl());
 	}
 	
 }

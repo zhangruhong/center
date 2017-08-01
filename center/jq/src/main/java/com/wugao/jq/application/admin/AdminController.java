@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.taobao.api.ApiException;
 import com.wugao.jq.domain.goods.GoodsService;
 
 @RestController
@@ -21,8 +22,13 @@ public class AdminController {
 		return new ModelAndView("admin/admin");
 	}
 	
-	@RequestMapping(value = "collectGoods", method = RequestMethod.GET)
-	public void collectGoods() {
+	@RequestMapping(value = "collectGoodsA", method = RequestMethod.GET)
+	public void collectGoodsFromXsl() {
 		goodsService.saveBatch(new HSSFWorkbook());
+	}
+	
+	@RequestMapping(value = "collectGoods", method = RequestMethod.GET)
+	public void collectGoodsFromRepo() throws Exception {
+		goodsService.saveBatchFromRepo();
 	}
 }
