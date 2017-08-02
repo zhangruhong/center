@@ -10,6 +10,8 @@
 <script type="text/javascript" src="/js/admin/admin.js"></script>
 </head>
 <body>
-	<button type="button" onclick="test();">采集</button>
+	<button type="button" onclick="test('excel');">从excel采集</button>
+	<button type="button" onclick="test('favorite');">从选聘库采集</button>
+	<button type="button" onclick="test('event');">从定向招商采集</button>
 </body>
 </html>
