@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -61,6 +63,8 @@ public class GoodsService {
 	public Goods saveGoods(@Valid Goods goods) {
 		return goodsRepo.save(goods);
 	}
+	
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 
 	public void updateGoods(String id, @Valid Goods goods) {
 		// 保存更新
@@ -69,7 +73,6 @@ public class GoodsService {
 	
 	public void saveBatchFromExcel() {
 		List<Goods> toBeAddList = new ArrayList<>();
-		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			File directory = new File(this.getClass().getClassLoader().getResource("").getPath() + File.separator + "xlsx" );
 			if(directory.isDirectory()) {
@@ -119,7 +122,8 @@ public class GoodsService {
 	
 	
 
-	public void saveBatchFromFavorite() throws ApiException {
+	public void saveBatchFromFavorite() throws Exception {
+		goodsRepo.removeAll();
 		DecimalFormat decimalFormat = new DecimalFormat("0.00");
 		List<Goods> list = new ArrayList<>();
 		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
@@ -139,31 +143,37 @@ public class GoodsService {
 				req2.setAdzoneId(Long.valueOf(adzoneId));
 				req2.setFavoritesId(favoriteId);
 				req2.setPageNo(i);
-				req2.setFields("num_iid,title,pict_url,click_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type");
+				req2.setFields("num_iid,title,pict_url,click_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type,category, commission_rate, coupon_click_url, coupon_end_time, coupon_info, coupon_remain_count, coupon_total_count");
 				TbkUatmFavoritesItemGetResponse rsp2 = client.execute(req2);
 				List<UatmTbkItem> items = rsp2.getResults();
+				Map<String, Goods> map = new HashMap<String, Goods>();
 				for(UatmTbkItem item : items) {
-					Goods goods = new Goods();
-					goods.setId(item.getNumIid().toString());
-					goods.setDetailUrl(item.getItemUrl());
-					goods.setOriginalPrice(Double.valueOf(item.getZkFinalPrice()));
-					goods.setShopName(item.getShopTitle());
-					goods.setSoldCountPerMonth(item.getVolume().intValue());
-					goods.setIncomingRate(Double.valueOf(item.getTkRate()) / 100);
-					goods.setName(item.getTitle());
-					goods.setIncoming(Double.valueOf(decimalFormat.format(goods.getOriginalPrice() * goods.getIncomingRate())));
-					goods.setMainImageUrl(item.getPictUrl());
-					goods.setTbkLongUrl(item.getClickUrl());
-					goods.setTaoToken(null);
-					goods.setTicketTotal(item.getCouponTotalCount() == null ? 0 : item.getCouponTotalCount().intValue());
-					goods.setTicketLeft(item.getCouponRemainCount() == null ? 0 : item.getCouponRemainCount().intValue());
-					goods.setTicketValue(item.getCouponInfo());
-					goods.setTicketUrl(item.getCouponClickUrl());
-					list.add(goods);
+					if(!map.containsKey(item.getNumIid().toString())) {
+						Goods goods = new Goods();
+						goods.setId(item.getNumIid().toString());
+						goods.setDetailUrl(item.getItemUrl());
+						goods.setOriginalPrice(Double.valueOf(item.getZkFinalPrice()));
+						goods.setShopName(item.getShopTitle());
+						goods.setSoldCountPerMonth(item.getVolume().intValue());
+						goods.setIncomingRate(Double.valueOf(item.getTkRate()) / 100);
+						goods.setName(item.getTitle());
+						goods.setIncoming(Double.valueOf(decimalFormat.format(goods.getOriginalPrice() * goods.getIncomingRate())));
+						goods.setMainImageUrl(item.getPictUrl());
+						goods.setTbkLongUrl(item.getClickUrl());
+						goods.setTaoToken(null);
+						goods.setTicketTotal(item.getCouponTotalCount() == null ? 0 : item.getCouponTotalCount().intValue());
+						goods.setTicketLeft(item.getCouponRemainCount() == null ? 0 : item.getCouponRemainCount().intValue());
+						goods.setTicketStartTime(fmt.parse);
+						goods.setTicketValue(item.getCouponInfo());
+						goods.setTicketUrl(item.getCouponClickUrl());
+						map.put(goods.getId(), goods);
+						list.add(goods);
+					}
 				}
-				goodsRepo.saveBatch(list);
+				Thread.sleep(5000);
 			}
 		}
+		goodsRepo.saveBatch(list);
 	}
 
 	public List<Goods> parseCouponToGoods(List<TbkCoupon> items){

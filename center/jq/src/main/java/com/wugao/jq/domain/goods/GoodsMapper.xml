@@ -26,6 +26,9 @@
 	<delete id="remove">
 		DELETE FROM T_GOODS WHERE ID = #{id}
 	</delete>
+	<delete id="removeAll">
+		DELETE FROM T_GOODS
+	</delete>
 	
 	<insert id="saveBatch">
 		INSERT INTO T_GOODS(name, id, soldCountPerMonth, originalPrice, incomingRate, incoming, salerWang, tbkShortUrl, tbkLongUrl, taoToken, ticketTotal, ticketLeft, ticketValue, ticketEndTime, ticketUrl, isPromotion, ticketStartTime, ticketTaoToken, ticketShortUrl, mainImageUrl, detailUrl, shopName, categoryId, categoryPid) VALUES
