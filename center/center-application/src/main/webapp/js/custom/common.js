@@ -36,7 +36,7 @@ $(function(){
 			$.each(objects, function(i, g){
 				var $goodsContainer = $('<div class="goods-container"></div>').prependTo($goodsList);
 				if(g.ticketLeft == 0){
-					var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.tbkShortUrl + '" target="_blank"></a>').appendTo($goodsContainer);
+					var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.tbkLongUrl + '" target="_blank"></a>').appendTo($goodsContainer);
 					var $goodsName = $('<div class="goods-name">' + g.name +'</div>').appendTo($goodsContainer);
 					var $goodsOriginalPrice = $('<div class="goods-original-price">￥' + g.originalPrice.toFixed(2) +'</div>').appendTo($goodsContainer);
 					var $goodsPrice = $('<div class="goods-price"></div>').appendTo($goodsContainer);
@@ -44,10 +44,10 @@ $(function(){
 					var $goodsRealPrice = $('<div class="goods-real-price">到手价:<span class="num">' + (g.originalPrice - g.incoming * 0.7).toFixed(2) +'</span></div>').appendTo($goodsPrice);
 					var $soldCount = $('<div class="goods-sold-count">月销量:<span class="num">' + g.soldCountPerMonth +'</span></div>').appendTo($goodsPrice);
 				}else{
-					var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.ticketShortUrl + '" target="_blank"></a>').appendTo($goodsContainer);
+					var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.ticketUrl + '" target="_blank"></a>').appendTo($goodsContainer);
 					var $goodsName = $('<div class="goods-name">' + g.name +'</div>').appendTo($goodsContainer);
 					var $goodsOriginalPrice = $('<div class="goods-original-price">￥' + g.originalPrice.toFixed(2) +'</div>').appendTo($goodsContainer);
-					var $goodsTicket = $('<div class="goods-ticket-container"></div>').append('<a class="goods-ticket" href="' + g.ticketShortUrl + '" target="_blank">' + g.ticketValue + '</a>').appendTo($goodsContainer);
+					var $goodsTicket = $('<div class="goods-ticket-container"></div>').append('<a class="goods-ticket" href="' + g.ticketUrl + '" target="_blank">' + g.ticketValue + '</a>').appendTo($goodsContainer);
 				}
 				
 			});

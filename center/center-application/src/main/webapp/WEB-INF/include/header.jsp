@@ -42,6 +42,10 @@
 			<form class="search-form">
 		         <div class="form-group">
 		         	 <div class="input-group">
+		         	 	<select class="search-erea">
+			         	 	<option value="taobao">淘宝搜索</option>
+			         	 	<option value="site">站内搜索</option>
+			         	 </select>
 	          	     	<input type="text" class="form-control" placeholder="搜索淘宝天猫商品标题或关键字开始购物">
 	          	     	<span id="search-goods" class="input-group-addon">搜索</span>
 	          	     </div>

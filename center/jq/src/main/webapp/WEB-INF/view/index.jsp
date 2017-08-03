@@ -105,5 +105,6 @@
 			<input type="hidden" name="type" value="highReturn">
 		</form>
 	</div>
+	
 </body>
 </html>
