@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="navbar-header">
 				<div class="navbar-auth navbar-left">
-					<a href="javascript: void(0);" class="tao">
+					<a href="https://oauth.taobao.com/authorize?client_id=24566675&redirect_uri=http://www.vankeda.com&response_type=code&state=1" class="tao">
 						<span class="tao-icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
 						<span>淘宝账号登录</span>
 					</a>
