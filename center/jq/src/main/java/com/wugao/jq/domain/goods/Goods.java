@@ -33,7 +33,6 @@ public class Goods implements Serializable{
 	private Boolean isPromotion;
 	private String categoryPid;
 	private String categoryId;
-	private Boolean status;
 	public String getId() {
 		return id;
 	}
@@ -177,13 +176,6 @@ public class Goods implements Serializable{
 	}
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
-	}
-	
-	public Boolean getStatus() {
-		return status;
-	}
-	public void setStatus(Boolean status) {
-		this.status = status;
 	}
 	@Override
 	public String toString() {
