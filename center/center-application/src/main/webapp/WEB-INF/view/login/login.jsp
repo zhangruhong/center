@@ -5,6 +5,9 @@
 <head>
 <title>登录</title>
 <link rel="stylesheet" type="text/css" href="login.css">
+<script type="text/javascript">
+	code = '${param.code}';
+</script>
 </head>
 <body>
 	<div class="header"></div>

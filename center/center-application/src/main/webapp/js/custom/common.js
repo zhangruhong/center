@@ -2,6 +2,11 @@ $(function(){
 	
 	/* 通用扩展方法 */
 	$.fn.extend({
+		initUser: function(){
+			if(code){
+				$.ajax({url: ''})
+			}
+		},
 		initBanner : function(){
 			if($(this)[0].tagName === 'DIV'){
 				var $bannerContainer = $(this);

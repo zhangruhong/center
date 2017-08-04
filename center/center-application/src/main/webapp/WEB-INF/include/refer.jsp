@@ -1,5 +1,8 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!-- #####################################################javascript库############################################################# -->
+<script type="text/javascript">
+	code = '${param.code}';
+</script>
 <!-- jquery -->
 <script src="<%=request.getContextPath()%>/js/vendor/jquery-3.1.1/jquery-3.1.1.min.js"></script>
 <!-- jquery-ui -->
