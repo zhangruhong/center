@@ -17,7 +17,7 @@ import com.taobao.api.ApiException;
 import com.wugao.jq.domain.goods.GoodsService;
 
 @RestController
-@RequestMapping("admin")
+@RequestMapping
 public class AdminController {
 	
 	@Autowired
@@ -25,7 +25,7 @@ public class AdminController {
 
 	@RequestMapping(value = "admin", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toAdminPage() {
-		return new ModelAndView("admin/admin");
+		return new ModelAndView("admin");
 	}
 	
 	@RequestMapping(value = "collectGoods", method = RequestMethod.GET)
