@@ -122,4 +122,9 @@ public class GoodsRepo {
 		return sqlSessionTemplate.selectList(NS + "getListBySearch", param);
 	}
 
+	public void removeAll() {
+		sqlSessionTemplate.delete(NS + "removeAll");
+		
+	}
+
 }

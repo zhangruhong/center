@@ -31,9 +31,7 @@ public class AdminController {
 	@RequestMapping(value = "collectGoods", method = RequestMethod.GET)
 	public void collectGoodsFromXsl(String type) {
 		try {
-			if("excel".equals(type)) {
-				goodsService.saveBatchFromExcel();
-			}else if("favorite".equals(type)) {
+			if("favorite".equals(type)) {
 				goodsService.saveBatchFromFavorite();
 			}else if("event".equals(type)) {
 				goodsService.saveBatchFromEvent();
