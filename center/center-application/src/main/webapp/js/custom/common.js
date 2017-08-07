@@ -61,16 +61,14 @@ $(function(){
 		initType: function(){
 			var cookieType = $.cookie('type');
 			if(cookieType){
-				$('[name=type]', this).val(cookieType);
+				$('[name=categoryPid]', this).val(cookieType);
 				$('#type-tabs > li').removeClass('active');
 				$('#type-tabs > li[data-type=' + cookieType +']').addClass('active');
 			}else{
-				$('[name=type]', this).val('highReturn');
+				$('[name=categoryPid]', this).val($('#type-tabs > li:first-child').data('type'));
 			}
 		}
 	});
-	
-	var searchName = '';
 	
 	//顶部类目表
 	var init = function(){
@@ -132,12 +130,6 @@ $(function(){
 				$('.pagination', $(this)).css({marginRight: realMargin + 10 + 'px'});
 			});
 			
-		});
-		
-		/* 初始化 搜索框*/
-		$('#search-goods').on('click', function(){
-			window.searchName = $(this).prev('input').val();
-			window.open('/v/search', '_blank');
 		});
 		
 	}

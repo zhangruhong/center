@@ -23,7 +23,7 @@ public class RoleVoter implements AccessDecisionVoter<FilterInvocation> {
 		if ("admin".equals(username)) {
 			return ACCESS_GRANTED;
 		}
-
+		
 		// 角色不匹配，则弃权
 		return ACCESS_ABSTAIN;
 	}

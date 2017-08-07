@@ -45,7 +45,7 @@
 		<security:intercept-url pattern="/home" access="isAuthenticated()"/>
 		
 		<!-- 访问规则：以上未配置的其它请求总是拒绝 -->
-		
+		<security:intercept-url pattern="/**" access="permitAll"/>
 	</security:http>
 	
 	<!-- 认证入口 -->
@@ -76,6 +76,7 @@
 		</constructor-arg>
 	</bean>
 	
-	<bean id="accessDeniedHandler" class="com.wugao.center.infrastruture.spring.security.access.AccessDeniedHandler" />
+	<bean id="accessDeniedHandler" class="com.wugao.center.infrastruture.spring.security.access.AccessDeniedHandler" /> 
+	
 	
 </beans>

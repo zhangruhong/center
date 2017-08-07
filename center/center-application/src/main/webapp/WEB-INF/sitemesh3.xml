@@ -3,13 +3,8 @@
 	<!-- 默认装饰页面 -->
 	<mapping decorator="/WEB-INF/view/decorator/frame.jsp"></mapping>
 	
-	<!-- 主页及登录装饰页面 -->
-	<mapping path="/index" decorator="/WEB-INF/view/decorator/frame.jsp"></mapping>
-	<mapping path="/login" decorator="/WEB-INF/view/decorator/frame.jsp"></mapping>
-	
-	<!-- 登录后的装饰页面 -->
-	<mapping path="/v/login" decorator="/WEB-INF/view/decorator/frame.jsp"></mapping>
-	
-	<mapping path="/v/introduce" decorator="/WEB-INF/view/decorator/frame-no-banner.jsp"></mapping>
+	<!--  -->
+	<mapping path="/introduce" decorator="/WEB-INF/view/decorator/frame-no-banner.jsp"></mapping>
+	<mapping path="/user/**" decorator="/WEB-INF/view/decorator/frame-no-banner.jsp"></mapping>
 	
 </sitemesh>

@@ -2,23 +2,22 @@
 <div class="navbar navbar-default navbar-transparent">
 	<div class="navbar-top">
 		<div class="container">
-			<div class="navbar-header">
-				<div class="navbar-auth navbar-left">
-					<a href="https://oauth.taobao.com/authorize?client_id=24566675&redirect_uri=http://www.vankeda.com/taobaoLogin&response_type=code&state=1" class="tao">
-						<span class="tao-icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
-						<span>淘宝账号登录</span>
-					</a>
-					<a href="javascript: void(0);" class="khd">
-						<span class="khd_icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
-						<span>手机号登录</span>
-					</a>
-				</div>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menus" aria-expanded="false">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			    </button>
+			<div class="navbar-auth navbar-left ${context.user == null ? '' : 'hide' }">
+				<a href="https://oauth.taobao.com/authorize?client_id=24567059&redirect_uri=http://www.vankeda.com/taobaoLogin&response_type=code&state=1" class="tao">
+					<span class="tao-icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
+					<span>淘宝账号登录</span>
+				</a>
+				<a href="javascript: void(0);" class="khd">
+					<span class="khd_icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
+					<span>手机号登录</span>
+				</a>
+			</div>
+			<div class="navbar-auth navbar-left ${context.user != null ? '' : 'hide' }">
+				<a href="javascript: void(0);" class="tao">
+					<span class="tao-icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
+				</a>
+				<span>${context.user != null ?  context.user.username : '' }</span>
+				
 			</div>
 		    <div class="collapse navbar-collapse" id="navbar-menus">
 				 <ul class="navbar-link">

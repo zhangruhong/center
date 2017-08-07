@@ -17,5 +17,13 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/main/lib/taobao-sdk-baichuan.jar"/>
+	<classpathentry kind="lib" path="src/main/lib/taobao-sdk-taobaolianmeng.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

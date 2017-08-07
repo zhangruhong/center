@@ -75,11 +75,13 @@ a:focus, a:visited{text-decoration: none;}
 
 .navbar .navbar-logo{display: inline-block; height: 60px; width: 200px;vertical-align: top;}
 .navbar .user-photo{height: 20px;width: 20px;border: none;vertical-align: top;}
-.navbar .search-form{padding:0;margin-top: 0;margin-bottom: 0;position: absolute; right: 15px;top: 0px;width: 500px;height: 40px; padding: 10px;}
-.navbar .search-form .form-group{margin-bottom: 0;}
-.navbar .search-form .form-control{box-shadow: none;border: 2px solid #f50;height: 40px;}
-.navbar .search-form .input-group-addon{background: #f50;border: none;color: white;}
-
+.navbar .header-search{padding:0;margin-top: 0;margin-bottom: 0;position: absolute; right: 15px;top: 0px;width: 500px;height: 40px; padding: 10px;}
+.navbar .header-search .component:focus{box-shadow: none;outline: none;}
+.navbar .header-search .component{float: left;margin: 0px;padding: 0px;height: 40px;line-height: 40px;border: 2px solid #f50;}
+.navbar .header-search .header-search-select{border-top-left-radius: 4px;border-bottom-left-radius: 4px;border-right: none;}
+.navbar .header-search .form-input{width: 300px;padding: 0 15px;}
+.navbar .header-search .span-search{width: 60px;text-align: center;border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-left: none;color: white;font-size: 16px;background: #f50;}
+.navbar .header-search .span-search:hover{cursor: pointer;}
 
 @media(min-width: 768px){
 	.navbar.navbar-transparent{background: transparent!important;border: none;}

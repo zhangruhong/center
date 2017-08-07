@@ -13,7 +13,6 @@
 	<div class="container">
 		<ul class="category-menu">
 			<li class="${type == null || type == '' ? 'active category-default' : '' }"><a href="<%=request.getContextPath()%>/">首页</a></li>
-			<li class="${type == 'highReturn' ? 'active category-default' : '' }"><a href="<%=request.getContextPath() %>/v/search/highReturn">超高返利</a></li>
 			<li class="${type == 'superTicket' ? 'active category-default' : '' }"><a href="<%=request.getContextPath() %>/v/search/superTicket">超级券</a></li>
 			<li class="${type == 'tenYuan' ? 'active category-default' : '' }"><a href="<%=request.getContextPath() %>/v/search/tenYuan">十元购</a></li>
 			<li class=""><a href="<%=request.getContextPath() %>/v/introduce">淘宝返利</a></li>

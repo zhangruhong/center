@@ -1,7 +1,7 @@
 <%@ page language="java" isELIgnored="false" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!-- #####################################################javascript库############################################################# -->
 <script type="text/javascript">
-	code = '${param.code}';
+	contextPath = '<%=request.getContextPath()%>'
 </script>
 <!-- jquery -->
 <script src="<%=request.getContextPath()%>/js/vendor/jquery-3.1.1/jquery-3.1.1.min.js"></script>
@@ -24,6 +24,9 @@
 <!-- bootstrap-paginator -->
 <script src="<%=request.getContextPath()%>/js/vendor/bootstrap-paginator-1.0.2/bootstrap-paginator.js"></script>
 
+<!-- sweetalert -->
+<link href="<%=request.getContextPath()%>/js/vendor/sweetalert-1.1.3/sweetalert.css" rel="stylesheet" />
+<script src="<%=request.getContextPath()%>/js/vendor/sweetalert-1.1.3/sweetalert.min.js"></script>
 <!-- 图标 font-awesome -->
 <link href="<%=request.getContextPath()%>/js/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 

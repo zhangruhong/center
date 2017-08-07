@@ -14,7 +14,7 @@
 		<spring-data.version>1.8.1.RELEASE</spring-data.version>
 		<spring-security.version>4.2.2.RELEASE</spring-security.version>
 	</properties>
-
+	
 	<dependencies>
 
 		<!-- activemq -->
@@ -377,6 +377,28 @@
 			<artifactId>spring-websocket</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<dependency>  
+		    <groupId>org.springframework.security</groupId>  
+		    <artifactId>spring-security-taglibs</artifactId>  
+		    <version>${spring-security.version}</version>  
+		</dependency>  
+		<dependency>  
+		    <groupId>org.springframework.security</groupId>  
+		    <artifactId>spring-security-acl</artifactId>  
+		    <version>${spring-security.version}</version>  
+		</dependency>  
+		<dependency>  
+		    <groupId>org.springframework.security</groupId>  
+		    <artifactId>spring-security-crypto</artifactId>  
+		    <version>${spring-security.version}</version>  
+		</dependency>
+		
+		<dependency>  
+		    <groupId>org.springframework.security.oauth</groupId>  
+		    <artifactId>spring-security-oauth2</artifactId>  
+		    <version>1.0.5.RELEASE</version>  
+		</dependency>
 
 		<!-- taglibs -->
 		<dependency>
@@ -397,6 +419,14 @@
 		    <artifactId>yauaa</artifactId>
 		    <version>1.2</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.35</version>
+		</dependency>
+
 		
 	</dependencies>
 	
