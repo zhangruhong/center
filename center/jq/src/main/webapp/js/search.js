@@ -15,4 +15,13 @@ $(function(){
 			$('#goods-list').initGoodsContainer(objects);
 		}
 	}).trigger('submit');
+	
+	$('#search-goods').on('click', function(){
+		if($(this).prev().prev().val() == 'site'){
+			window.open(contextPath + '/v/search?searchName=' + $(this).prev('input').val(), '_self');
+		}else{
+			window.open(contextPath + '/v/searchTicket?searchName=' + $(this).prev('input').val(), '_blank');
+		}
+		
+	});
 });

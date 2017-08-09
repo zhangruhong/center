@@ -205,7 +205,14 @@ a:focus, a:visited{text-decoration: none;}
 .intro-detail-container .tao-search-form .input-group-addon{background: #f50;border: none;color: white;font-size: 18px;}
 .intro-detail-container .intro-step{height: 400px;background-position: center; background-repeat: no-repeat;background-size: cover;}
 
-
+.footer{border-top: 2px solid black;background: #3a3a3a;color: white;margin-left: -15px; margin-right: -15px;}
+.footer .row{height: 200px;}
+.footer .row [class*=col-]:not(:last-child){border-right: 1px dashed #ccc;height: 180px;margin: 10px 0;}
+.footer .title{font-size: 20px;font-weight: bold;height: 40px;margin: 5px 0px;padding: 10px 20px;text-align: center;}
+.footer .link{padding: 10px 20px;}
+.footer .link > p > a{color: #b2b7b6;font-size: 14px;font-family: 'Microsoft YaHei';}
+.footer .link > p > a:hover{text-decoration: none;color: #f50;}
+.footer .qrcode{text-align: center;}
 
 
 
