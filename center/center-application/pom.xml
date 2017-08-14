@@ -8,6 +8,18 @@
   <artifactId>center-application</artifactId>
   <packaging>war</packaging>
   
+  <repositories> 
+	  <repository>
+			<id>opensesame</id>
+			<name>Alibaba OpenSource Repsoitory</name>
+			<url>http://code.alibabatech.com/mvn/releases/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+  
   <dependencies>
   	
   	<dependency>

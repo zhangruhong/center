@@ -13,7 +13,6 @@
 	<div class="container">
 		<ul class="category-menu">
 			<li class="active category-default"><a href="<%=request.getContextPath()%>/">首页</a></li>
-			<li><a href="<%=request.getContextPath() %>/v/search/highReturn">超高返利</a></li>
 			<li><a href="<%=request.getContextPath() %>/v/search/superTicket">超级券</a></li>
 			<li><a href="<%=request.getContextPath() %>/v/search/tenYuan">十元购</a></li>
 			<li><a href="<%=request.getContextPath() %>/v/introduce">淘宝返利</a></li>
@@ -88,21 +87,22 @@
 			<div class="section">
 				<div class="section-title">
 					<ul class="section-title-tabs" id="type-tabs">
-						<li class="title-tab active" data-type="highReturn"><a href="javascript: void(0);">超高返利</a></li>
-						<li class="title-tab" data-type="superTicket"><a href="javascript: void(0);">超级券</a></li>
-						<li class="title-tab" data-type="TenYuan"><a href="javascript: void(0);">特卖商品</a></li>
+						<c:forEach items="${categories }" var="c" varStatus="s">
+							<li class="title-tab ${s.index == 0 ? 'active' : '' }" data-type="${c.id }"><a href="javascript: void(0);">${c.name }</a></li>
+						</c:forEach>
 					</ul>
 				</div>
-				<div class="section-content" id="goods-list">
+				<div class="section-content">
+					<div id="goods-list"></div>
 					<nav class="data-pagination">
 						<ul id="pagination" class="pagination"></ul>
 					</nav>
 				</div>
 			</div>
 		</div>
-		<form id="top-sale-search-form" class="hide" data-name="highReturn"></form>
+		<form id="top-sale-search-form" class="hide"></form>
 		<form id="search-form" class="hide">
-			<input type="hidden" name="type" value="highReturn">
+			<input type="hidden" name="categoryPid" value="${categories.get(0).id }">
 		</form>
 	</div>
 </body>

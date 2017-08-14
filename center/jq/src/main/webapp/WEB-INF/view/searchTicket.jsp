@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>万客达超高返利 - 万种高返超级券等你来抢</title>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/search.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/searchTicket.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -35,22 +35,8 @@
 		</div>
 		<div class="container">
 			<div class="section">
-				<div class="section-search">
-					<form id="search-form">
-						<input type="hidden" name="categoryPid"/>
-						<input type="hidden" name="categoryId"/>
-						<input type="hidden" name="name"/>
-						<input type="hidden" name="type" value="${type}"/>
-						<ul class="main-category-bar">
-							<li class="category-default active">全部</li>
-							<c:forEach items="${topCategories}" var="c">
-								<li data-id="${c.id}">${c.name }</li>
-							</c:forEach>
-						</ul>
-						<ul class="sub-category-bar"></ul>
-					</form>
-				</div>
-				<div class="section-content" id="goods-list">
+				<div class="section-content">
+					<div id="goods-list"></div>
 					<nav class="data-pagination">
 						<ul id="pagination" class="pagination"></ul>
 					</nav>

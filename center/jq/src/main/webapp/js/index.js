@@ -12,7 +12,7 @@ $(function(){
 	 */
 	var initTopSale = function(){
 		$('#top-sale-search-form').searchForm({
-			url: '/index/getGoodsByTopSale',
+			url: '/index/getGoods',
 			pagination: '#top-pagination',
 			pageSize: 12,
 			success: function(objects){
@@ -42,7 +42,17 @@ $(function(){
 	$('#type-tabs > li').on('click', function(){
 		$.cookie('type', $(this).data('type'), {expires: 1});
 		$(this).addClass('active').siblings('li.active').removeClass('active');
-		$('#search-form').find('[name=type]').val($(this).data('type')).trigger('submit');
+		$('#search-form').find('[name=categoryPid]').val($(this).data('type')).trigger('submit');
+	});
+	
+	/* 初始化 搜索框*/
+	$('#search-goods').on('click', function(){
+		if($(this).prev().prev().val() == 'site'){
+			window.open(contextPath + '/v/search?searchName=' + $(this).prev('input').val(), '_blank');
+		}else{
+			window.open(contextPath + '/v/searchTicket?searchName=' + $(this).prev('input').val(), '_blank');
+		}
+		
 	});
 	
 });
