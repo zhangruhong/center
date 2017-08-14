@@ -30,7 +30,6 @@ public class GoodsRepo {
 
 	@CacheEvict(allEntries = true)
 	public Goods save(Goods goods) {
-		goods.setId(UUID.randomUUID().toString());
 		sqlSessionTemplate.insert(NS + "save", goods);
 		return goods;
 	}
@@ -67,12 +66,11 @@ public class GoodsRepo {
 
 	@CacheEvict(allEntries = true)
 	public void saveBatch(List<Goods> toBeAddList) {
-		List<Goods> temp = new ArrayList<>();
 		for(int i = 0; i < toBeAddList.size(); i++) {
-			temp.add(toBeAddList.get(i));
-			if(temp.size() % BATCH_SIZE == 0 || i == toBeAddList.size() -1) {
-				sqlSessionTemplate.insert(NS + "saveBatch", temp);
-				temp.clear();
+			try {
+				save(toBeAddList.get(i));
+			}catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		

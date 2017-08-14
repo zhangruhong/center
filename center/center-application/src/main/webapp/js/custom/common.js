@@ -58,6 +58,24 @@ $(function(){
 			});
 			$(window).trigger('resize');
 		},
+		initTqgContainer: function(){
+			$.ajax({url: '/search/searchTqg'}).done(function(objects){
+				var $goodsList = $(this);
+				$('.goods-container', $goodsList).remove();
+				$.each(objects.rows, function(i, g){
+					var $goodsContainer = $('<div class="goods-container"></div>').prependTo($goodsList);
+					var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.picUrl + ')" href="' + g.clickUrl + '" target="_blank"></a>').appendTo($goodsContainer);
+					var $goodsName = $('<div class="goods-name">' + g.title +'</div>').appendTo($goodsContainer);
+					var $goodsOriginalPrice = $('<div class="goods-original-price">￥' + g.reservePrice.toFixed(2) +'</div>').appendTo($goodsContainer);
+					var $goodsPrice = $('<div class="goods-price"></div>').appendTo($goodsContainer);
+					var $goodsOffPrice = $('<div class="goods-off-price">' + (g.reservePrice - g.zkFinalPrice).toFixed(2)  + '</div>').appendTo($goodsPrice);
+					var $goodsRealPrice = $('<div class="goods-real-price">到手价:<span class="num">' + g.zkFinalPrice.toFixed(2) +'</span></div>').appendTo($goodsPrice);
+					var $soldCount = $('<div class="goods-sold-count">月销量:<span class="num">' + g.soldNum +'</span></div>').appendTo($goodsPrice);
+					
+				});
+				$(window).trigger('resize');
+			});
+		},
 		initType: function(){
 			var cookieType = $.cookie('type');
 			if(cookieType){

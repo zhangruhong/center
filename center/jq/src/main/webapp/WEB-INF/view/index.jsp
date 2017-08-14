@@ -15,7 +15,7 @@
 			<li class="active category-default"><a href="<%=request.getContextPath()%>/">首页</a></li>
 			<li><a href="<%=request.getContextPath() %>/v/search/superTicket">超级券</a></li>
 			<li><a href="<%=request.getContextPath() %>/v/search/tenYuan">十元购</a></li>
-			<li><a href="<%=request.getContextPath() %>/v/introduce">淘宝返利</a></li>
+			<li><a href="<%=request.getContextPath() %>/v/tqg">淘抢购</a></li>
 		</ul>
 	</div>
 	<div class="container-fluid">
