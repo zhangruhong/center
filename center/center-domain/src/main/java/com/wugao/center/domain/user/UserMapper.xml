@@ -4,29 +4,29 @@
 	
 	<!-- 用户 -->
 	<insert id="save" parameterType="com.wugao.center.domain.user.User">
-		insert into zues_rbac_user(id, username, password, nickname, mobile, email, enabled, alipayNo)
-		values(#{id}, #{username}, #{password}, #{nickname}, #{mobile}, #{email}, #{enabled}, #{alipayNo})
+		insert into T_SYS_USER(id, username, password, nickname, mobile, enabled, alipayNo)
+		values(#{id}, #{username}, #{password}, #{nickname}, #{mobile}, #{enabled}, #{alipayNo})
 	</insert>
 	<update id="update" parameterType="com.wugao.center.domain.user.User">
-		update zues_rbac_user set
+		update T_SYS_USER set
 			password = #{password},
 			nickname = #{nickname},
 			mobile = #{mobile},
-			email = #{email},
 			enabled = #{enabled}
+			alipayNo = #{alipayNo}
 		where id = #{id}
 	</update>
 	<delete id="remove">
-		delete from zues_rbac_user where id = #{id}
+		delete from T_SYS_USER where id = #{id}
 	</delete>
 	<select id="getById" resultType="com.wugao.center.domain.user.User">
-		select * from zues_rbac_user where id=#{id}
+		select * from T_SYS_USER where id=#{id}
 	</select>
 	<select id="getByUsername" resultType="com.wugao.center.domain.user.User">
-		select * from zues_rbac_user where username=#{username}
+		select * from T_SYS_USER where username=#{username}
 	</select>
 	<select id="getList" resultType="com.wugao.center.domain.user.User">
-		select * from zues_rbac_user where 1=1
+		select * from T_SYS_USER where 1=1
 		<if test="search != null and search != ''">
 			<bind name="_search" value="'%' + search + '%'" />
 			and ( username like #{_search} or nickname like #{_search} )

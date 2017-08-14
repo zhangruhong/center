@@ -1,16 +1,14 @@
 package com.wugao.center.domain.user;
 
-import java.util.regex.Pattern;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 import com.wugao.center.infrastruture.exception.AppException;
+import com.wugao.center.infrastruture.spring.security.PasswordEncoder;
 
 @Validated
 @Service
@@ -19,8 +17,7 @@ public class UserService {
 	public static final String USERNAME_ADMIN = "admin";
 	private static final String DEFAULT_PASSSORD = "111111";
 
-	@Autowired
-	public PasswordEncoder passwordEncoder;
+	public PasswordEncoder passwordEncoder = new PasswordEncoder();
 	
 	@Autowired
 	private UserRepo userRepo;
