@@ -86,7 +86,7 @@ public class GoodsHotService {
 		req.setPageNo(1L);
 		req.setPageSize(200L);
 		req.setFields("favorites_title,favorites_id,type");
-		req.setType(-1L);
+		req.setType(2L);
 		//选聘库响应
 		TbkUatmFavoritesGetResponse favoriteResponse = client.execute(req);
 		List<TbkFavorites> favorites = favoriteResponse.getResults();
@@ -119,9 +119,10 @@ public class GoodsHotService {
 					rsp2 = client.execute(req2);
 					items = rsp2.getResults();
 					tryTimes++;
-					if(tryTimes == 10) {
+					if(tryTimes == 50) {
 						break;
 					}
+					Thread.sleep(1000);
 				}
 				//由响应的UatmTbkItem转换为本地Goods类
 				if(items != null && items.size() > 0) {
@@ -157,6 +158,9 @@ public class GoodsHotService {
 							list.add(goods);
 						}
 					}
+				}
+				if(items.size() < req2.getPageSize()) {
+					break;
 				}
 			}
 		}

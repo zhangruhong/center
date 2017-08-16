@@ -72,7 +72,7 @@
 					<p class="sub-title">全网销量排行</p>
 					<div class="op">
 						<div class="tag">
-							<a>查看更多></a>
+							<a href="<%=request.getContextPath()%>/v/top">查看更多></a>
 						</div>
 					</div>
 				</div>

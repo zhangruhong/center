@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,8 @@ import com.wugao.jq.domain.goods.GoodsService;
 @RequestMapping
 public class TicketController {
 	
+	private static int TOTAL_PAGE_SIZE = 1000;
+	
 	@Value("${taobao.api.url}")
 	private String url;
 	
@@ -38,30 +41,32 @@ public class TicketController {
 	private GoodsService goodsService;
 
 	@RequestMapping(value = "v/ticket", method = RequestMethod.GET, produces = "text/html")
-	public ModelAndView toTaobaoTickPage() {
+	public ModelAndView toTaobaoTickPage(String keyword, Integer page) {
 		ModelAndView mav = new ModelAndView("ticket");
-		return mav;
-	}
-	
-	@RequestMapping(value = "searchTicket", method = RequestMethod.GET)
-	public Pagination searchInTicket(String title, Pagination pagination){
 		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
 		TbkDgItemCouponGetRequest req = new TbkDgItemCouponGetRequest();
 		req.setAdzoneId(Long.valueOf(adzoneId));
 		req.setPlatform(1L);
-		req.setQ(title);
-		req.setPageSize(Long.valueOf(pagination.getPageSize()));
-		req.setPageNo(Long.valueOf(pagination.getPage()));
+		req.setQ(keyword);
+		req.setPageSize(24L);
+		req.setPageNo(StringUtils.isEmpty(page) ? 1L: Long.valueOf(page));
 		TbkDgItemCouponGetResponse rsp;	
 		try {
 			rsp = client.execute(req);
-			pagination.setTotal(rsp.getTotalResults().intValue());
+			if(rsp.getResults().size() > 0 && rsp.getResults().size() < req.getPageSize()) {
+				TOTAL_PAGE_SIZE = page;
+			}
 			List<TbkCoupon> items = rsp.getResults();
-			pagination.setRows(goodsService.parseCouponToGoods(items));
-			return pagination;
+			mav.addObject("objs", items);
+			mav.addObject("currPage", req.getPageNo());
+			mav.addObject("beginPage", req.getPageNo() % 5 == 0 ? req.getPageNo() - 4 : req.getPageNo() / 5 * 5 + 1);
+			mav.addObject("endPage", req.getPageNo() % 5 == 0 ? req.getPageNo() : (req.getPageNo() + 5) / 5 * 5);
+			mav.addObject("totalPageSize", TOTAL_PAGE_SIZE);
+			return mav;
 		} catch (ApiException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
 }

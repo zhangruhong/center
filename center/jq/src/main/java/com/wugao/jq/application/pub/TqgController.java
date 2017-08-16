@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,7 +49,7 @@ public class TqgController {
 		req.setStartTime(calendar.getTime());
 		calendar.add(Calendar.MONDAY, 12);
 		req.setEndTime(calendar.getTime());
-		req.setPageNo((long)(page == null ? 1 : page));
+		req.setPageNo((long)(StringUtils.isEmpty(page) ? 1 : page));
 		req.setPageSize(40L);
 		TbkJuTqgGetResponse rsp;
 		try {

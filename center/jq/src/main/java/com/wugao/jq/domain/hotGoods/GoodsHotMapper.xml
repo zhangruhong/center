@@ -38,11 +38,11 @@
 	</insert>
 	
 	
-	<select id="getListByTopSale" resultType="com.wugao.jq.domain.goods.Goods">
+	<select id="getListByTopSale" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">
 		select * from T_GOODS_HOT where status = 1 order by soldCountPerMonth desc
 	</select>
 	
-	<select id="getListBySearch" resultType="com.wugao.jq.domain.goods.Goods">
+	<select id="getListBySearch" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">
 		select * from T_GOODS_HOT g 
 		<where>
 			<if test="searchVo != null">

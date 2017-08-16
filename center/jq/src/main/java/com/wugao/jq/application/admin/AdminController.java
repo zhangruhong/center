@@ -29,8 +29,9 @@ public class AdminController {
 		try {
 			if("hot".equals(type)) {
 				goodsHotService.saveBatchFromFavorite();
+			}else if("favorite".equals(type)) {
+				goodsService.saveBatchFromFavorite();
 			}
-			goodsService.saveBatchFromFavorite();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
