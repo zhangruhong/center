@@ -39,7 +39,7 @@
 	
 	
 	<select id="getListByTopSale" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">
-		select * from T_GOODS_HOT where status = 1 order by soldCountPerMonth desc
+		select * from T_GOODS_HOT where ticketTotal > 0 and ticketLeft > 0 and now() > ticketStartTime and now() &lt; ticketEndTime and status = 1 order by soldCountPerMonth desc
 	</select>
 	
 	<select id="getListBySearch" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">

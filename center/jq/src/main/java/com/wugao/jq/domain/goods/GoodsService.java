@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -72,6 +73,7 @@ public class GoodsService {
 		goodsRepo.update(goods);
 	}
 
+	@Scheduled(cron = "0 0 0 * * ?")
 	public void saveBatchFromFavorite() throws Exception {
 		goodsRepo.removeAll();
 		//顶级分类

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
+<Configuration status="warn">
 
 	<properties>
 		<property name="LOG_HOME">/usr/local/logs/jq</property>
@@ -18,10 +18,10 @@
 
 	<Loggers>
 		<!-- root -->
-		<Root level="DEBUG"><AppenderRef ref="stdoutAppender" /><AppenderRef ref="errorAppender" level="info" /></Root>
-		<logger name="org" level="info"></logger>
-		<logger name="com.wugao.center.domain" level="DEBUG"/>
-		<logger name="com.wugao.jq.domain" level="DEBUG"/>
+		<Root level="warn"><AppenderRef ref="stdoutAppender" /><AppenderRef ref="errorAppender" level="warn" /></Root>
+		<logger name="org" level="warn"></logger>
+		<logger name="com.wugao.center.domain" level="info"/>
+		<logger name="com.wugao.jq.domain" level="info"/>
 	</Loggers>
 
 </Configuration>

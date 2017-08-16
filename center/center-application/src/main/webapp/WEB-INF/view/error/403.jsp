@@ -6,6 +6,6 @@
 <title>错误</title>
 </head>
 <body>
-	这是一个错误页面
+	出错啦
 </body>
 </html>
