@@ -63,12 +63,6 @@ public class SearchController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "v/searchTicket", method = RequestMethod.GET, produces = "text/html")
-	public ModelAndView toSearchTicketPage() {
-		ModelAndView mav = new ModelAndView("searchTicket");
-		return mav;
-	}
-	
 	@RequestMapping(value = "v/search/{type}", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toSearchPage(@PathVariable("type") String type) {
 		ModelAndView mav = new ModelAndView("search");
@@ -85,28 +79,6 @@ public class SearchController {
 	@RequestMapping(value = "search/getChildrenCategory", method = RequestMethod.GET)
 	public List<Category> getChildrenCategory(String id){
 		return categoryRepo.getChildren(id);
-	}
-	
-	@RequestMapping(value = "searchTicket", method = RequestMethod.GET)
-	public Pagination searchInTicket(String title, Pagination pagination){
-		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
-		TbkDgItemCouponGetRequest req = new TbkDgItemCouponGetRequest();
-		req.setAdzoneId(Long.valueOf(adzoneId));
-		req.setPlatform(1L);
-		req.setQ(title);
-		req.setPageSize(Long.valueOf(pagination.getPageSize()));
-		req.setPageNo(Long.valueOf(pagination.getPage()));
-		TbkDgItemCouponGetResponse rsp;	
-		try {
-			rsp = client.execute(req);
-			pagination.setTotal(rsp.getTotalResults().intValue());
-			List<TbkCoupon> items = rsp.getResults();
-			pagination.setRows(goodsService.parseCouponToGoods(items));
-			return pagination;
-		} catch (ApiException e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 	
 	public static void main(String[] args) throws ApiException {

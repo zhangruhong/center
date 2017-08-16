@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>万客达超高返利 - 万种高返超级券等你来抢</title>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/searchTicket.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/ticket.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -15,7 +15,7 @@
 			<li class="${type == null || type == '' ? 'active category-default' : '' }"><a href="<%=request.getContextPath()%>/">首页</a></li>
 			<li class="${type == 'superTicket' ? 'active category-default' : '' }"><a href="<%=request.getContextPath() %>/v/search/superTicket">超级券</a></li>
 			<li class="${type == 'tenYuan' ? 'active category-default' : '' }"><a href="<%=request.getContextPath() %>/v/search/tenYuan">十元购</a></li>
-			<li class=""><a href="<%=request.getContextPath() %>/tao-return">淘宝返利</a></li>
+			<li class=""><a href="<%=request.getContextPath() %>/v/tqg">淘抢购</a></li>
 		</ul>
 	</div>
 	<div class="container-fluid">

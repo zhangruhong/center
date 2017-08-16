@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wugao.jq.domain.goods.GoodsService;
+import com.wugao.jq.domain.hotGoods.GoodsHotService;
 
 @RestController
 @RequestMapping("admin")
@@ -14,6 +15,9 @@ public class AdminController {
 	
 	@Autowired
 	GoodsService goodsService;
+	
+	@Autowired
+	GoodsHotService goodsHotService;
 
 	@RequestMapping(value = "admin", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toAdminPage() {
@@ -21,13 +25,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "collectGoods", method = RequestMethod.GET)
-	public void collectGoodsFromXsl(String type) {
+	public void collectGoods(String type) {
 		try {
-			if("favorite".equals(type)) {
-				goodsService.saveBatchFromFavorite();
-			}else if("event".equals(type)) {
-				goodsService.saveBatchFromEvent();
+			if("hot".equals(type)) {
+				goodsHotService.saveBatchFromFavorite();
 			}
+			goodsService.saveBatchFromFavorite();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -51,7 +51,7 @@
          	 		<option value="site">站内搜索</option>
          	 		<option value="taobao">淘宝搜索</option>
          	 	</select>
-       	     	<input type="text" class="form-input component" name="title" placeholder="搜索淘宝天猫商品标题或关键字开始购物" value="${param.searchName }">
+       	     	<input type="text" class="form-input component" name="title" placeholder="搜索淘宝天猫商品标题或关键字开始购物" value="${param.keyword }">
        	     	<span id="search-goods" class="span-search component">搜索</span>
 	      	</form>
 		       

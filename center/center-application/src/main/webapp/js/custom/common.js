@@ -150,6 +150,15 @@ $(function(){
 			
 		});
 		
+		/**
+		 * 阻止enter键刷新页面
+		 */
+		$('input').on('keypress', function(e){
+			if(e.keyCode == 13){
+				return false;
+			}
+		})
+		
 	}
 	init();
 });

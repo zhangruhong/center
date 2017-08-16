@@ -42,15 +42,15 @@
 				<div class="col-xs-3 intro-item">
 					<div class="intro-image"></div>
 					<div class="intro-info">
-						<p class="intro-title">超高返利</p>
-						<p class="intro-desc">全场最高返利97%</p>
+						<p class="intro-title">超多优惠券</p>
+						<p class="intro-desc">满减活动应有尽有</p>
 					</div>
 				</div>
 				<div class="col-xs-3 intro-item">
 					<div class="intro-image"></div>
 					<div class="intro-info">
-						<p class="intro-title">返利购物</p>
-						<p class="intro-desc">绑定支付宝，返利直接到账</p>
+						<p class="intro-title">淘抢购</p>
+						<p class="intro-desc">全场商品低至1折</p>
 					</div>
 				</div>
 				<div class="col-xs-3 intro-item">
@@ -63,8 +63,8 @@
 				<div class="col-xs-3 intro-item">
 					<div class="intro-image"></div>
 					<div class="intro-info">
-						<p class="intro-title">无忧退货</p>
-						<p class="intro-desc">7天无理由退货</p>
+						<p class="intro-title">购物包邮</p>
+						<p class="intro-desc">站内商品全场包邮</p>
 					</div>
 				</div>
 			</div>

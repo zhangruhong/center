@@ -48,9 +48,9 @@ $(function(){
 	/* 初始化 搜索框*/
 	$('#search-goods').on('click', function(){
 		if($(this).prev().prev().val() == 'site'){
-			window.open(contextPath + '/v/search?searchName=' + $(this).prev('input').val(), '_blank');
+			window.open(contextPath + '/v/search?keyword=' + $(this).prev('input').val(), '_blank');
 		}else{
-			window.open(contextPath + '/v/searchTicket?searchName=' + $(this).prev('input').val(), '_blank');
+			window.open(contextPath + '/v/ticket?keyword=' + $(this).prev('input').val(), '_blank');
 		}
 		
 	});

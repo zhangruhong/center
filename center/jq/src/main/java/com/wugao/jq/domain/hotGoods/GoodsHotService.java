@@ -1,4 +1,4 @@
-package com.wugao.jq.domain.goods;
+package com.wugao.jq.domain.hotGoods;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -36,7 +36,7 @@ import com.wugao.jq.domain.category.CategoryRepo;
 
 @Validated
 @Service
-public class GoodsService {
+public class GoodsHotService {
 	
 	private static final String YES_CHINESE = "是";
 	private static final String NO_CHINESE = "否";
@@ -54,20 +54,20 @@ public class GoodsService {
 	private String adzoneId;
 
 	@Autowired
-	private GoodsRepo goodsRepo;
+	private GoodsHotRepo goodsRepo;
 	
 	@Autowired
 	CategoryRepo categoryRepo;
 	
 	private DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
-	public Goods saveGoods(@Valid Goods goods) {
+	public GoodsHot saveGoods(@Valid GoodsHot goods) {
 		return goodsRepo.save(goods);
 	}
 	
 	SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 
-	public void updateGoods(String id, @Valid Goods goods) {
+	public void updateGoods(String id, @Valid GoodsHot goods) {
 		// 保存更新
 		goodsRepo.update(goods);
 	}
@@ -77,8 +77,8 @@ public class GoodsService {
 		//顶级分类
 		Map<String, Category> categoryMap = getCategoryMap(categoryRepo.getTopCategory());
 		//最终商品列表
-		List<Goods> list = new ArrayList<>();
-		Map<String, Goods> map = new HashMap<String, Goods>();
+		List<GoodsHot> list = new ArrayList<>();
+		Map<String, GoodsHot> map = new HashMap<String, GoodsHot>();
 		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
 		//选品库请求
 		TbkUatmFavoritesGetRequest req = new TbkUatmFavoritesGetRequest();
@@ -127,7 +127,7 @@ public class GoodsService {
 				if(items != null && items.size() > 0) {
 					for(UatmTbkItem item : items) {
 						if(!map.containsKey(item.getNumIid().toString()) && item.getStatus() == 1) {
-							Goods goods = new Goods();
+							GoodsHot goods = new GoodsHot();
 							goods.setId(item.getNumIid().toString());
 							goods.setDetailUrl(item.getItemUrl());
 							goods.setOriginalPrice(Double.valueOf(item.getZkFinalPrice()));
@@ -157,109 +157,6 @@ public class GoodsService {
 							list.add(goods);
 						}
 					}
-				}
-			}
-		}
-		goodsRepo.saveBatch(list);
-	}
-
-	public List<Goods> parseCouponToGoods(List<TbkCoupon> items){
-		DecimalFormat decimalFormat = new DecimalFormat("0.00");
-		List<Goods> list = new ArrayList<Goods>();
-		for(TbkCoupon item : items) {
-			Goods goods = new Goods();
-			goods.setId(item.getNumIid().toString());
-			goods.setName(item.getTitle());
-			goods.setMainImageUrl(item.getPictUrl());
-			goods.setDetailUrl(item.getItemUrl());
-			goods.setOriginalPrice(Double.valueOf(item.getZkFinalPrice()));
-			goods.setShopName(item.getShopTitle());
-			goods.setSoldCountPerMonth(item.getVolume().intValue());
-			goods.setIncomingRate(Double.valueOf(item.getCommissionRate()) / 100);
-			goods.setIncoming(Double.valueOf(decimalFormat.format(goods.getOriginalPrice() * goods.getIncomingRate())));
-			goods.setSalerWang(item.getNick());
-			goods.setTbkLongUrl(item.getCouponClickUrl());
-			goods.setTbkShortUrl(item.getCouponClickUrl());
-			goods.setTaoToken(null);
-			goods.setTicketTotal(item.getCouponTotalCount().intValue());
-			goods.setTicketLeft(item.getCouponRemainCount().intValue());
-			goods.setTicketValue(item.getCouponInfo());
-			goods.setTicketUrl(item.getCouponClickUrl());
-			list.add(goods);
-		} 
-		return list;
-	}
-
-	/**
-	 * 暂时不做定向招商
-	 * @throws Exception
-	 */
-	@Deprecated
-	public void saveBatchFromEvent() throws Exception {
-		List<Goods> list = new ArrayList<>();
-		Map<String, Goods> map = new HashMap<String, Goods>();
-		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
-		for(int i = 1; i< 10000; i++) {
-			TbkUatmEventGetRequest eventReq = new TbkUatmEventGetRequest();
-			eventReq.setPageNo((long)i);
-			eventReq.setPageSize(20L);
-			eventReq.setFields("event_id,event_title,start_time,end_time");
-			TbkUatmEventGetResponse eventRsp = client.execute(eventReq);
-			List<TbkEvent> events = eventRsp.getResults();
-			int retryTime = 0;
-			while((events == null || events.size() == 0) && retryTime < 10) {
-				retryTime++;
-				eventRsp = client.execute(eventReq);
-				events = eventRsp.getResults();
-			} 
-			if(events == null) {
-				return;
-			}
-			for(TbkEvent event : events) {
-				if(event.getEndTime().before(new Date()) && event.getStartTime().after(new Date())) {
-					TbkUatmEventItemGetRequest req = new TbkUatmEventItemGetRequest();
-					req.setPlatform(1L);
-					req.setPageSize(100L);
-					req.setAdzoneId(Long.valueOf(adzoneId));
-					req.setEventId(event.getEventId());
-					req.setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,type,status");
-					for(int j = 1; j < 10000; j++) {
-						req.setPageNo((long)j);
-						TbkUatmEventItemGetResponse rsp = client.execute(req);
-						List<UatmTbkItem> items = rsp.getResults();
-						for(UatmTbkItem item : items) {
-							if(!map.containsKey(item.getNumIid().toString())) {
-								Goods goods = new Goods();
-								goods.setId(item.getNumIid().toString());
-								goods.setDetailUrl(item.getItemUrl());
-								goods.setOriginalPrice(Double.valueOf(item.getZkFinalPrice()));
-								goods.setShopName(item.getShopTitle());
-								goods.setSoldCountPerMonth(item.getVolume().intValue());
-								goods.setIncomingRate(Double.valueOf(item.getTkRate()) / 100);
-								goods.setName(item.getTitle());
-								goods.setIncoming(Double.valueOf(decimalFormat.format(goods.getOriginalPrice() * goods.getIncomingRate())));
-								goods.setMainImageUrl(item.getPictUrl());
-								goods.setTbkLongUrl(item.getClickUrl());
-								goods.setTaoToken(null);
-								goods.setTicketTotal(item.getCouponTotalCount() == null ? 0 : item.getCouponTotalCount().intValue());
-								goods.setTicketLeft(item.getCouponRemainCount() == null ? 0 : item.getCouponRemainCount().intValue());
-								goods.setTicketStartTime(StringUtils.isEmpty(item.getCouponStartTime()) ? null : fmt.parse(item.getCouponStartTime()));
-								goods.setTicketEndTime(StringUtils.isEmpty(item.getCouponEndTime())? null : fmt.parse(item.getCouponEndTime()));
-								goods.setTicketValue(item.getCouponInfo());
-								goods.setTicketUrl(item.getCouponClickUrl());
-								goods.setStatus(item.getStatus() == 1L);
-								map.put(goods.getId(), goods);
-								
-								list.add(goods);
-							}
-						}
-						if(items.size() < req.getPageSize()) {
-							break;
-						}
-					}
-				}
-				if(events.size() < eventReq.getPageSize()) {
-					break;
 				}
 			}
 		}

@@ -7,6 +7,9 @@
 <head>
 <meta charset="utf-8">
 <title>万客达超高返利 - 万种高返超级券等你来抢</title>
+<script type="text/javascript">
+	type = '${type}';
+</script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/search.js"></script>
 </head>
 <body>
@@ -15,7 +18,7 @@
 			<li class="${type == null || type == '' ? 'active category-default' : '' }"><a href="<%=request.getContextPath()%>/">首页</a></li>
 			<li class="${type == 'superTicket' ? 'active category-default' : '' }"><a href="<%=request.getContextPath() %>/v/search/superTicket">超级券</a></li>
 			<li class="${type == 'tenYuan' ? 'active category-default' : '' }"><a href="<%=request.getContextPath() %>/v/search/tenYuan">十元购</a></li>
-			<li class=""><a href="<%=request.getContextPath() %>/tao-return">淘宝返利</a></li>
+			<li class=""><a href="<%=request.getContextPath() %>/v/tqg">淘抢购</a></li>
 		</ul>
 	</div>
 	<div class="container-fluid">
@@ -39,7 +42,7 @@
 					<form id="search-form">
 						<input type="hidden" name="categoryPid"/>
 						<input type="hidden" name="categoryId"/>
-						<input type="hidden" name="name"/>
+						<input type="hidden" name="name" value="${param.keyword }"/>
 						<input type="hidden" name="type" value="${type}"/>
 						<ul class="main-category-bar">
 							<li class="category-default active">全部</li>

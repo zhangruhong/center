@@ -83,10 +83,9 @@
 	<div class="container" style="border-bottom: 2px solid black;margin-bottom: 20px;">
 		<ul class="category-menu">
 			<li class="active category-default"><a href="<%=request.getContextPath()%>/">首页</a></li>
-			<li><a href="<%=request.getContextPath() %>/v/search/highReturn">超高返利</a></li>
 			<li><a href="<%=request.getContextPath() %>/v/search/superTicket">超级券</a></li>
 			<li><a href="<%=request.getContextPath() %>/v/search/tenYuan">十元购</a></li>
-			<li><a href="<%=request.getContextPath() %>/v/introduce">淘宝返利</a></li>
+			<li><a href="<%=request.getContextPath() %>/v/tqg">淘抢购</a></li>
 		</ul>
 	</div>
 	<div class="container">

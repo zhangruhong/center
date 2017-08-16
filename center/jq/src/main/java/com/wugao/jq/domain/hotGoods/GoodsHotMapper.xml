@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wugao.jq.domain.hotGoods.GoodsHotRepo">
+	
+	<select id="getList" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">
+		SELECT * FROM T_GOODS_HOT order by soldCountPerMonth desc
+	</select>
+	
+	<select id="getById" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">
+		SELECT * FROM T_GOODS_HOT WHERE ID = #{id}
+	</select>
+	
+	<insert id="save">
+		INSERT INTO T_GOODS_HOT(name, id, soldCountPerMonth, originalPrice, incomingRate, incoming, salerWang, tbkShortUrl, tbkLongUrl, taoToken, ticketTotal, ticketLeft, ticketValue, ticketEndTime, ticketUrl, isPromotion, ticketStartTime, ticketTaoToken, ticketShortUrl, mainImageUrl, detailUrl, shopName, categoryId, categoryPid ,status)
+		 VALUES(#{name}, #{id}, #{soldCountPerMonth}, #{originalPrice}, #{incomingRate}, #{incoming}, #{salerWang}, #{tbkShortUrl}, #{tbkLongUrl}, #{taoToken}, #{ticketTotal}, #{ticketLeft}, #{ticketValue}, #{ticketEndTime}, #{ticketUrl}, #{isPromotion}, #{ticketStartTime}, #{ticketTaoToken}, #{ticketShortUrl}, #{mainImageUrl}, #{detailUrl}, #{shopName}, #{categoryId}, #{categoryPid} , #{status})
+	</insert>
+	
+	<update id="update">
+		UPDATE T_GOODS_HOT SET name = #{name}, soldCountPerMonth = #{soldCountPerMonth}, originalPrice = #{originalPrice}, incomingRate = #{incomingRate}, 
+		incoming = #{incoming}, salerWang = #{salerWang}, tbkShortUrl = #{tbkShortUrl}, tbkLongUrl = #{tbkLongUrl}, taoToken = #{taoToken}, 
+		ticketTotal = #{ticketTotal}, ticketLeft = #{ticketLeft}, ticketValue = #{ticketValue}, ticketEndTime = #{ticketEndTime}, ticketUrl = #{ticketUrl}, 
+		isPromotion = #{isPromotion}, ticketStartTime = #{ticketStartTime}, ticketTaoToken = #{ticketTaoToken}, ticketShortUrl = #{ticketShortUrl}, mainImageUrl = #{mainImageUrl}, 
+		detailUrl = #{detailUrl}, shopName = #{shopName}, categoryId = #{categoryId}, categoryPid = #{categoryPid} , status = #{status} WHERE id = #{id}
+	</update>
+	
+	<delete id="remove">
+		DELETE FROM T_GOODS_HOT WHERE ID = #{id}
+	</delete>
+	<delete id="removeAll">
+		DELETE FROM T_GOODS_HOT
+	</delete>
+	
+	<insert id="saveBatch">
+		INSERT INTO T_GOODS_HOT(name, id, soldCountPerMonth, originalPrice, incomingRate, incoming, salerWang, tbkShortUrl, tbkLongUrl, taoToken, ticketTotal, ticketLeft, ticketValue, ticketEndTime, ticketUrl, isPromotion, ticketStartTime, ticketTaoToken, ticketShortUrl, mainImageUrl, detailUrl, shopName, categoryId, categoryPid, status) VALUES
+		 <foreach collection="list" item="g" separator=",">
+		 	(#{g.name}, #{g.id}, #{g.soldCountPerMonth}, #{g.originalPrice}, #{g.incomingRate}, #{g.incoming}, #{g.salerWang}, #{g.tbkShortUrl}, #{g.tbkLongUrl}, #{g.taoToken}, #{g.ticketTotal}, #{g.ticketLeft}, #{g.ticketValue}, #{g.ticketEndTime}, #{g.ticketUrl}, #{g.isPromotion}, #{g.ticketStartTime}, #{g.ticketTaoToken}, #{g.ticketShortUrl}, #{g.mainImageUrl}, #{g.detailUrl}, #{g.shopName}, #{g.categoryId}, #{g.categoryPid}, #{g.status})
+		 </foreach>
+	</insert>
+	
+	
+	<select id="getListByTopSale" resultType="com.wugao.jq.domain.goods.Goods">
+		select * from T_GOODS_HOT where status = 1 order by soldCountPerMonth desc
+	</select>
+	
+	<select id="getListBySearch" resultType="com.wugao.jq.domain.goods.Goods">
+		select * from T_GOODS_HOT g 
+		<where>
+			<if test="searchVo != null">
+				<if test="searchVo.categoryId != null and searchVo.categoryId != ''">
+					and g.categoryId = #{searchVo.categoryId}
+				</if>
+				<if test="searchVo.categoryPid != null and searchVo.categoryPid != ''">
+					and g.categoryPid = #{searchVo.categoryPid}
+				</if>
+				<if test="searchVo.lowerPrice != null and searchVo.lowerPrice != ''">
+					and g.originalPrice >= cast(#{searchVo.lowerPrice} as float)
+				</if>
+				<if test="searchVo.higherPrice != null and searchVo.higherPrice != ''">
+					and g.originalPrice &lt;= cast(#{searchVo.higherPrice} as float)
+				</if>
+				<if test="searchVo.name != null and searchVo.name != ''">
+					and name like concat('%', #{searchVo.name}, '%')
+				</if>
+				<if test="searchVo.type != null and searchVo.type != ''">
+					<if test="searchVo.type == 'highReturn'.toString()">
+						and incomingRate > 0.2 order by incomingRate desc
+					</if>
+					<if test="searchVo.type == 'superTicket'.toString()">
+						and ticketTotal > 0 and ticketLeft > 0 and now() > ticketStartTime and now() &lt; ticketEndTime
+					</if>
+					<if test="searchVo.type == 'tenYuan'.toString()">
+						and originalPrice - 10 &lt;= 5 and originalPrice - 10 > -5
+					</if>
+				</if>
+				and status = 1
+			</if>
+		</where>
+			
+	</select>
+	
+</mapper>

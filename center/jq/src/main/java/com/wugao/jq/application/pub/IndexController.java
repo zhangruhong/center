@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wugao.center.infrastruture.mybatis.Pagination;
 import com.wugao.jq.domain.category.CategoryRepo;
 import com.wugao.jq.domain.goods.GoodsRepo;
+import com.wugao.jq.domain.hotGoods.GoodsHotRepo;
 import com.wugao.jq.domain.vo.search.SearchVo;
 
 @RestController
@@ -25,6 +26,9 @@ public class IndexController {
 	GoodsRepo goodsRepo;
 	
 	@Resource
+	GoodsHotRepo goodsHotRepo;
+	
+	@Resource
 	CategoryRepo categoryRepo;
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -36,18 +40,11 @@ public class IndexController {
 	
 	@RequestMapping(value = "getGoods", method = RequestMethod.GET)
 	public Pagination getGoods(SearchVo searchVo, Pagination pagination) {
-//		if(TYPE_HIGH_RETURN.equals(type)) {
-//			return pagination.setRows(goodsRepo.getListByHighReturn(pagination));
-//		}else if(TYPE_SUPER_TICKET.equals(type)) {
-//			return pagination.setRows(goodsRepo.getListBySuperTicket(pagination));
-//		}else if(TYPE_TEN_YUAN.equals(type)){
-//			return pagination.setRows(goodsRepo.getListByTenYuan(pagination));
-//		}
 		if(!StringUtils.isEmpty(searchVo.getCategoryPid())) {
 			return pagination.setRows(goodsRepo.getListBySearch(searchVo, pagination));
 		}
 		
-		return pagination.setRows(goodsRepo.getListByTopSale(pagination));
+		return pagination.setRows(goodsHotRepo.getListByTopSale(pagination));
 	}
 	
 }
