@@ -185,7 +185,9 @@ a:focus, a:visited{text-decoration: none;}
 /* 区域内容*/
 .section-content{float: left;width:100%;}
 #goods-list{float: left;}
-.goods-container{width: 250px; height: 380px;margin: 10px;border: 1px solid #ccc;float: left;}
+.goods-container{width: 250px; height: 380px;margin: 10px;border: 1px solid #ccc;float: left;position: relative;}
+.goods-container > [id^=tokenClickBtn]{position: absolute;right: 0px;top: 0px;background: rgba(0,0,0,0.5);height: 30px;outline: none;border: none;color: white;display: none;}
+.goods-container:hover > [id^=tokenClickBtn]{display: inline-block;}
 .goods-image{width: 100%; height: 260px;background-position: center; background-size: cover;background-repeat: no-repeat;display: block;}
 .goods-name{height: 50px;padding: 5px;color: #282828;border-bottom: 1px solid #ddd;text-overflow: ellipsis;}
 .goods-original-price{font-size: 20px;padding-left: 6px;}

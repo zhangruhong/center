@@ -53,26 +53,24 @@ $(function(){
 					var $soldCount = $('<div class="goods-sold-count">月销量:<span class="num">' + g.soldCountPerMonth +'</span></div>').appendTo($goodsOriginalPrice);
 				}
 				
+				if(isPhone()){
+					$('a', $goodsContainer).each(function(){
+						$(this).prop('href', 'javascript: void(0);').on('click', function(){
+							if($('[id*=tokenClickBtn]', $goodsContainer).length == 0){
+								$.ajax({url: '/index/getToken', data: {itemUrl: g.ticketLeft == 0 ? g.tbkLongUrl: g.ticketUrl, title: g.name, logo: g.mainImageUrl}}).done(function(result){
+									var $tokenClickBtn = $('<button id="tokenClickBtn' + g.id + '" data-clipboard-text="' + result.model + '">点我复制淘口令</button>').appendTo($goodsContainer);
+									var clipboard = new Clipboard(document.getElementById('tokenClickBtn' + g.id));
+									clipboard.on('success', function(e) {
+									    alert('复制成功，打开手机淘宝即可完成优惠券购物。');
+									    e.clearSelection();
+									});
+								});
+							}
+						});
+					});
+				}
 			});
 			$(window).trigger('resize');
-		},
-		initTqgContainer: function(){
-			$.ajax({url: '/search/searchTqg'}).done(function(objects){
-				var $goodsList = $(this);
-				$('.goods-container', $goodsList).remove();
-				$.each(objects.rows, function(i, g){
-					var $goodsContainer = $('<div class="goods-container"></div>').prependTo($goodsList);
-					var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.picUrl + ')" href="' + g.clickUrl + '" target="_blank"></a>').appendTo($goodsContainer);
-					var $goodsName = $('<div class="goods-name">' + g.title +'</div>').appendTo($goodsContainer);
-					var $goodsOriginalPrice = $('<div class="goods-original-price">￥' + g.reservePrice.toFixed(2) +'</div>').appendTo($goodsContainer);
-					var $goodsPrice = $('<div class="goods-price"></div>').appendTo($goodsContainer);
-					var $goodsOffPrice = $('<div class="goods-off-price">' + (g.reservePrice - g.zkFinalPrice).toFixed(2)  + '</div>').appendTo($goodsPrice);
-					var $goodsRealPrice = $('<div class="goods-real-price">到手价:<span class="num">' + g.zkFinalPrice.toFixed(2) +'</span></div>').appendTo($goodsPrice);
-					var $soldCount = $('<div class="goods-sold-count">月销量:<span class="num">' + g.soldNum +'</span></div>').appendTo($goodsPrice);
-					
-				});
-				$(window).trigger('resize');
-			});
 		},
 		initType: function(){
 			var cookieType = $.cookie('type');
@@ -155,7 +153,24 @@ $(function(){
 			if(e.keyCode == 13){
 				return false;
 			}
-		})
+		});
+		
+		window.isPhone = function() {
+		     var sUserAgent = navigator.userAgent.toLowerCase();
+		     var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+		     var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+		     var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+		     var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+		     var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+		     var bIsAndroid = sUserAgent.match(/android/i) == "android";
+		     var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+		     var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+		     if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+		    	 return true;
+		     } else {
+		    	 return false;
+		     }
+	    }
 		
 	}
 	init();

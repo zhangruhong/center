@@ -21,9 +21,8 @@
 <link href="<%=request.getContextPath()%>/js/vendor/sweetalert-1.1.3/sweetalert.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/js/vendor/sweetalert-1.1.3/sweetalert.min.js"></script>
 
-<!-- 页面加载动画 pace -->
-<script src="<%=request.getContextPath()%>/js/vendor/pace-1.0.2/pace.min.js"></script>
-
+<!-- zeroClipboard -->
+<script src="<%=request.getContextPath()%>/js/vendor/clipboard/clipboard.js"></script>
 <!-- 自定义的库 -->
 <script src="<%=request.getContextPath()%>/js/custom/jquery-form/jquery.form.js"></script>
 <script src="<%=request.getContextPath()%>/js/custom/jquery-ajax/jquery.ajax.js"></script>
