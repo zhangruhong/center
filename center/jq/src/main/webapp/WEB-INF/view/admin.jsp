@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>admin</title>
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/admin/admin.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/admin.js"></script>
 </head>
 <body>
 	<button type="button" onclick="test('excel');">从excel采集</button>

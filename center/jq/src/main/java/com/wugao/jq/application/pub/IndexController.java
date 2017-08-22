@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.WirelessShareTpwdCreateRequest;
@@ -25,7 +24,6 @@ import com.wugao.jq.domain.hotGoods.GoodsHotRepo;
 import com.wugao.jq.domain.vo.search.SearchVo;
 
 @RestController
-@RequestMapping(value = "index")
 public class IndexController {
 	
 	@Value("${taobao.api.url}")
@@ -50,7 +48,7 @@ public class IndexController {
 	@Resource
 	CategoryRepo categoryRepo;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "v/index" ,method = RequestMethod.GET)
 	public ModelAndView toIndexPage() {
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("categories", categoryRepo.getTopCategory());

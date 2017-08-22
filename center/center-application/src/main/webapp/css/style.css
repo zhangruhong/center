@@ -7,7 +7,7 @@ a:focus, a:visited{text-decoration: none;}
 .input-group-addon:hover{cursor: pointer;}
 /*分页*/
 .data-pagination{text-align: right; clear: both;}
-.pagination>.active>a{background-color: #f50;border-color: #f50;}
+.pagination>li.active>a, .pagination>li.active > a:hover{background-color: #f50;border-color: #f50;}
 .pagination-sm>li>a, .pagination>li>a:hover, .pagination>li>a:focus{color: #f50}
 
 /* 顶部登录及导航条*/

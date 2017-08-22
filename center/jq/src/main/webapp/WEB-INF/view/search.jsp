@@ -53,11 +53,10 @@
 						<ul class="sub-category-bar"></ul>
 					</form>
 				</div>
-				<div class="section-content" id="goods-list">
-					<nav class="data-pagination">
-						<ul id="pagination" class="pagination"></ul>
-					</nav>
-				</div>
+				<div class="section-content" id="goods-list"></div>
+				<nav class="data-pagination">
+					<ul id="pagination" class="pagination"></ul>
+				</nav>
 			</div>
 		</div>
 	</div>

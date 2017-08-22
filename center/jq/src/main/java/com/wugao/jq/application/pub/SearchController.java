@@ -1,10 +1,10 @@
 package com.wugao.jq.application.pub;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mobile.device.Device;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,16 +15,11 @@ import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.internal.util.StringUtils;
-import com.taobao.api.request.TbkDgItemCouponGetRequest;
 import com.taobao.api.request.TbkJuTqgGetRequest;
-import com.taobao.api.response.TbkDgItemCouponGetResponse;
-import com.taobao.api.response.TbkDgItemCouponGetResponse.TbkCoupon;
 import com.taobao.api.response.TbkJuTqgGetResponse;
-import com.taobao.api.response.TbkJuTqgGetResponse.Results;
 import com.wugao.center.infrastruture.mybatis.Pagination;
 import com.wugao.jq.domain.category.Category;
 import com.wugao.jq.domain.category.CategoryRepo;
-import com.wugao.jq.domain.goods.Goods;
 import com.wugao.jq.domain.goods.GoodsRepo;
 import com.wugao.jq.domain.goods.GoodsService;
 import com.wugao.jq.domain.vo.search.SearchVo;
@@ -57,8 +52,13 @@ public class SearchController {
 	
 	
 	@RequestMapping(value = "v/search", method = RequestMethod.GET, produces = "text/html")
-	public ModelAndView toSearchPage() {
-		ModelAndView mav = new ModelAndView("search");
+	public ModelAndView toSearchPage(Device device) {
+		ModelAndView mav = null;
+		if(!device.isMobile()) {
+			mav = new ModelAndView("search");
+		} else {
+			mav = new ModelAndView("m/search");
+		}
 		mav.addObject("topCategories", categoryRepo.getTopCategory());
 		return mav;
 	}

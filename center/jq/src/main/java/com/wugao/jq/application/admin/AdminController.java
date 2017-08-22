@@ -10,7 +10,7 @@ import com.wugao.jq.domain.goods.GoodsService;
 import com.wugao.jq.domain.hotGoods.GoodsHotService;
 
 @RestController
-@RequestMapping("admin")
+@RequestMapping
 public class AdminController {
 	
 	@Autowired
@@ -19,7 +19,7 @@ public class AdminController {
 	@Autowired
 	GoodsHotService goodsHotService;
 
-	@RequestMapping(value = "admin", method = RequestMethod.GET, produces = "text/html")
+	@RequestMapping(value = "v/admin", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toAdminPage() {
 		return new ModelAndView("admin");
 	}
