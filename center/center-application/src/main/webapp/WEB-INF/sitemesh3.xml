@@ -7,6 +7,6 @@
 	<mapping path="/v/introduce" decorator="/WEB-INF/view/decorator/frame-no-banner.jsp"></mapping>
 	<mapping path="/v/user/**" decorator="/WEB-INF/view/decorator/frame-no-banner.jsp"></mapping>
 	
-	<mapping path="/m/**" decorator="/WEB-INF/view/decorator/mobile.jsp"></mapping>
+	<mapping path="/m/**" decorator="/WEB-INF/view/decorator/frame-mobile.jsp"></mapping>
 	
 </sitemesh>

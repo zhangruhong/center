@@ -19,7 +19,6 @@
 	<mvc:annotation-driven conversion-service="conversionService">
 		<mvc:argument-resolvers>
 			<bean class="com.wugao.center.support.spring.web.method.MethodArgumentResolver" />
-			<bean class=" org.springframework.mobile.device.DeviceHandlerMethodArgumentResolver" />
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 	
@@ -46,12 +45,6 @@
 			<bean class="org.springframework.web.servlet.mvc.WebContentInterceptor">
 				<property name="cacheSeconds" value="3600" />
 			</bean>
-		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/v/**" />
-			<mvc:mapping path="/"/>
-			<mvc:mapping path="/index"/>
-			<bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

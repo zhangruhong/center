@@ -1,4 +1,4 @@
-package com.wugao.jq.application.pub;
+package com.wugao.jq.application.mobile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +23,7 @@ import com.wugao.jq.domain.goods.GoodsRepo;
 import com.wugao.jq.domain.hotGoods.GoodsHotRepo;
 import com.wugao.jq.domain.vo.search.SearchVo;
 
-@RestController
+@RestController("mobile_index")
 public class IndexController {
 	
 	@Value("${taobao.api.url}")
@@ -48,14 +48,14 @@ public class IndexController {
 	@Resource
 	CategoryRepo categoryRepo;
 	
-	@RequestMapping(value = "v/index" ,method = RequestMethod.GET)
+	@RequestMapping(value = "m/index" ,method = RequestMethod.GET)
 	public ModelAndView toIndexPage() {
-		ModelAndView mav = new ModelAndView("index");
+		ModelAndView mav = new ModelAndView("mobile/index");
 		mav.addObject("categories", categoryRepo.getTopCategory());
 		return mav;
 	}
 	
-	@RequestMapping(value = "index/getGoods", method = RequestMethod.GET)
+	@RequestMapping(value = "m/index/getGoods", method = RequestMethod.GET)
 	public Pagination getGoods(SearchVo searchVo, Pagination pagination) {
 		if(!StringUtils.isEmpty(searchVo.getCategoryPid())) {
 			return pagination.setRows(goodsRepo.getListBySearch(searchVo, pagination));
@@ -64,7 +64,7 @@ public class IndexController {
 		return pagination.setRows(goodsHotRepo.getListByTopSale(pagination));
 	}
 	
-	@RequestMapping(value = "index/getToken", method = RequestMethod.GET)
+	@RequestMapping(value = "m/index/getToken", method = RequestMethod.GET)
 	public Map<String , String> getToken(String logo, String title, String itemUrl) throws Exception{
 		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
 		WirelessShareTpwdCreateRequest req = new WirelessShareTpwdCreateRequest();
