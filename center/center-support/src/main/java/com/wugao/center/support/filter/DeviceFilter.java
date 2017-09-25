@@ -166,15 +166,19 @@ public class DeviceFilter implements Filter{
 					break;
 				}
 			}
-			deviceType = TYPE_NORMAL;
+			
+			if(deviceType == null) {
+				deviceType = TYPE_NORMAL;
+			}
 		}
+//		deviceType = TYPE_MOBILE;
 		if(deviceType != null) {
 			req.getSession().setAttribute(DEVICE_TYPE, deviceType);
 			if(deviceType.equals(TYPE_MOBILE)) {
 				String uri = req.getRequestURI();
 				if(uri.startsWith(NORMAL_VIEW_PREFIX)) {
 //					req.getRequestDispatcher(MOBILE_VIEW_PREFIX + uri.substring(uri.indexOf(NORMAL_VIEW_PREFIX) + MOBILE_VIEW_PREFIX.length())).forward(request, response);
-					rsp.sendRedirect(MOBILE_VIEW_PREFIX + uri.substring(uri.indexOf(NORMAL_VIEW_PREFIX) + MOBILE_VIEW_PREFIX.length()) + '?' + req.getQueryString());
+					rsp.sendRedirect(MOBILE_VIEW_PREFIX + uri.substring(uri.indexOf(NORMAL_VIEW_PREFIX) + MOBILE_VIEW_PREFIX.length()) + (req.getQueryString() == null ? "" : "?" + req.getQueryString()));
 				}else if(uri.startsWith(MOBILE_VIEW_PREFIX)) {
 					chain.doFilter(request, response);
 				}
@@ -182,7 +186,7 @@ public class DeviceFilter implements Filter{
 				String uri = req.getRequestURI();
 				if(uri.startsWith(MOBILE_VIEW_PREFIX)) {
 //					req.getRequestDispatcher(NORMAL_VIEW_PREFIX + uri.substring(uri.indexOf(MOBILE_VIEW_PREFIX) + NORMAL_VIEW_PREFIX.length())).forward(request, response);
-					rsp.sendRedirect(NORMAL_VIEW_PREFIX + uri.substring(uri.indexOf(MOBILE_VIEW_PREFIX) + NORMAL_VIEW_PREFIX.length()) + '?' + req.getQueryString());
+					rsp.sendRedirect(NORMAL_VIEW_PREFIX + uri.substring(uri.indexOf(MOBILE_VIEW_PREFIX) + NORMAL_VIEW_PREFIX.length()) + (req.getQueryString() == null ? "" : "?" + req.getQueryString()));
 				}else if(uri.startsWith(NORMAL_VIEW_PREFIX)) {
 					chain.doFilter(request, response);
 				}

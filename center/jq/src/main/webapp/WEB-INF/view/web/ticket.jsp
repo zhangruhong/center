@@ -7,10 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>万客达超高返利 - 万种高返超级券等你来抢</title>
-<script type="text/javascript">
-	type = '${type}';
-</script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/search.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/web/ticket.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -38,25 +35,35 @@
 		</div>
 		<div class="container">
 			<div class="section">
-				<div class="section-search">
-					<form id="search-form">
-						<input type="hidden" name="categoryPid"/>
-						<input type="hidden" name="categoryId"/>
-						<input type="hidden" name="name" value="${param.keyword }"/>
-						<input type="hidden" name="type" value="${type}"/>
-						<ul class="main-category-bar">
-							<li class="category-default active">全部</li>
-							<c:forEach items="${topCategories}" var="c">
-								<li data-id="${c.id}">${c.name }</li>
+				<div class="section-content">
+					<div id="goods-list">
+						<c:forEach items="${objs }" var="g">
+							<div class="goods-container">
+								<a class="goods-image" style="background-image: url(${g.pictUrl})" href="${g.couponClickUrl}" target="_blank"></a>
+								<div class="goods-name">${g.title }</div>
+								<div class="goods-original-price">￥<fmt:formatNumber value="${g.zkFinalPrice}" pattern="0.00"/>
+									<div class="goods-sold-count">月销量:<span class="num">${g.volume }</span></div>
+								</div>
+								<div class="goods-ticket-container">
+									<a class="goods-ticket" href="${g.couponClickUrl }" target="_blank">${g.couponInfo }</a>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<nav class="pagination-nav">
+						<ul id="pagination" class="pagination-center">
+							<c:if test="${currPage > 1 }">
+								<li class="prev"><a href='?keyword=${param.keyword }&page=${currPage == 1 ? 1 : currPage - 1}'>&lt;</a></li>
+							</c:if>
+							<c:forEach begin="${beginPage}" end="${endPage}" step="1" var="i">
+								<li class="${i == currPage ? 'active': '' }"><a href="?keyword=${param.keyword }&page=${i}">${i }</a></li>
 							</c:forEach>
+							<c:if test="${currPage < totalPageSize }">
+								<li class="next"><a href='?keyword=${param.keyword }&page=${currPage + 1}'>&gt;</a></li>
+							</c:if>
 						</ul>
-						<ul class="sub-category-bar"></ul>
-					</form>
+					</nav>
 				</div>
-				<div class="section-content" id="goods-list"></div>
-				<nav class="data-pagination">
-					<ul id="pagination" class="pagination"></ul>
-				</nav>
 			</div>
 		</div>
 	</div>

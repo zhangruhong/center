@@ -14,6 +14,9 @@
 <!-- bootstrap -->
 <link href="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+<!-- font-awesome -->
+<link href="<%=request.getContextPath()%>/js/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <!-- bootstrap-paginator -->
 <script src="<%=request.getContextPath()%>/js/vendor/bootstrap-paginator-1.0.2/bootstrap-paginator.js"></script>
 

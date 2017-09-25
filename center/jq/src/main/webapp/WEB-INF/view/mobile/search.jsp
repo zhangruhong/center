@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <title>万客达超级券 - 百万张超级券等你来抢</title>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/mobile/index.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/mobile/search.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-orange">
@@ -20,7 +20,7 @@
 			<form class="navbar-form navbar-right">
 				<div class="form-group">
 					<div class="input-group">
-						<input name="keyword" type="text" class="form-control" placeholder="淘宝商品关键字">
+						<input name="keyword" type="text" class="form-control" placeholder="淘宝商品关键字" value="${param.keyword}">
 						<span id="search" class="input-group-addon"><i class="fa fa-search"></i></span>
 					</div>
 				</div>

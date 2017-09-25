@@ -1,4 +1,4 @@
-package com.wugao.jq.application.pub;
+package com.wugao.jq.application.mobile;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import com.taobao.api.response.TbkDgItemCouponGetResponse.TbkCoupon;
 import com.wugao.center.infrastruture.mybatis.Pagination;
 import com.wugao.jq.domain.goods.GoodsService;
 
-@RestController
+@RestController("mobile_ticket")
 @RequestMapping
 public class TicketController {
 	
@@ -37,12 +37,13 @@ public class TicketController {
 	@Value("${tao.adzone.id}")
 	private String adzoneId;
 	
-	@Autowired
-	private GoodsService goodsService;
-
-	@RequestMapping(value = "v/ticket", method = RequestMethod.GET, produces = "text/html")
+	@RequestMapping(value = "m/ticket", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toTaobaoTickPage(String keyword, Integer page) {
-		ModelAndView mav = new ModelAndView("ticket");
+		return new ModelAndView("mobile/ticket");
+	}
+	
+	@RequestMapping(value = "m/ticket/getCoupons", method = RequestMethod.GET)
+	public List<TbkCoupon> getCoupons(String keyword, Integer page){
 		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
 		TbkDgItemCouponGetRequest req = new TbkDgItemCouponGetRequest();
 		req.setAdzoneId(Long.valueOf(adzoneId));
@@ -53,16 +54,8 @@ public class TicketController {
 		TbkDgItemCouponGetResponse rsp;	
 		try {
 			rsp = client.execute(req);
-			if(rsp.getResults().size() > 0 && rsp.getResults().size() < req.getPageSize()) {
-				TOTAL_PAGE_SIZE = page;
-			}
 			List<TbkCoupon> items = rsp.getResults();
-			mav.addObject("objs", items);
-			mav.addObject("currPage", req.getPageNo());
-			mav.addObject("beginPage", req.getPageNo() % 5 == 0 ? req.getPageNo() - 4 : req.getPageNo() / 5 * 5 + 1);
-			mav.addObject("endPage", req.getPageNo() % 5 == 0 ? req.getPageNo() : (req.getPageNo() + 5) / 5 * 5);
-			mav.addObject("totalPageSize", TOTAL_PAGE_SIZE);
-			return mav;
+			return items;
 		} catch (ApiException e) {
 			e.printStackTrace();
 			return null;

@@ -1,4 +1,4 @@
-package com.wugao.jq.application.pub;
+package com.wugao.jq.application.web;
 
 import java.util.Calendar;
 
@@ -39,13 +39,13 @@ public class TqgController {
 
 	@RequestMapping(value = "v/tqg", method = RequestMethod.GET)
 	public ModelAndView ToTqgPage(Integer page) {
-		ModelAndView mav = new ModelAndView("tqg");
+		ModelAndView mav = new ModelAndView("web/tqg");
 		TaobaoClient client = new DefaultTaobaoClient(url, lianmengAppKey, lianmengSecretKey);
 		TbkJuTqgGetRequest req = new TbkJuTqgGetRequest();
 		req.setAdzoneId(Long.parseLong(adzoneId));
 		req.setFields("click_url,pic_url,reserve_price,zk_final_price,total_amount,sold_num,title,category_name,start_time,end_time");
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.MONTH, -6);
+		calendar.add(Calendar.MONTH, -2);
 		req.setStartTime(calendar.getTime());
 		calendar.add(Calendar.MONDAY, 12);
 		req.setEndTime(calendar.getTime());

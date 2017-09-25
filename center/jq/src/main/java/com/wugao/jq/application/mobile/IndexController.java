@@ -51,16 +51,11 @@ public class IndexController {
 	@RequestMapping(value = "m/index" ,method = RequestMethod.GET)
 	public ModelAndView toIndexPage() {
 		ModelAndView mav = new ModelAndView("mobile/index");
-		mav.addObject("categories", categoryRepo.getTopCategory());
 		return mav;
 	}
 	
 	@RequestMapping(value = "m/index/getGoods", method = RequestMethod.GET)
-	public Pagination getGoods(SearchVo searchVo, Pagination pagination) {
-		if(!StringUtils.isEmpty(searchVo.getCategoryPid())) {
-			return pagination.setRows(goodsRepo.getListBySearch(searchVo, pagination));
-		}
-		
+	public Pagination getGoods(Pagination pagination) {
 		return pagination.setRows(goodsHotRepo.getListByTopSale(pagination));
 	}
 	

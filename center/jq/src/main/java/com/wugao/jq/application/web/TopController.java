@@ -1,4 +1,4 @@
-package com.wugao.jq.application.pub;
+package com.wugao.jq.application.web;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class TopController {
 
 	@RequestMapping(value = "v/top", method = RequestMethod.GET)
 	public ModelAndView toTopPage(String keyword, Integer page) {
-		ModelAndView mav = new ModelAndView("top");
+		ModelAndView mav = new ModelAndView("web/top");
 		if(StringUtils.isEmpty(page)) {page = 1;}
 		Pagination pagination = new Pagination();
 		pagination.setPage(page);

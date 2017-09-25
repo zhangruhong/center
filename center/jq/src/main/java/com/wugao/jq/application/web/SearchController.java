@@ -1,4 +1,4 @@
-package com.wugao.jq.application.pub;
+package com.wugao.jq.application.web;
 
 import java.util.List;
 
@@ -53,19 +53,14 @@ public class SearchController {
 	
 	@RequestMapping(value = "v/search", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toSearchPage(Device device) {
-		ModelAndView mav = null;
-		if(!device.isMobile()) {
-			mav = new ModelAndView("search");
-		} else {
-			mav = new ModelAndView("m/search");
-		}
+		ModelAndView mav = new ModelAndView("web/search");
 		mav.addObject("topCategories", categoryRepo.getTopCategory());
 		return mav;
 	}
 	
 	@RequestMapping(value = "v/search/{type}", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toSearchPage(@PathVariable("type") String type) {
-		ModelAndView mav = new ModelAndView("search");
+		ModelAndView mav = new ModelAndView("web/search");
 		mav.addObject("topCategories", categoryRepo.getTopCategory());
 		mav.addObject("type", type);
 		return mav;

@@ -80,7 +80,7 @@
 						and ticketTotal > 0 and ticketLeft > 0 and now() > ticketStartTime and now() &lt; ticketEndTime
 					</if>
 					<if test="searchVo.type == 'tenYuan'.toString()">
-						and originalPrice - 10 &lt;= 5 and originalPrice - 10 > -5
+						and originalPrice - 10 &lt;= 5 and originalPrice - 10 > -5 and ticketTotal > 0 and ticketLeft > 0
 					</if>
 				</if>
 				and status = 1

@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>万客达超高返利 - 万种高返超级券等你来抢</title>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/ticket.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/web/ticket.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -39,13 +39,13 @@
 					<div id="goods-list">
 						<c:forEach items="${objs }" var="g">
 							<div class="goods-container">
-								<a class="goods-image" style="background-image: url(${g.pictUrl})" href="${g.couponClickUrl}" target="_blank"></a>
-								<div class="goods-name">${g.title }</div>
-								<div class="goods-original-price">￥<fmt:formatNumber value="${g.zkFinalPrice}" pattern="0.00"/>
-									<div class="goods-sold-count">月销量:<span class="num">${g.volume }</span></div>
+								<a class="goods-image" style="background-image: url(${g.mainImageUrl})" href="${g.ticketUrl}" target="_blank"></a>
+								<div class="goods-name">${g.name }</div>
+								<div class="goods-original-price">￥<fmt:formatNumber value="${g.originalPrice}" pattern="0.00"/>
+									<div class="goods-sold-count">月销量:<span class="num">${g.soldCountPerMonth }</span></div>
 								</div>
 								<div class="goods-ticket-container">
-									<a class="goods-ticket" href="${g.couponClickUrl }" target="_blank">${g.couponInfo }</a>
+									<a class="goods-ticket" href="${g.ticketUrl }" target="_blank">${g.ticketValue }</a>
 								</div>
 							</div>
 						</c:forEach>

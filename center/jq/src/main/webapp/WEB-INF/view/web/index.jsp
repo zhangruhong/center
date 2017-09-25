@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>万客达超高返利 - 万种高返超级券等你来抢</title>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/web/index.js"></script>
 </head>
 <body>
 	<div class="container">

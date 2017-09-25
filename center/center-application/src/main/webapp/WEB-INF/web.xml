@@ -47,7 +47,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- <filter>
+	<filter>
 		<filter-name>deviceFilter</filter-name>
 		<filter-class>com.wugao.center.support.filter.DeviceFilter</filter-class>
 	</filter>
@@ -58,7 +58,7 @@
 	<filter-mapping>
 		<filter-name>deviceFilter</filter-name>
 		<url-pattern>/m/*</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
 	
 	<filter> 
 		<filter-name>requestParameterFilter</filter-name>

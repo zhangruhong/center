@@ -52,23 +52,6 @@ $(function(){
 					var $goodsTicket = $('<div class="goods-ticket-container"></div>').append('<a class="goods-ticket" href="' + g.ticketUrl + '" target="_blank">' + g.ticketValue + '</a>').appendTo($goodsContainer);
 					var $soldCount = $('<div class="goods-sold-count">月销量:<span class="num">' + g.soldCountPerMonth +'</span></div>').appendTo($goodsOriginalPrice);
 				}
-				
-				if(isPhone()){
-					$('a', $goodsContainer).each(function(){
-						$(this).prop('href', 'javascript: void(0);').on('click', function(){
-							if($('[id*=tokenClickBtn]', $goodsContainer).length == 0){
-								$.ajax({url: '/index/getToken', data: {itemUrl: g.ticketLeft == 0 ? g.tbkLongUrl: g.ticketUrl, title: g.name, logo: g.mainImageUrl}}).done(function(result){
-									var $tokenClickBtn = $('<button id="tokenClickBtn' + g.id + '" data-clipboard-text="' + result.model + '">点我复制淘口令</button>').appendTo($goodsContainer);
-									var clipboard = new Clipboard(document.getElementById('tokenClickBtn' + g.id));
-									clipboard.on('success', function(e) {
-									    alert('复制成功，打开手机淘宝即可完成优惠券购物。');
-									    e.clearSelection();
-									});
-								});
-							}
-						});
-					});
-				}
 			});
 			$(window).trigger('resize');
 		},
@@ -154,24 +137,6 @@ $(function(){
 				return false;
 			}
 		});
-		
-		window.isPhone = function() {
-		     var sUserAgent = navigator.userAgent.toLowerCase();
-		     var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
-		     var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
-		     var bIsMidp = sUserAgent.match(/midp/i) == "midp";
-		     var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
-		     var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
-		     var bIsAndroid = sUserAgent.match(/android/i) == "android";
-		     var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
-		     var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-		     if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
-		    	 return true;
-		     } else {
-		    	 return false;
-		     }
-	    }
-		
 	}
 	init();
 });

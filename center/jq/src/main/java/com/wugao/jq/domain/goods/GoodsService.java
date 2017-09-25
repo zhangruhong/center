@@ -1,5 +1,7 @@
 package com.wugao.jq.domain.goods;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +12,9 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -71,6 +76,55 @@ public class GoodsService {
 	public void updateGoods(String id, @Valid Goods goods) {
 		// 保存更新
 		goodsRepo.update(goods);
+	}
+	
+	public void saveBatchFromExcel() {
+		List<Goods> toBeAddList = new ArrayList<>();
+		try {
+			File directory = new File(this.getClass().getClassLoader().getResource("").getPath() + File.separator + "xlsx" );
+			if(directory.isDirectory()) {
+				System.out.println(directory.getAbsolutePath());
+			}else {
+				directory.mkdir();
+			}
+			File[] excelFiles = directory.listFiles();
+			for(File f : excelFiles) {
+				HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(f));
+				HSSFSheet sheet = workbook.getSheetAt(0);
+				sheet.getFirstRowNum();
+				for(int i = sheet.getFirstRowNum() + 1; i <= sheet.getLastRowNum(); i++) {
+					HSSFRow row = sheet.getRow(i);
+					Goods goods = new Goods();
+					goods.setId(row.getCell(0).getStringCellValue());
+					goods.setName(row.getCell(1).getStringCellValue());
+					goods.setMainImageUrl(row.getCell(2).getStringCellValue());
+					goods.setDetailUrl(row.getCell(3).getStringCellValue());
+					goods.setShopName(row.getCell(12).getStringCellValue());
+					goods.setOriginalPrice(Double.valueOf(row.getCell(6).getStringCellValue()));
+					goods.setSoldCountPerMonth(Integer.valueOf(row.getCell(7).getStringCellValue()));
+					goods.setIncomingRate(Double.valueOf(row.getCell(8).getStringCellValue())/ 100);
+					goods.setIncoming(Double.valueOf(row.getCell(9).getStringCellValue()));
+					goods.setSalerWang(row.getCell(10).getStringCellValue());
+					goods.setTbkShortUrl(null);
+					goods.setTbkLongUrl(row.getCell(5).getStringCellValue());
+					goods.setTaoToken(null);
+					goods.setTicketTotal(Integer.valueOf(row.getCell(15).getStringCellValue()));
+					goods.setTicketLeft(Integer.valueOf(row.getCell(16).getStringCellValue()));
+					goods.setTicketValue(row.getCell(17).getStringCellValue());
+					goods.setTicketStartTime(StringUtils.isEmpty(row.getCell(18) == null ? null : row.getCell(16).getStringCellValue()) ? null : fmt.parse(row.getCell(16).getStringCellValue()));
+					goods.setTicketEndTime(StringUtils.isEmpty(row.getCell(19) == null ? null : row.getCell(17).getStringCellValue()) ? null : fmt.parse(row.getCell(17).getStringCellValue()));
+					goods.setTicketUrl(row.getCell(21) == null ? null : row.getCell(18).getStringCellValue());
+					goods.setTicketTaoToken(null);
+					goods.setTicketShortUrl(null);
+					goods.setIsPromotion(null);
+					toBeAddList.add(goods);
+				}
+				goodsRepo.saveBatch(toBeAddList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Scheduled(cron = "0 0 0 * * ?")
