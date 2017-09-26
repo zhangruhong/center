@@ -2,11 +2,6 @@ $(function(){
 	
 	/* 通用扩展方法 */
 	$.fn.extend({
-		initUser: function(){
-			if(code){
-				$.ajax({url: ''})
-			}
-		},
 		initBanner : function(){
 			if($(this)[0].tagName === 'DIV'){
 				var $bannerContainer = $(this);
@@ -64,6 +59,30 @@ $(function(){
 			}else{
 				$('[name=categoryPid]', this).val($('#type-tabs > li:first-child').data('type'));
 			}
+		},
+		//position支持元素before,after,over
+		warning : function(message, position){
+			if(!position){
+				position = 'before';
+			}
+			var $this = $(this);
+			var $alertDiv = $('<div class="alert alert-danger alert-dismissable fade in"></div>');
+			var $dismissBtn = $('<button class="close" type="button" data-dismiss="alert">&times;</button>').appendTo($alertDiv);
+			$alertDiv.append($('<i class="fa fa-warning"></i>'));
+			$alertDiv.append(message);
+			if(position == 'before'){
+				$this.prepend($alertDiv);
+			}else if(position == 'after'){
+				$this.append('$alertDiv')
+			}else if(position == 'above'){
+				$this.append('$alertDiv');
+				$this.css({position: 'relative'});
+				$alertDiv.css({position: 'absolute', left: '0px', top: '20px'});
+			}
+			$alertDiv.alert();
+			setTimeout(function(){
+				$alertDiv.alert('close');
+			}, 5000);
 		}
 	});
 	
@@ -137,6 +156,96 @@ $(function(){
 				return false;
 			}
 		});
+		
+		 $('#firstLoginForm').on('submit', function(e){
+			 e.preventDefault();
+			 var $this = $(this); 
+			 $.ajax({url: '/doFirstLogin', data: this, type: 'post', dataType: 'text'}).done(function(result){
+				if(result == 'USER NOT FOUND'){
+					$this.warning('用户不存在');
+					$('[name=username]', $loginForm).trigger('focus');
+				}else if(result == 'authentication success'){
+					window.open('/');
+				}else{
+					$this.warning('登录失败');
+				}
+			});
+		 });
+		 
+		 $('#loginForm').on('submit', function(e){
+			 e.preventDefault();
+			 var $this = $(this);
+			 $.ajax({url: '/doLogin', data: this, type: 'post', dataType: 'text'}).done(function(result){
+				if(result == 'USER NOT FOUND'){
+					$this.warning('用户不存在');
+					$('[name=username]', $loginForm).trigger('focus');
+				}else if(result == 'INCORRECT PASSWORD'){
+					$this.warning('密码错误');
+					$('[name=password]', $loginForm).trigger('focus');
+				}else if(result == 'authentication success'){
+					window.open('/');
+				}else{
+					$this.warning('登录失败');
+				}
+			});
+		 });
+	}
+	
+	firstLogin = function(){
+		var $loginForm = $('#firstLoginForm');
+		if(!$('[name=nickname]', $loginForm).val()){
+			$loginForm.warning('用户昵称不能为空');
+			$('[name=nickname]', $loginForm).trigger('focus');
+			return;
+		}
+		var emailReg = new RegExp('^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$');
+		if(!$('[name=email]', $loginForm).val()){
+			$loginForm.warning('电子邮箱不能为空');
+			$('[name=email]', $loginForm).trigger('focus');
+			return;
+		}
+		if(!emailReg.test($('[name=email]', $loginForm).val())){
+			$loginForm.warning('电子邮箱格式不正确');
+			$('[name=email]', $loginForm).trigger('focus');
+			return;
+		}
+		if(!$('[name=password]', $loginForm).val()){
+			$loginForm.warning('密码不能为空');
+			$('[name=password]', $loginForm).trigger('focus');
+			return;
+		}
+		if(!$('[name=confirmPassword]', $loginForm).val()){
+			$loginForm.warning('确认密码不能为空');
+			$('[name=confirmPassword]', $loginForm).trigger('focus');
+			return;
+		}
+		var passwordReg = new RegExp('^(?=.*[0-9].*)(?=.*[a-zA-Z].*)[0-9A-Za-z_]{6,20}$');
+		if(!passwordReg.test($('[name=password]', $loginForm).val())){
+			$loginForm.warning('密码只能为大小写字母或数字下划线，必须有字母和数字，且长度为6到20位');
+			$('[name=password]', $loginForm).trigger('focus');
+			return;
+		}
+		if($('[name=confirmPassword]', $loginForm).val() != $('[name=password]', $loginForm).val()){
+			$loginForm.warning('两次输入的密码不一致');
+			$('[name=confirmPassword]', $loginForm).trigger('focus');
+			return;
+		}
+		$loginForm.trigger('submit');
+		
+	}
+	doLogin = function(){
+		var $loginForm = $('#loginForm');
+		if(!$('[name=username]', $loginForm).val()){
+			$loginForm.warning('用户名不能为空');
+			$('[name=username]', $loginForm).trigger('focus');
+			return;
+		}
+		if(!$('[name=password]', $loginForm).val()){
+			$loginForm.warning('密码不能为空');
+			$('[name=password]', $loginForm).trigger('focus');
+			return;
+		}
+		$loginForm.trigger('submit');
 	}
 	init();
 });

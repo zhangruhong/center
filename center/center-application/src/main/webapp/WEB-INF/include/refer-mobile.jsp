@@ -5,7 +5,7 @@
 </script>
 <!-- jquery -->
 <!-- 引入 jQuery 库 -->
-<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-3.1.1/jquery-3.1.1.min.js"></script>
 
 <!-- bootstrap -->
 <link href="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />

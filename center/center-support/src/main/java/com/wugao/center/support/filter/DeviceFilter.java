@@ -171,7 +171,7 @@ public class DeviceFilter implements Filter{
 				deviceType = TYPE_NORMAL;
 			}
 		}
-//		deviceType = TYPE_MOBILE;
+		deviceType = TYPE_MOBILE;
 		if(deviceType != null) {
 			req.getSession().setAttribute(DEVICE_TYPE, deviceType);
 			if(deviceType.equals(TYPE_MOBILE)) {

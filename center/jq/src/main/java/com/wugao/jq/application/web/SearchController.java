@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mobile.device.Device;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,7 +51,7 @@ public class SearchController {
 	
 	
 	@RequestMapping(value = "v/search", method = RequestMethod.GET, produces = "text/html")
-	public ModelAndView toSearchPage(Device device) {
+	public ModelAndView toSearchPage() {
 		ModelAndView mav = new ModelAndView("web/search");
 		mav.addObject("topCategories", categoryRepo.getTopCategory());
 		return mav;

@@ -1,4 +1,4 @@
-package com.wugao.jq.application.admin;
+package com.wugao.jq.application.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -24,7 +24,6 @@
 	
 	<mvc:default-servlet-handler />
 	<mvc:view-controller path="/" view-name="redirect: /v/index" />
-	<mvc:view-controller path="/login" view-name="login/login"/>
 	
 	<mvc:interceptors>
 		<mvc:interceptor>

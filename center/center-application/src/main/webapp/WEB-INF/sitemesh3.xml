@@ -1,12 +1,12 @@
 <sitemesh>
 
 	<!-- 默认装饰页面 -->
-	<mapping decorator="/WEB-INF/view/decorator/frame.jsp"></mapping>
+	<mapping path="/v/**" decorator="/WEB-INF/view/decorator/frame.jsp"></mapping>
+	
+	<mapping path="/m/**" decorator="/WEB-INF/view/decorator/frame-mobile.jsp"></mapping>
 	
 	<!--  -->
 	<mapping path="/v/introduce" decorator="/WEB-INF/view/decorator/frame-no-banner.jsp"></mapping>
 	<mapping path="/v/user/**" decorator="/WEB-INF/view/decorator/frame-no-banner.jsp"></mapping>
-	
-	<mapping path="/m/**" decorator="/WEB-INF/view/decorator/frame-mobile.jsp"></mapping>
 	
 </sitemesh>

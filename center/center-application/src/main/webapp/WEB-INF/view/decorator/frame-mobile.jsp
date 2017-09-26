@@ -14,6 +14,12 @@
 </head>
 <body>
 	<sitemesh:write property='body' />
+	<div class="nav-footer">
+		<a class="nav-footer-item" href="<%=request.getContextPath()%>/"><i class="fa fa-home fa-lg"></i></a>
+		<a class="nav-footer-item" href="<%=request.getContextPath()%>/"><i class="fa fa-list fa-lg"></i></a>
+		<a class="nav-footer-item" href="<%=request.getContextPath()%>/questions"><i class="fa fa-question-circle-o fa-lg"></i></a>
+		<a class="nav-footer-item" href="<%=request.getContextPath()%>/m/user/home"><i class="fa fa-user fa-lg"></i></a>
+	</div>
 	<div id="tokenModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">

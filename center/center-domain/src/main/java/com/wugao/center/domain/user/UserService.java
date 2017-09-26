@@ -15,7 +15,6 @@ import com.wugao.center.infrastruture.spring.security.PasswordEncoder;
 public class UserService {
 
 	public static final String USERNAME_ADMIN = "admin";
-	private static final String DEFAULT_PASSSORD = "111111";
 
 	public PasswordEncoder passwordEncoder = new PasswordEncoder();
 	
@@ -28,11 +27,9 @@ public class UserService {
 			throw new AppException("账号已存在");
 		}
 		// 密码
-		if (StringUtils.isEmpty(user.getPassword())) {
-			user.setPassword(passwordEncoder.encode(DEFAULT_PASSSORD));
-		} else {
+		if (!StringUtils.isEmpty(user.getPassword())) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
-		}
+		} 
 		return userRepo.save(user);
 	}
 

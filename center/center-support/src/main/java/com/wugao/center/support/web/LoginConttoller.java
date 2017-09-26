@@ -1,12 +1,15 @@
 package com.wugao.center.support.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpEntity;
@@ -32,6 +35,7 @@ import com.wugao.center.domain.user.UserRepo;
 import com.wugao.center.domain.user.UserService;
 import com.wugao.center.infrastruture.constant.SessionConstant;
 import com.wugao.center.infrastruture.spring.security.PasswordEncoder;
+import com.wugao.center.infrastruture.utils.ServletUtil;
 import com.wugao.center.support.spring.session.Context;
 
 @RestController
@@ -51,8 +55,47 @@ public class LoginConttoller {
 	
 	PasswordEncoder passwordEncoder = new PasswordEncoder();
 	
+	
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public ModelAndView login(String username) {
+		ModelAndView mav = new ModelAndView("login");
+		if(!StringUtils.isEmpty(username)) {
+			User user = userRepo.getByUsername(username);
+			if(user != null && StringUtils.isEmpty(user.getPassword())) {
+				mav.addObject("firstLogin", true);
+				mav.addObject("user", user);
+			}
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value = "doFirstLogin", method = RequestMethod.POST)
+	public void doFirstLogin(User user, HttpServletRequest request, HttpServletResponse resp) throws IOException{
+		try {
+			User savedUser = userRepo.getByUsername(user.getUsername());
+			if(savedUser != null) {
+				savedUser.setPassword(passwordEncoder.encode(user.getPassword()));
+				savedUser.setEmail(user.getEmail());
+				savedUser.setNickname(user.getNickname());
+				userService.updateUser(savedUser.getId(), savedUser);
+				Context context = new Context();
+				context.setUser(user);
+	        	if(request.getSession().getAttribute(SessionConstant.CONTEXT) == null) {
+					request.getSession().setAttribute(SessionConstant.CONTEXT, context);
+				}
+	        	ServletUtil.respondString(resp, "authentication success");
+			}else {
+				ServletUtil.respondString(resp, "USER NOT FOUND");
+			}
+		} catch(Exception e) {
+			logger.error(user.getUsername() + "登录失败，" + e.getMessage());
+			ServletUtil.respondString(resp, "login error");
+		}
+		
+	}
+	
 	@RequestMapping(value = "doLogin", method = RequestMethod.POST)
-	public String doLogin(String username, String password, HttpServletRequest request){
+	public void doLogin(String username, String password, HttpServletRequest request, HttpServletResponse resp) throws IOException{
 		User user = userRepo.getByUsername(username);
 		if(user != null) {
 			if(passwordEncoder.matches(password, user.getPassword())) {
@@ -61,10 +104,13 @@ public class LoginConttoller {
 				if(request.getSession().getAttribute(SessionConstant.CONTEXT) == null) {
 					request.getSession().setAttribute(SessionConstant.CONTEXT, context);
 				}
-				return "authentication success";
+				ServletUtil.respondString(resp, "authentication success");
+			}else {
+				ServletUtil.respondString(resp, "INCORRECT PASSWORD");
 			}
+		}else {
+			ServletUtil.respondString(resp, "USER NOT FOUND");
 		}
-		return "authentication failed";
 		
 	}
 	
@@ -93,19 +139,35 @@ public class LoginConttoller {
             	user.setEnabled(true);
             	user.setNickname(username);
             	userService.saveUser(user);
+            	Context context = new Context();
+    			context.setUser(user);
+            	if(request.getSession().getAttribute(SessionConstant.CONTEXT) == null) {
+    				request.getSession().setAttribute(SessionConstant.CONTEXT, context);
+    			}
+            	return new ModelAndView("redirect:/login?username=" + username);
+            }else {
+            	Context context = new Context();
+				context.setUser(user);
+				if(request.getSession().getAttribute(SessionConstant.CONTEXT) == null) {
+					request.getSession().setAttribute(SessionConstant.CONTEXT, context);
+				}
+				return new ModelAndView("redirect:/");
             }
-            Context context = new Context();
-			context.setUser(user);
-			if(request.getSession().getAttribute(SessionConstant.CONTEXT) == null) {
-				request.getSession().setAttribute(SessionConstant.CONTEXT, context);
-			}
-            return new ModelAndView("redirect:/");
+            
         } catch (Exception e) {
         	e.printStackTrace();
         	logger.error(e);
         	return null;
         }
        
+	}
+	
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request) {
+		if(request.getSession().getAttribute(SessionConstant.CONTEXT) != null) {
+			request.getSession().removeAttribute(SessionConstant.CONTEXT);
+		}
+		return new ModelAndView("redirect:/");
 	}
 	
 	public static void main(String[] args) {
