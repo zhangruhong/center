@@ -37,12 +37,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "goods", method = RequestMethod.GET)
-	public ModelAndView toGoodsPage(Pagination pagination, String name, String lowerPrice, String higherPrice, String categoryId) {
-		SearchVo searchVo = new SearchVo();
-		searchVo.setCategoryPid(categoryId);
-		searchVo.setHigherPrice(higherPrice);
-		searchVo.setLowerPrice(lowerPrice);
-		searchVo.setName(name);
+	public ModelAndView toGoodsPage(Pagination pagination, SearchVo searchVo) {
 		List<Goods> goodsList = goodsRepo.getListBySearch(searchVo, pagination);
 		pagination.setRows(goodsList);
 		ModelAndView mav = new ModelAndView("admin/goods");
