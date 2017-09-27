@@ -29,7 +29,7 @@
 </head>
 <body style="background: url(../image/login-bg.jpg) top left no-repeat;">
 	<div class="loginColumns animated fadeInDown">
-        <div class="row">
+        <div class="row ${context.user != null ? 'hide' : '' }">
             <div class="col-md-6 ${firstLogin ? 'hide' :'' }">
                 <div class="ibox-content">
                     <form id="loginForm" style="margin-top: 20px;" class="form-horizontal">
@@ -105,6 +105,25 @@
                             <small>没有账号?</small>
                             <a class="btn btn-sm btn-white" href="<%=request.getContextPath()%>/register">注册账户</a>
                         </p>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row ${context.user != null ? '' : 'hide' }">
+        	<div class="col-md-6">
+                <div class="ibox-content">
+                    <form id="loginForm" style="margin-top: 20px;" class="form-horizontal">
+                    	<h3 class="text-center" style="color: #333;border-bottom: 1px solid #ccc;padding-bottom: 10px;">您好！${context.user.nickname }</h3>
+                        <a href="<%=request.getContextPath() %>/logout" class="btn btn-primary btn-block" style="margin-bottom: 10px;">登出</a>
+
+                        <a href="javascript: history.back();" class="btn btn-sm btn-white btn-block">
+                            <small>返回上一页?</small>
+                        </a>
+
+                        <a class="btn btn-sm btn-white btn-block" href="<%=request.getContextPath()%>/">
+                        	<small>回到首页?</small>
+                        </a>
                         
                     </form>
                 </div>

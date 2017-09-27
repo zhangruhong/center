@@ -24,6 +24,7 @@
 	
 	<mvc:default-servlet-handler />
 	<mvc:view-controller path="/" view-name="redirect: /v/index" />
+	<mvc:view-controller path="/admin" view-name="redirect: /admin/home" />
 	
 	<mvc:interceptors>
 		<mvc:interceptor>

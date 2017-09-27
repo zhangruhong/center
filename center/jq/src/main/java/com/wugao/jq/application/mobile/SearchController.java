@@ -43,7 +43,7 @@ public class SearchController {
 	
 	
 	
-	@RequestMapping(value = "m/search", method = RequestMethod.GET, produces = "text/html")
+	@RequestMapping(value = "p/search", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toSearchPage() {
 		ModelAndView mav = new ModelAndView("mobile/search");
 		mav.addObject("topCategories", categoryRepo.getTopCategory());

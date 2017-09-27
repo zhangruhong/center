@@ -9,11 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title> - 403 页面</title>
+    <title> - 500 页面</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link href="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <!-- bootstrap -->
+	<link href="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 	<script src="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 	
 	<!-- font-awesome -->
@@ -28,11 +30,11 @@
 
 
     <div class="middle-box text-center animated fadeInDown">
-        <h1>403</h1>
-        <h3 class="font-bold">权限不足！</h3>
+        <h1>500</h1>
+        <h3 class="font-bold">错误！</h3>
 
         <div class="error-desc">
-            抱歉您没有访问的权限
+            	抱歉，系统出错啦~
         </div>
     </div>
 

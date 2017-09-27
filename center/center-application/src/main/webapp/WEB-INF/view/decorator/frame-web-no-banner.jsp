@@ -9,37 +9,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <link href="<%=request.getContextPath() %>/image/favicon.ico" rel="shortcut icon" />
 <title><sitemesh:write property='title' /></title>
-<jsp:include page="/WEB-INF/include/refer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/include/refer-web.jsp"></jsp:include>
 <sitemesh:write property='head' />
 </head>
-<body>
+<body class="no-banner">
 	<div class="navbar navbar-default navbar-transparent">
 		<div class="navbar-top">
 			<div class="container">
-				<div class="navbar-header">
-					<div class="navbar-auth navbar-left ${context.user == null ? '' : 'hide' }">
-						<a href="https://oauth.taobao.com/authorize?client_id=24567059&redirect_uri=http://www.vankeda.com/taobaoLogin&response_type=code&state=1" class="tao">
-							<span class="tao-icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
-							<span>淘宝账号登录</span>
-						</a>
-						<a href="<%=request.getContextPath() %>/login" class="khd">
-							<span class="khd_icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
-							<span>账号登录</span>
-						</a>
-					</div>
-					<div class="navbar-auth navbar-left ${context.user != null ? '' : 'hide' }">
-						<a href="javascript: void(0);" class="tao">
-							<span>欢迎您！</span>
-							<span>${context.user != null ?  context.user.username : '' }</span>
-						</a>
-						<a href="<%=request.getContextPath()%>/logout">退出</a>
-					</div>
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menus" aria-expanded="false">
-				        <span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				    </button>
+				<div class="navbar-auth navbar-left ${context.user == null ? '' : 'hide' }">
+					<a href="https://oauth.taobao.com/authorize?client_id=24567059&redirect_uri=http://www.vankeda.com/taobaoLogin&response_type=code&state=1" class="tao">
+						<span class="tao-icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
+						<span>淘宝账号登录</span>
+					</a>
+					<a href="javascript: void(0);" class="khd">
+						<span class="khd_icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
+						<span>手机号登录</span>
+					</a>
+				</div>
+				<div class="navbar-auth navbar-left ${context.user != null ? '' : 'hide' }">
+					<a href="javascript: void(0);" class="tao">
+						<span class="tao-icon" style="background-image: url(<%=request.getContextPath()%>/image/alicdn.png);background-repeat: no-repeat;"></span>
+					</a>
+					<span>${context.user != null ?  context.user.username : '' }</span>
+					
 				</div>
 			    <div class="collapse navbar-collapse" id="navbar-menus">
 					 <ul class="navbar-link">
@@ -60,14 +52,36 @@
 			      		 </p>
 				      </div>
 				</div>
-				<form class="header-search">
-	         	 	<select class="header-search-select component">
-	         	 		<option value="site">站内搜索</option>
-	         	 		<option value="taobao">淘宝搜索</option>
-	         	 	</select>
-	       	     	<input type="text" class="form-input component" name="title" placeholder="搜索淘宝天猫商品标题或关键字开始购物" value="${param.keyword }">
-	       	     	<span id="search-goods" class="span-search component">搜索</span>
-		      	</form>
+				<div class="intro-container">
+					<div class="col-xs-3 intro-item">
+						<div class="intro-image"></div>
+						<div class="intro-info">
+							<p class="intro-title">超多优惠券</p>
+							<p class="intro-desc">满减活动应有尽有</p>
+						</div>
+					</div>
+					<div class="col-xs-3 intro-item">
+						<div class="intro-image"></div>
+						<div class="intro-info">
+							<p class="intro-title">淘抢购</p>
+							<p class="intro-desc">全场商品低至1折</p>
+						</div>
+					</div>
+					<div class="col-xs-3 intro-item">
+						<div class="intro-image"></div>
+						<div class="intro-info">
+							<p class="intro-title">全网精选</p>
+							<p class="intro-desc">淘宝天猫优质精选商品</p>
+						</div>
+					</div>
+					<div class="col-xs-3 intro-item">
+						<div class="intro-image"></div>
+						<div class="intro-info">
+							<p class="intro-title">购物包邮</p>
+							<p class="intro-desc">站内商品全场包邮</p>
+						</div>
+					</div>
+				</div>
 			       
 		    </div>
 		</div>

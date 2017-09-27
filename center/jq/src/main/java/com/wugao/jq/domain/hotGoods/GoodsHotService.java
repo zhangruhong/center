@@ -88,6 +88,7 @@ public class GoodsHotService {
 		req.setPageNo(1L);
 		req.setPageSize(200L);
 		req.setFields("favorites_title,favorites_id,type");
+		//高佣金选品库
 		req.setType(2L);
 		//选聘库响应
 		TbkUatmFavoritesGetResponse favoriteResponse = client.execute(req);

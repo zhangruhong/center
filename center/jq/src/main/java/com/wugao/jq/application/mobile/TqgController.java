@@ -38,7 +38,7 @@ public class TqgController {
 	@Value("${tao.adzone.id}")
 	private String adzoneId;
 
-	@RequestMapping(value = "m/tqg", method = RequestMethod.GET)
+	@RequestMapping(value = "p/tqg", method = RequestMethod.GET)
 	public ModelAndView ToTqgPage() {
 		return new ModelAndView("mobile/tqg");
 		

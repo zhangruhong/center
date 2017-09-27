@@ -1,0 +1,36 @@
+html,body{margin: 0; padding: 0;}
+.modal{top: 10%;}
+/* 导航条 */
+.navbar.navbar-orange{background: #f50;margin-bottom: 0;border: none;border-radius: 0px;}
+.navbar-header > .navbar-brand{padding: 10px;}
+.navbar-header > .navbar-form{margin-top: 0px ; margin-bottom: 0px; border-top: none; border-bottom: none;padding-right: 24px;padding-top: 10px;}
+.navbar-header > .navbar-form .input-group-addon{background: white; color: #ccc;}
+.navbar.navbar-orange .navbar-nav > li > a{color: white;}
+.navbar.navbar-orange .navbar-nav > li > a:hover, .navbar.navbar-orange .navbar-nav > li > a:focus{background: #bb5555;}
+
+/* 表格 */
+.table > thead > tr > th, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > td{text-align: center; vertical-align: middle;}
+
+/* 分页条 */
+.pagination-nav{text-align: center;}
+.pagination-center{list-style: none;display: inline-block;margin: 10px 0px;padding: 0;}
+.pagination-center:before,.pagination-center:after{content: '';display: block; clear: both;}
+.pagination-center li{float: left;min-width: 26px; height: 30px;text-align: center;border: 1px solid #ddd;margin-left:5px;line-height: 30px;padding:0 3px;}
+.pagination-center li > a{color: black;}
+.pagination-center li > a:hover{text-decoration: none;}
+.pagination-center li.active,.pagination-center li:hover{background: #f50;}
+.pagination-center li.active > a, .pagination-center li:hover > a{color: white;}
+
+
+
+
+
+
+
+
+

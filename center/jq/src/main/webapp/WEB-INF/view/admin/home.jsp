@@ -6,12 +6,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>admin</title>
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/admin.js"></script>
+<title>后台管理</title>
 </head>
 <body>
-	<button type="button" onclick="test('excel');">从excel采集</button>
-	<button type="button" onclick="test('favorite');">从选聘库采集</button>
-	<button type="button" onclick="test('hot');">从定向招商采集</button>
+	<div class="container">
+		
+	</div>
 </body>
 </html>

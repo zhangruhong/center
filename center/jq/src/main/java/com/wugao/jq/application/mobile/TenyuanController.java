@@ -39,7 +39,7 @@ public class TenyuanController {
 	
 	
 	
-	@RequestMapping(value = "m/tenyuan", method = RequestMethod.GET, produces = "text/html")
+	@RequestMapping(value = "p/tenyuan", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toSearchPage() {
 		ModelAndView mav = new ModelAndView("mobile/tenyuan");
 		mav.addObject("topCategories", categoryRepo.getTopCategory());

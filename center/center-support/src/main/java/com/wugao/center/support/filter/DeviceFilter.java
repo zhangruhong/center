@@ -29,7 +29,7 @@ public class DeviceFilter implements Filter{
 	private static final String DEVICE_TYPE = "custom-device-type";
 	
 	private static final String NORMAL_VIEW_PREFIX = "/v/";
-	private static final String MOBILE_VIEW_PREFIX = "/m/";
+	private static final String MOBILE_VIEW_PREFIX = "/p/";
 	
 	
 	private static final String[] KNOWN_MOBILE_USER_AGENT_PREFIXES = new String[] {
@@ -84,6 +84,12 @@ public class DeviceFilter implements Filter{
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse rsp = (HttpServletResponse)response;
+		
+		//保存本次访问的路径
+		String lastVisited = (String)req.getSession().getAttribute("lastVisited");
+		if(lastVisited == null || !lastVisited.equals(req.getRequestURI())) {
+			req.getSession().setAttribute("lastVisited", req.getRequestURI());
+		}
 		String userAgent = req.getHeader("User-Agent");
 		String deviceType = null;
 		if(req.getSession().getAttribute(DEVICE_TYPE) != null) {
@@ -174,7 +180,7 @@ public class DeviceFilter implements Filter{
 		deviceType = TYPE_MOBILE;
 		if(deviceType != null) {
 			req.getSession().setAttribute(DEVICE_TYPE, deviceType);
-			if(deviceType.equals(TYPE_MOBILE)) {
+			if(deviceType.equals(TYPE_MOBILE) || deviceType.equals(TYPE_TABLET)) {
 				String uri = req.getRequestURI();
 				if(uri.startsWith(NORMAL_VIEW_PREFIX)) {
 //					req.getRequestDispatcher(MOBILE_VIEW_PREFIX + uri.substring(uri.indexOf(NORMAL_VIEW_PREFIX) + MOBILE_VIEW_PREFIX.length())).forward(request, response);
@@ -190,6 +196,8 @@ public class DeviceFilter implements Filter{
 				}else if(uri.startsWith(NORMAL_VIEW_PREFIX)) {
 					chain.doFilter(request, response);
 				}
+			}else {
+				chain.doFilter(request, response);
 			}
 		}
 	}

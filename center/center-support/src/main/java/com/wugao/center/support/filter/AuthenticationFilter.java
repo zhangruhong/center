@@ -30,9 +30,15 @@ public class AuthenticationFilter implements Filter{
 		HttpServletResponse httpServletResponse = (HttpServletResponse)response;
 		HttpSession session = httpServletRequest.getSession();
 		Context context = (Context)session.getAttribute(SessionConstant.CONTEXT);
+		String lastVisited = (String)session.getAttribute("lastVisited");
+		if(lastVisited == null || !lastVisited.equals(httpServletRequest.getRequestURI())) {
+			session.setAttribute("lastVisited", httpServletRequest.getRequestURI());
+		}
 		if(context == null) {
-			request.getRequestDispatcher("/WEB-INF/view/error/403.jsp").forward(request, response);
+//			request.getRequestDispatcher("/WEB-INF/view/error/403.jsp").forward(request, response);
+			httpServletResponse.sendRedirect("/login");
 		}else {
+			// TOTO 已登陆，需判断权限是否充足
 			chain.doFilter(httpServletRequest, httpServletResponse);
 		}
 	}

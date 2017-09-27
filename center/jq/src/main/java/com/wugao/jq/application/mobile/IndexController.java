@@ -35,10 +35,6 @@ public class IndexController {
 	@Value("${taobao.lianmeng.secretKey}")
 	private String lianmengSecretKey;
 	
-	private static final String TYPE_HIGH_RETURN = "highReturn";
-	private static final String TYPE_SUPER_TICKET = "superTicket";
-	private static final String TYPE_TEN_YUAN = "TenYuan";
-	
 	@Resource
 	GoodsRepo goodsRepo;
 	
@@ -48,7 +44,7 @@ public class IndexController {
 	@Resource
 	CategoryRepo categoryRepo;
 	
-	@RequestMapping(value = "m/index" ,method = RequestMethod.GET)
+	@RequestMapping(value = "p/index" ,method = RequestMethod.GET)
 	public ModelAndView toIndexPage() {
 		ModelAndView mav = new ModelAndView("mobile/index");
 		return mav;

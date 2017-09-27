@@ -163,9 +163,9 @@ $(function(){
 			 $.ajax({url: '/doFirstLogin', data: this, type: 'post', dataType: 'text'}).done(function(result){
 				if(result == 'USER NOT FOUND'){
 					$this.warning('用户不存在');
-					$('[name=username]', $loginForm).trigger('focus');
-				}else if(result == 'authentication success'){
-					window.open('/');
+					$('[name=username]', $this).trigger('focus');
+				}else if(result.indexOf('redirect:') >= 0){
+					window.open(result.split('redirect:')[1], '_self');
 				}else{
 					$this.warning('登录失败');
 				}
@@ -178,12 +178,12 @@ $(function(){
 			 $.ajax({url: '/doLogin', data: this, type: 'post', dataType: 'text'}).done(function(result){
 				if(result == 'USER NOT FOUND'){
 					$this.warning('用户不存在');
-					$('[name=username]', $loginForm).trigger('focus');
+					$('[name=username]', $this).trigger('focus');
 				}else if(result == 'INCORRECT PASSWORD'){
 					$this.warning('密码错误');
-					$('[name=password]', $loginForm).trigger('focus');
-				}else if(result == 'authentication success'){
-					window.open('/');
+					$('[name=password]', $this).trigger('focus');
+				}else if(result.indexOf('redirect:') >= 0){
+					window.open(result.split('redirect:')[1], '_self');
 				}else{
 					$this.warning('登录失败');
 				}

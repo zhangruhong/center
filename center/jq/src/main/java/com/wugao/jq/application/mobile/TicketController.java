@@ -37,7 +37,7 @@ public class TicketController {
 	@Value("${tao.adzone.id}")
 	private String adzoneId;
 	
-	@RequestMapping(value = "m/ticket", method = RequestMethod.GET, produces = "text/html")
+	@RequestMapping(value = "p/ticket", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toTaobaoTickPage(String keyword, Integer page) {
 		return new ModelAndView("mobile/ticket");
 	}

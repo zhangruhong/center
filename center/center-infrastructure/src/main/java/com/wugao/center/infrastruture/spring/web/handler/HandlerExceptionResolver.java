@@ -36,9 +36,7 @@ public class HandlerExceptionResolver implements org.springframework.web.servlet
 		Map<String, Object> badRequestReason = new HashMap<String, Object>();
 		ex.printStackTrace();
 		try {
-			if (ex instanceof HttpRequestMethodNotSupportedException) {
-				response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-			} else if (ex instanceof BindException) {
+			if (ex instanceof BindException) {
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				badRequestReason.put("validateError", convertToValidateException((BindException) ex).getErrors());
 			} else if (ex instanceof ValidateException) {
@@ -50,6 +48,7 @@ public class HandlerExceptionResolver implements org.springframework.web.servlet
 			} else {
 				log.error("处理请求时发生异常 " + request.getMethod() + " " + request.getRequestURI(), ex);
 				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				return new ModelAndView("redirect:/error/500");
 			}
 			// for bad request
 			if (!response.isCommitted() && !badRequestReason.isEmpty()) {
