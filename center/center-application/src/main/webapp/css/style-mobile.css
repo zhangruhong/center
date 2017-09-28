@@ -1,4 +1,4 @@
-html,body{margin: 0; padding: 0;}
+html,body{margin: 0; padding: 0;background: white!important;}
 .modal{top: 10%;}
 /* 头部 */
 .navbar.navbar-orange{background: #f50;margin-bottom: 0;border: none;border-radius: 0px;}
@@ -43,9 +43,16 @@ html,body{margin: 0; padding: 0;}
 .goods-ticket-container .goods-ticket:after{position: absolute;content: '领取';height: 32px; width: 40px;right: -40px; top: -1px;text-align: center;padding: 5px;background: #f50;color: white;border-top-right-radius: 4px;border-bottom-right-radius: 4px;opatity: 0;}
 
 /* 下方 导航条 */
-.nav-footer{position: fixed; left: 0; bottom: 0; height: 40px; width: 100%;box-shadow: 0px -1px 1px 1px rgba(250, 120, 0, 0.25);background: -webkit-linear-gradient(#f90, #f50, #f90);background: linear-gradient(#f90, #f50, #f90);background: -moz-linear-gradient(#f90, #f50, #f90);background: -o-linear-gradient(#f90, #f50, #f90);display: flex; display: -webkit-flex;justify-content: center;align-items: center;}
-.nav-footer-item{flex: 1 1 auto;text-align: center;color: #ccc;display: block;text-decoration: none;}
+/* .nav-footer{position: fixed; left: 0; bottom: 0; height: 40px; width: 100%;box-shadow: 0px -1px 1px 1px rgba(250, 120, 0, 0.25);background: -webkit-linear-gradient(#f90, #f50, #f90);background: linear-gradient(#f90, #f50, #f90);background: -moz-linear-gradient(#f90, #f50, #f90);background: -o-linear-gradient(#f90, #f50, #f90);display: flex; display: -webkit-flex;justify-content: center;align-items: center;}
+.nav-footer-item{flex: 1 1 auto;text-align: center;display: block;text-decoration: none;}
+.nav-footer-item i.fa{color: #ccc;}
 .nav-footer-item:not(:last-child){border-right: 1px solid #ccc;}
+.nav-footer-item.dropup .dropdown-menu{width: 100%;color: white; background: #f50;font-size: 15px;text-align: center;} */
+/* 竖形工具条*/
+.toolbar-fixed-r-b{display: block; position: fixed; right: 10px; bottom: 65px;width: 30px;background: rgba(150,150,150,0.5);}
+.toolbar-fixed-r-b .toolbar-tool{width: 30px; height: 30px;display: none;text-align: center; line-height: 30px; coloe: #999;}
+.toolbar-fixed-r-b .toolbar-tool:not(:last-child){border-bottom: 1px solid #ccc;}
+.toolbar-fixed-r-b .toolbar-tool.show{display: block;}
 
 
 

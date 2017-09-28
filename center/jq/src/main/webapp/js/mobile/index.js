@@ -2,6 +2,7 @@ $(function(){
 	
 	var currentPage = 1;
 	var pageSize = 24;
+	var loading = false;
 	/* 品牌/活动展示banner*/
 	$('.banner-container').initBanner();
 	
@@ -43,6 +44,7 @@ $(function(){
 					});
 				}
 			});
+			loading = false;
 		});
 	}
 	
@@ -50,19 +52,21 @@ $(function(){
 		var $tokenModal = $('#tokenModal');
 	}
 	
-	$(window).scroll(function() {
-        if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
-        	currentPage++;
-            initTopSale();
-        }
+	$('#main').infinite().on('infinite', function(){
+		if(loading){return;}
+		loading = true;
+		currentPage++;
+        initTopSale();
 	});
 	
 	$('#search').on('click', function(){
-		window.open('/m/search?keyword=' + $('[name=keyword]').val(), '_self');
+		window.open('/p/search?keyword=' + $('[name=keyword]').val(), '_self');
 	});
 	
 	$('[name=keyword]').on('keypress', function(e){
-		window.open('/m/search?keyword=' + $(this).val(), '_self');
+		if(e.keyCode == 13){
+			window.open('/p/search?keyword=' + $(this).val(), '_self');
+		}
 	});
 	
 	initTopSale();

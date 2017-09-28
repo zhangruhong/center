@@ -76,7 +76,7 @@
 		<sitemesh:write property='body' />
 	</div>
 	<div class="container-fluid">
-		<div class="footer">
+		<div class="footer-c">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4">

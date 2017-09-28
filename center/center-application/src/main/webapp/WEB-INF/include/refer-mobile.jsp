@@ -11,6 +11,15 @@
 <link href="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 
+<!-- jquery weui -->
+<link href="<%=request.getContextPath()%>/js/vendor/jquery-weui/css/weui.min.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/js/vendor/jquery-weui/css/jquery-weui.min.css" rel="stylesheet" />
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-weui/js/fastclick.js"></script>
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-weui/js/jquery-weui.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-weui/js/jquery-weui.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-weui/js/city-picker.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-weui/js/swiper.min.js"></script>
+
 <!-- font-awesome -->
 <link href="<%=request.getContextPath()%>/js/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -20,7 +29,6 @@
 <!-- 自定义的库 -->
 <script src="<%=request.getContextPath()%>/js/custom/jquery-form/jquery.form.js"></script>
 <script src="<%=request.getContextPath()%>/js/custom/jquery-ajax/jquery.ajax.js"></script>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/animate.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style-mobile.css" />
 
@@ -32,7 +40,15 @@
 			$(this).on('click', function(){
 				window.open(href, '_self');
 			});
-		})
+		});
+		
+		$('#scrollToTop').on('click', function(){
+			$('html, body, #main').animate({scrollTop: '0px'}, 300);
+		});
+		
+		$('#callQQ').on('click', function(){
+			window.open('mqqwpa://im/chat?chat_type=wpa&uin=403202153&version=1', '_blank');
+		});
 	});
 </script>
 

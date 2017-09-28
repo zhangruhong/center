@@ -14,8 +14,8 @@
 	<nav class="navbar navbar-default navbar-orange">
 		<!-- 标题 -->
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">
-				<img alt="万客达" src="<%=request.getContextPath()%>/image/logo-white.png" width="120" height="36">
+			<a class="navbar-brand" href="javascript: history.back();" style="color: white;line-height: 30px;">
+				<i class="fa fa-chevron-left"></i>&nbsp;返回
 			</a>
 			<form class="navbar-form navbar-right">
 				<div class="form-group">
