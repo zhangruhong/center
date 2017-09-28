@@ -58,13 +58,10 @@
 							</p>
 						</div>
 					</div>
-					<p style="margin-top: 20px; font-size: 16px; font-family: '宋体'">
-						复制这条消息，<span id="token"></span>，打开【手机淘宝】即可购买
-					</p>
+					<input id="copyContent" class="form-control" style="margin-top: 20px;" value="123"/>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-default" type="button" id="copyBtn"
-						onclick="copyToken();" data-clipboard-text="123">复制</button>
+					<button class="btn btn-default" type="button" id="copyBtn" data-clipboard-target="#copyContent">复制</button>
 				</div>
 			</div>
 		</div>

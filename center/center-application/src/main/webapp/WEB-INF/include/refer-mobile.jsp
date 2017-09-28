@@ -7,6 +7,8 @@
 <!-- 引入 jQuery 库 -->
 <script src="<%=request.getContextPath()%>/js/vendor/jquery-3.1.1/jquery-3.1.1.min.js"></script>
 
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-mobile-1.4.5/jquery-mobile.min.js"></script>
+
 <!-- bootstrap -->
 <link href="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/js/bootstrap.min.js"></script>

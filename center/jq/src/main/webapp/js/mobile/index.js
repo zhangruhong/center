@@ -9,6 +9,7 @@ $(function(){
 	/**
 	 * 初始化销量王
 	 */
+	
 	var initTopSale = function(){
 		
 		$.ajax({
@@ -31,14 +32,20 @@ $(function(){
 							$('#token-name', $tokenModal).text(g.name);
 							$('#price', $tokenModal).text('￥' + g.originalPrice.toFixed(2));
 							$('#ticket', $tokenModal).text(g.ticketValue);
-							$('#token', $tokenModal).text(result.model);
+							$('#copyContent', $tokenModal).val('复制这条消息，' + result.model + '，打开【手机淘宝】即可购买');
 							$('#copyBtn', $tokenModal).remove();
-							var $copyBtn = $('<button class="btn btn-default" type="button" id="copyBtn" onclick="copyToken();" data-clipboard-text="' + result.model + '">复制</button>').appendTo($('.modal-footer', $tokenModal));
+							var $copyBtn = $('<button class="btn btn-default" type="button" id="copyBtn" data-clipboard-target="#copyContent">复制</button>').appendTo($('.modal-footer', $tokenModal));
 							$tokenModal.modal('show');
 							var clipboard = new Clipboard(document.getElementById('copyBtn'));
 							clipboard.on('success', function(e) {
 							    window.open('taobao://');
 							    e.clearSelection();
+							});
+							
+							clipboard.on('error', function(e) {
+							    alert('请选择“拷贝”进行复制!')
+//								$("#copyContent").trigger('taphold');
+								
 							});
 						});
 					});
