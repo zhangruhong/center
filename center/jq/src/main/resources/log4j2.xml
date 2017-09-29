@@ -21,7 +21,7 @@
 		<Root level="warn"><AppenderRef ref="stdoutAppender" /><AppenderRef ref="errorAppender" level="warn" /></Root>
 		<logger name="org" level="warn"></logger>
 		<logger name="com.wugao.center.domain" level="debug"/>
-		<logger name="com.wugao.jq.domain" level="info"/>
+		<logger name="com.wugao.jq.domain" level="debug"/>
 	</Loggers>
 
 </Configuration>

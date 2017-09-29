@@ -76,41 +76,6 @@ public class GoodsRepo {
 		
 	}
 
-	public List<Goods> getListByHighReturn(Pagination pagination) {
-		try {
-			if(pagination != null) {
-				return sqlSessionTemplate.selectList(NS + "getGoodsByHighReturn", null, pagination.toRowBounds());
-			}
-			return sqlSessionTemplate.selectList(NS + "getGoodsByHighReturn");
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	
-	public List<Goods> getListByTopSale(Pagination pagination) {
-		if(pagination != null) {
-			return sqlSessionTemplate.selectList(NS + "getListByTopSale", null, pagination.toRowBounds());
-		}
-		return sqlSessionTemplate.selectList(NS + "getListByTopSale");
-	}
-
-	public List<Goods> getListBySuperTicket(Pagination pagination) {
-		if(pagination != null) {
-			return sqlSessionTemplate.selectList(NS + "getListBySuperTicket", null, pagination.toRowBounds());
-		}
-		return sqlSessionTemplate.selectList(NS + "getListBySuperTicket");
-	}
-
-	public List<Goods> getListByTenYuan(Pagination pagination) {
-		if(pagination != null) {
-			return sqlSessionTemplate.selectList(NS + "getListByTenYuan", null, pagination.toRowBounds());
-		}
-		return sqlSessionTemplate.selectList(NS + "getListByTenYuan");
-	}
-
 	public List<Goods> getListBySearch(SearchVo searchVo, Pagination pagination) {
 		Map<String, Object> param = new HashMap<>();
 		param.put("searchVo", searchVo);

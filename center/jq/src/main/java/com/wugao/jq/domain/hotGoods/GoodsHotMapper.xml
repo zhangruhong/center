@@ -38,8 +38,8 @@
 	</insert>
 	
 	
-	<select id="getListByTopSale" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">
-		select * from T_GOODS_HOT where ticketTotal > 0 and ticketLeft > 0 and now() > ticketStartTime and now() &lt; ticketEndTime and status = 1 order by soldCountPerMonth desc
+	<select id="getHighCommision" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">
+		select * from T_GOODS_HOT where ticketTotal > 0 and ticketLeft > 0 and status = 1 order by soldCountPerMonth desc
 	</select>
 	
 	<select id="getListBySearch" resultType="com.wugao.jq.domain.hotGoods.GoodsHot">
@@ -62,17 +62,11 @@
 					and name like concat('%', #{searchVo.name}, '%')
 				</if>
 				<if test="searchVo.type != null and searchVo.type != ''">
-					<if test="searchVo.type == 'highReturn'.toString()">
-						and incomingRate > 0.2 order by incomingRate desc
-					</if>
-					<if test="searchVo.type == 'superTicket'.toString()">
-						and ticketTotal > 0 and ticketLeft > 0 and now() > ticketStartTime and now() &lt; ticketEndTime
-					</if>
 					<if test="searchVo.type == 'tenYuan'.toString()">
 						and originalPrice - 10 &lt;= 5 and originalPrice - 10 > -5
 					</if>
 				</if>
-				and status = 1
+				and status = 1 and ticketTotal > 0 and ticketLeft > 0
 			</if>
 		</where>
 			

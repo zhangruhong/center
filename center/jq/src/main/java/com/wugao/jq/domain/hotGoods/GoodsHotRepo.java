@@ -66,11 +66,11 @@ public class GoodsHotRepo {
 		
 	}
 
-	public List<GoodsHot> getListByTopSale(Pagination pagination) {
+	public List<GoodsHot> getHighCommision(Pagination pagination) {
 		if(pagination != null) {
-			return sqlSessionTemplate.selectList(NS + "getListByTopSale", null, pagination.toRowBounds());
+			return sqlSessionTemplate.selectList(NS + "getHighCommision", null, pagination.toRowBounds());
 		}
-		return sqlSessionTemplate.selectList(NS + "getListByTopSale");
+		return sqlSessionTemplate.selectList(NS + "getHighCommision");
 	}
 
 

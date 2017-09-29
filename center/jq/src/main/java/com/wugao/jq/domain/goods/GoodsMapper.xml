@@ -37,22 +37,6 @@
 		 </foreach>
 	</insert>
 	
-	<select id="getGoodsByHighReturn" resultType="com.wugao.jq.domain.goods.Goods">
-		select * from T_GOODS where incomingRate > 0.2 and status = 1 order by incomingRate desc
-	</select>
-	
-	<select id="getListByTopSale" resultType="com.wugao.jq.domain.goods.Goods">
-		select * from T_GOODS where status = 1 order by soldCountPerMonth desc
-	</select>
-	
-	<select id="getListBySuperTicket" resultType="com.wugao.jq.domain.goods.Goods">
-		select * from T_GOODS where ticketTotal > 0 and ticketLeft > 0 and now() > ticketStartTime and now() &lt; ticketEndTime and status = 1 order by soldCountPerMonth desc
-	</select>
-	
-	<select id="getListByTenYuan" resultType="com.wugao.jq.domain.goods.Goods">
-		select * from T_GOODS where originalPrice - 10 &lt;= 5 and originalPrice - 10 > -5 and status = 1 order by soldCountPerMonth desc
-	</select>
-	
 	<select id="getListBySearch" resultType="com.wugao.jq.domain.goods.Goods">
 		select * from T_GOODS g 
 		<where>
@@ -73,17 +57,11 @@
 					and name like concat('%', #{searchVo.name}, '%')
 				</if>
 				<if test="searchVo.type != null and searchVo.type != ''">
-					<if test="searchVo.type == 'highReturn'.toString()">
-						and incomingRate > 0.2 order by incomingRate desc
-					</if>
-					<if test="searchVo.type == 'superTicket'.toString()">
-						and ticketTotal > 0 and ticketLeft > 0 and now() > ticketStartTime and now() &lt; ticketEndTime
-					</if>
 					<if test="searchVo.type == 'tenYuan'.toString()">
-						and originalPrice - 10 &lt;= 5 and originalPrice - 10 > -5 and ticketTotal > 0 and ticketLeft > 0
+						and originalPrice - 10 &lt;= 5 and originalPrice - 10 > -5
 					</if>
 				</if>
-				and status = 1
+				and status = 1 and ticketTotal > 0 and ticketLeft > 0
 			</if>
 		</where>
 			

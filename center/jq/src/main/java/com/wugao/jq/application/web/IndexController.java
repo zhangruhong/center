@@ -57,7 +57,7 @@ public class IndexController {
 			return pagination.setRows(goodsRepo.getListBySearch(searchVo, pagination));
 		}
 		
-		return pagination.setRows(goodsHotRepo.getListByTopSale(pagination));
+		return pagination.setRows(goodsHotRepo.getHighCommision(pagination));
 	}
 	
 	@RequestMapping(value = "index/getToken", method = RequestMethod.GET)

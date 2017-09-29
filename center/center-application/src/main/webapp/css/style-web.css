@@ -216,6 +216,7 @@ a:focus, a:visited{text-decoration: none;}
 .footer-c .link > p > a{color: #b2b7b6;font-size: 14px;font-family: 'Microsoft YaHei';}
 .footer-c .link > p > a:hover{text-decoration: none;color: #f50;}
 .footer-c .qrcode{text-align: center;}
+.footer-c .goal{padding: 50px 10px;font-size: 32px;text-align: center;}
 
 .pagination-nav{text-align: center;}
 .pagination-center{list-style: none;display: inline-block;margin: 10px 0px;padding: 0;}
@@ -225,6 +226,5 @@ a:focus, a:visited{text-decoration: none;}
 .pagination-center li > a:hover{text-decoration: none;}
 .pagination-center li.active,.pagination-center li:hover{background: #f50;}
 .pagination-center li.active > a, .pagination-center li:hover > a{color: white;}
-
 
 

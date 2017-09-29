@@ -84,7 +84,32 @@
 				</div>
 			</div>
 			<div id="category" class="weui-tab__bd-item">
-				category
+				<div class="weui-grids">
+					<nav class="navbar navbar-orange navbar-fixed-top">
+						<!-- 标题 -->
+						<div class="navbar-header">
+							<a class="navbar-brand" href="javascript:;">
+								<img alt="万客达" src="<%=request.getContextPath()%>/image/logo-white.png" width="120" height="36">
+							</a>
+						</div>
+					</nav>
+					<div style="width: 100%;margin-top: 55px;"></div>
+					<c:forEach items="${categories }" var="c">
+						<a href="javascript: loadByCategory('${c.id }', true)" class="weui-grid js_grid">
+					    	<div class="weui-grid__icon">
+					      		<img src="<%=request.getContextPath() %>/image/${c.name }.png" alt="">
+					    	</div>
+					    	<p class="weui-grid__label">
+					      		${c.name }
+					    	</p>
+					  	</a>				
+					</c:forEach>
+				</div>
+				<div class="container-fluid">
+					<div class="goods-container">
+						<div class="row" id="goods-list-category"></div>
+					</div>
+				</div>
 			</div>
 			<div id="lookup" class="weui-tab__bd-item">
 				lookup

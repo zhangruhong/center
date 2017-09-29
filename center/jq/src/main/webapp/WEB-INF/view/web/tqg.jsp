@@ -41,10 +41,10 @@
 							<div class="goods-container">
 								<a class="goods-image" style="background-image: url(${g.picUrl})" href="${g.clickUrl}" target="_blank"></a>
 								<div class="goods-name">${g.title }</div>
-								<div class="goods-original-price">￥<fmt:formatNumber value="${g.reservePrice}" pattern="0.00"/></div>
+								<div class="goods-original-price" style="text-decoration: line-through">￥<fmt:formatNumber value="${g.reservePrice}" pattern="0.00"/></div>
 								<div class="goods-price">
-									<div class="goods-off-price"><fmt:formatNumber value="${g.reservePrice - g.zkFinalPrice}" pattern="0.00"/></div>
-									<div class="goods-real-price">到手价:<span class="num">${g.zkFinalPrice }</span></div>
+									<div class="goods-off-price"><fmt:formatNumber value="${g.reservePrice - g.zkFinalPrice}" pattern="0.00"/><i class="fa fa-level-down"></i></div>
+									<div class="goods-real-price">到手价:<span class="num">￥${g.zkFinalPrice }</span></div>
 								</div>
 							</div>
 						</c:forEach>

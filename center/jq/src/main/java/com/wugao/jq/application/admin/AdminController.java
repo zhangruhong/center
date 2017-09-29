@@ -1,14 +1,28 @@
 package com.wugao.jq.application.admin;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import com.wugao.center.infrastruture.mybatis.Pagination;
+import com.wugao.center.infrastruture.utils.ServletUtil;
+import com.wugao.jq.domain.activity.Activity;
+import com.wugao.jq.domain.activity.ActivityRepo;
+import com.wugao.jq.domain.activity.ActivityService;
 import com.wugao.jq.domain.goods.Goods;
 import com.wugao.jq.domain.goods.GoodsRepo;
 import com.wugao.jq.domain.goods.GoodsService;
@@ -30,6 +44,12 @@ public class AdminController {
 	
 	@Autowired
 	GoodsRepo goodsRepo;
+	
+	@Autowired
+	ActivityRepo activityRepo;
+	
+	@Autowired
+	ActivityService activityService;
 
 	@RequestMapping(value = "home", method = RequestMethod.GET, produces = "text/html")
 	public ModelAndView toAdminPage() {
@@ -45,8 +65,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "activity", method = RequestMethod.GET)
-	public ModelAndView toActivityPage() {
-		return new ModelAndView("admin/activity");
+	public ModelAndView toActivityPage(String startDate, String endDate, Boolean status, Pagination pagination) {
+		List<Activity> activities = activityRepo.getList(startDate, endDate, status, pagination);
+		pagination.setRows(activities);
+		ModelAndView mav = new ModelAndView("admin/activity");
+		return setPagedView(mav, pagination);
 	}
 	
 	@RequestMapping(value = "user", method = RequestMethod.GET)
@@ -86,4 +109,32 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "fileupload", method = RequestMethod.POST)
+	public void fileupload(MultipartHttpServletRequest request, HttpServletResponse resp) throws Exception{
+		MultipartFile file = request.getFile("files");
+		File f = new File(File.separator + "usr" + File.separator + "local" + File.separator + "file" + File.separator + System.currentTimeMillis() + "_"+ file.getOriginalFilename());
+		if(!f.exists()) {
+			f.mkdirs();
+		}
+		file.transferTo(f);
+		Map<String, String> fileInfo = new HashMap<>();
+		fileInfo.put("fileName", f.getName());
+		fileInfo.put("filePath", f.getPath());
+		ServletUtil.respondObjectAsJson(resp, fileInfo);
+	}
+	
+	@RequestMapping(value = "removefile", method = RequestMethod.POST)
+	public void removeFile(String filePath) {
+		File file = new File(filePath);
+		if(file.exists()) {
+			file.delete();
+		}
+	}
+	
 }
+
+
+
+
+
+

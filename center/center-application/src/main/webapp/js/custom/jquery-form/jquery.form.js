@@ -189,6 +189,96 @@
 		});
 	};
 	
+	$.fn.fillForm = function(obj){
+		var $this = $(this);
+		if($(this)[0].tagName != 'FORM'){
+			return;
+		}
+		if(!$.isPlainObject(obj)){
+			return;
+		}
+		$('[name]', $this).each(function(){
+			var inputTagName = $(this)[0].tagName;
+			var inputType = $(this)[0].attr('type');
+			var name = $(this).attr('name');
+			var value = obj[name] ? obj[name] : '';
+			if(inputTagName == 'INPUT'){
+				if(inputType == 'radio'){
+					$('[name=' + name + '][value=' + value +']').prop('checked', 'checked');
+				}else if(inputType == 'checkbox'){
+					if($.isArray(value)){
+						$.each(value, function(i, v){
+							$('[name=' + name + '][value=' + v +']').prop('checked', 'checked');
+						})
+					}else{
+						$('[name=' + name + '][value=' + v +']').prop('checked', '');
+					}
+				}else{
+					$(this).val(value);
+				}
+			}else if(inputTagName == 'TEXTAREA'){
+				$(this).text(value);
+			}else if(inputTagName == 'SELECT'){
+				$('option[value=' + value + ']').prop('selected', 'selected');
+			}
+		});
+	}
+	
+	$.fn.resetForm = function(){
+		var $this = $(this);
+		if($(this)[0].tagName != 'FORM'){
+			return;
+		}
+		$('[name]', $this).each(function(){
+			var inputTagName = $(this)[0].tagName;
+			var inputType = $(this)[0].attr('type');
+			if(inputTagName == 'INPUT'){
+				if(inputType == 'radio'){
+					$(this).prop('checked', false);
+				}else if(inputType == 'checkbox'){
+					$(this).prop('checked', false);
+				}else{
+					$(this).val('');
+				}
+			}else if(inputTagName == 'TEXTAREA'){
+				$(this).text('');
+			}else if(inputTagName == 'SELECT'){
+				$('option[value=' + value + ']').prop('selected', '');
+			}
+		});
+	}
+	
+	$.fn.fileUpload = function(op){
+		var $this = $(this);
+		if(!$this.hasClass('file-upload')){return;}
+		var $input = $('<input type="file" name="files" />').appendTo($this);
+		var option = {
+			url: '/admin/fileupload',
+			removeFileUrl: '/admin/removefile',
+			dataType: 'json',
+			inputName: 'file',
+			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+			done: function(e, data){
+				var $completeDiv = $('<div class="input-group" style="margin-bottom: 8px;"></div>').appendTo($this);
+				var $fileNameInput = $('<input class="form-control" value="' + data.result['fileName'] + '" readonly/>').appendTo($completeDiv);
+				var $filePathInput = $('<input type="hidden" name="' + option.inputName + '" value="' + data.result['filePath'] + '"/>').appendTo($completeDiv);
+				var $delBtn = $('<span class="input-group-addon"><i class="fa fa-trash-o"></i></span>').appendTo($completeDiv);
+				$delBtn.on('click', function(){
+					$.ajax({
+						url: '/admin/removefile',
+						data: {filePath: data.result['filePath']},
+						type : 'post'
+					}).done(function(){
+						$completeDiv.remove();
+						alert('删除成功');
+					});
+				});
+			}
+		}
+		$.extend(option, op);
+		$input.fileupload(option);
+	}
+	
 	
 })(jQuery);
 

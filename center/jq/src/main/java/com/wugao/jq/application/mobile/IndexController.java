@@ -47,12 +47,18 @@ public class IndexController {
 	@RequestMapping(value = "p/index" ,method = RequestMethod.GET)
 	public ModelAndView toIndexPage() {
 		ModelAndView mav = new ModelAndView("mobile/index");
+		mav.addObject("categories", categoryRepo.getTopCategory());
 		return mav;
 	}
 	
 	@RequestMapping(value = "m/index/getGoods", method = RequestMethod.GET)
 	public Pagination getGoods(Pagination pagination) {
-		return pagination.setRows(goodsHotRepo.getListByTopSale(pagination));
+		return pagination.setRows(goodsHotRepo.getHighCommision(pagination));
+	}
+	
+	@RequestMapping(value = "m/index/loadByCategory", method = RequestMethod.GET)
+	public Pagination getGoodsByCategory(SearchVo searchVo, Pagination pagination) {
+		return pagination.setRows(goodsHotRepo.getListBySearch(searchVo, pagination));
 	}
 	
 	@RequestMapping(value = "m/index/getToken", method = RequestMethod.GET)

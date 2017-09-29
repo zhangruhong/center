@@ -27,7 +27,7 @@ public class TopController {
 		Pagination pagination = new Pagination();
 		pagination.setPage(page);
 		pagination.setPageSize(24);
-		List<GoodsHot> goodsList = goodsHotRepo.getListByTopSale(pagination);
+		List<GoodsHot> goodsList = goodsHotRepo.getHighCommision(pagination);
 		pagination.setRows(goodsList);
 		mav.addObject("objs", goodsList);
 		mav.addObject("currPage", page);

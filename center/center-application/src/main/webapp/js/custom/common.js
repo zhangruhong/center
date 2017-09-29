@@ -34,13 +34,8 @@ $(function(){
 			var $goodsList = $(this);
 			$('.goods-container', $goodsList).remove();
 			$.each(objects, function(i, g){
-				var $goodsContainer = $('<div class="goods-container"></div>').appendTo($goodsList);
-				if(g.ticketLeft == 0){
-					var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.tbkLongUrl + '" target="_blank"></a>').appendTo($goodsContainer);
-					var $goodsName = $('<div class="goods-name">' + g.name +'</div>').appendTo($goodsContainer);
-					var $goodsOriginalPrice = $('<div class="goods-original-price">￥' + g.originalPrice.toFixed(2) +'</div>').appendTo($goodsContainer);
-					var $soldCount = $('<div class="goods-sold-count">月销量:<span class="num">' + g.soldCountPerMonth +'</span></div>').appendTo($goodsOriginalPrice);
-				}else{
+				if(g.ticketTotal > 0){
+					var $goodsContainer = $('<div class="goods-container"></div>').appendTo($goodsList);
 					var $goodsImage = $('<a class="goods-image" style="background-image: url(' + g.mainImageUrl + ')" href="' + g.ticketUrl + '" target="_blank"></a>').appendTo($goodsContainer);
 					var $goodsName = $('<div class="goods-name">' + g.name +'</div>').appendTo($goodsContainer);
 					var $goodsOriginalPrice = $('<div class="goods-original-price">￥' + g.originalPrice.toFixed(2) +'</div>').appendTo($goodsContainer);

@@ -130,7 +130,7 @@ public class GoodsHotService {
 				//由响应的UatmTbkItem转换为本地Goods类
 				if(items != null && items.size() > 0) {
 					for(UatmTbkItem item : items) {
-						if(!map.containsKey(item.getNumIid().toString()) && item.getStatus() == 1) {
+						if(!map.containsKey(item.getNumIid().toString()) && item.getStatus() == 1 && item.getCouponRemainCount() > 0) {
 							GoodsHot goods = new GoodsHot();
 							goods.setId(item.getNumIid().toString());
 							goods.setDetailUrl(item.getItemUrl());

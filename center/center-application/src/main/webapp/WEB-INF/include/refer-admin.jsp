@@ -7,6 +7,11 @@
 <!-- 引入 jQuery 库 -->
 <script src="<%=request.getContextPath()%>/js/vendor/jquery-3.1.1/jquery-3.1.1.min.js"></script>
 
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-file-upload-9.18.0/js/vendor/jquery.ui.widget.js"></script>
+<script src="<%=request.getContextPath()%>/js/vendor/jquery-file-upload-9.18.0/js/jquery.fileupload.js"></script>
+
+
+
 <!-- bootstrap -->
 <link href="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/js/vendor/bootstrap-3.3.7/js/bootstrap.min.js"></script>
