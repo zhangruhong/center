@@ -111,7 +111,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "fileupload", method = RequestMethod.POST)
 	public void fileupload(MultipartHttpServletRequest request, HttpServletResponse resp) throws Exception{
-		MultipartFile file = request.getFile("files");
+		MultipartFile file = request.getFile("upload-file");
 		File f = new File(File.separator + "usr" + File.separator + "local" + File.separator + "file" + File.separator + System.currentTimeMillis() + "_"+ file.getOriginalFilename());
 		if(!f.exists()) {
 			f.mkdirs();

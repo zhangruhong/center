@@ -251,7 +251,7 @@
 	$.fn.fileUpload = function(op){
 		var $this = $(this);
 		if(!$this.hasClass('file-upload')){return;}
-		var $input = $('<input type="file" name="files" />').appendTo($this);
+		var $input = $('<input type="file" name="upload-file" />').appendTo($this);
 		var option = {
 			url: '/admin/fileupload',
 			removeFileUrl: '/admin/removefile',
