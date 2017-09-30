@@ -1,14 +1,21 @@
 package com.wugao.jq.application.admin;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tools.ant.taskdefs.Input;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
+import com.wugao.center.infrastruture.filestore.FileInfo;
 import com.wugao.center.infrastruture.mybatis.Pagination;
 import com.wugao.center.infrastruture.utils.ServletUtil;
 import com.wugao.jq.domain.activity.Activity;
@@ -70,6 +78,11 @@ public class AdminController {
 		pagination.setRows(activities);
 		ModelAndView mav = new ModelAndView("admin/activity");
 		return setPagedView(mav, pagination);
+	}
+	
+	@RequestMapping(value = "activity/{id}", method = RequestMethod.GET)
+	public Activity getActivityById(@PathVariable("id")String id) {
+		return activityRepo.getById(id);
 	}
 	
 	@RequestMapping(value = "user", method = RequestMethod.GET)
@@ -126,8 +139,22 @@ public class AdminController {
 	@RequestMapping(value = "removefile", method = RequestMethod.POST)
 	public void removeFile(String filePath) {
 		File file = new File(filePath);
-		if(file.exists()) {
+		if(file.exists() && file.isFile()) {
+			file.renameTo(new File(file.getPath() + ".bak"));
 			file.delete();
+		}
+	}
+	
+	@RequestMapping(value = "filedownload", method = RequestMethod.GET)
+	public void filedownload(String filePath, HttpServletResponse resp) throws Exception {
+		File file = new File(filePath);
+		if(file.exists()) {
+			byte[] b = new byte[Long.valueOf(file.length()).intValue()];
+			FileInputStream fis = new FileInputStream(file);
+			fis.read(b);
+			FileInfo fileInfo = new FileInfo(file.getName(), b.length , new Date());
+			ServletUtil.respondFileInfo(resp, fileInfo);
+			ServletUtil.respondBytes(resp, b); 
 		}
 	}
 	

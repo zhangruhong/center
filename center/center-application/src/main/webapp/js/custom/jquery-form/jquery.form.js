@@ -248,34 +248,73 @@
 		});
 	}
 	
-	$.fn.fileUpload = function(op){
+	$.fn.fileUpload = function(op, param){
 		var $this = $(this);
 		if(!$this.hasClass('file-upload')){return;}
-		var $input = $('<input type="file" name="upload-file" />').appendTo($this);
+		var $input = $('<input type="file" name="upload-file-input" />').appendTo($this);
 		var option = {
-			url: '/admin/fileupload',
-			removeFileUrl: '/admin/removefile',
-			dataType: 'json',
-			inputName: 'file',
-			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-			done: function(e, data){
-				var $completeDiv = $('<div class="input-group" style="margin-bottom: 8px;"></div>').appendTo($this);
-				var $fileNameInput = $('<input class="form-control" value="' + data.result['fileName'] + '" readonly/>').appendTo($completeDiv);
-				var $filePathInput = $('<input type="hidden" name="' + option.inputName + '" value="' + data.result['filePath'] + '"/>').appendTo($completeDiv);
-				var $delBtn = $('<span class="input-group-addon"><i class="fa fa-trash-o"></i></span>').appendTo($completeDiv);
-				$delBtn.on('click', function(){
-					$.ajax({
-						url: '/admin/removefile',
-						data: {filePath: data.result['filePath']},
-						type : 'post'
-					}).done(function(){
-						$completeDiv.remove();
-						alert('删除成功');
-					});
-				});
+			url: '/admin/fileupload',//上传url
+			removeFileUrl: '/admin/removefile',//删除url
+			downloadUrl: '/admin/filedownload',//获取url
+			dataType: 'json',//数据类型
+			inputName: 'file',//默认生成的input的name属性
+			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,//接收的文件类型
+		}
+		if(!$.isPlainObject(op)){
+			if(op != ''){
+				switch(op){
+				case 'empty':
+					$this.empty();
+				case 'fill':
+					if($.isArray(param['files'])){
+						$.each(param['files'], function(i, n){
+							buildFileList(n, n.split(/(\/|\\)/)[n.split(/(\/|\\)/).length-1], option.downloadUrl, option.removeUrl, option.inputName)
+						});
+					}else if(param['files']){
+						buildFileList(param['files'], param['files'].split(/(\/|\\)/)[param['files'].split(/(\/|\\)/).length-1], option.downloadUrl, option.removeUrl, option.inputName)
+					}
+				}
+				return;
 			}
 		}
-		$.extend(option, op);
+		
+		
+		function buildFileList(filePath, fileName, downloadUrl, removeUrl, inputName){
+			var $completeDiv = $('<div class="input-group" style="margin-top: 8px;position: relative;"></div>').appendTo($this);
+			var $delBtn;
+			if(/(\.|\/)(gif|jpe?g|png)$/i.test(filePath)){
+				$completeDiv.addClass('pull-left');
+				var $imageDiv = $('<img width="100" height="100" src="' + downloadUrl + '?filePath=' + encodeURI(filePath) +'"/>').appendTo($completeDiv);
+				var $filePathInput = $('<input type="hidden" name="' + inputName + '" value="' + filePath + '"/>').appendTo($completeDiv);
+				$delBtn = $('<div class="delBtn" style="position: absolute; right: 0px; top: 0px; width: 20px; height: 20px;text-align: center;cursor: pointer; border: 1px solid #ccc;display: none;background: rgba(0,0,0,0.25)"><i class="fa fa-trash-o"></i></div>').appendTo($completeDiv);
+				$completeDiv.on('mouseenter', function(){
+					$delBtn.slideDown(100);
+				}).on('mouseleave', function(){
+					$delBtn.slideUp(100);
+				});
+			}else{
+				var $fileNameInput = $('<input class="form-control" value="' + fileName + '" readonly/>').appendTo($completeDiv);
+				var $filePathInput = $('<input type="hidden" name="' + inputName + '" value="' + filePath + '"/>').appendTo($completeDiv);
+				$delBtn = $('<span class="input-group-addon delBtn"><i class="fa fa-trash-o"></i></span>').appendTo($completeDiv);
+			}
+			
+			$delBtn.on('click', function(){
+				$.ajax({
+					url: removeUrl,
+					data: {filePath: filePath},
+					type : 'post'
+				}).done(function(){
+					$completeDiv.remove();
+				});
+			});
+		}
+		
+		if($.isPlainObject(op)){
+			$.extend(option, op);
+		}
+		option.done = function(e, data){
+			buildFileList(data.result['filePath'], data.result['fileName'], option.downloadUrl, option.removeUrl, option.inputName)
+		}
 		$input.fileupload(option);
 	}
 	

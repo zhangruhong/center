@@ -8,7 +8,7 @@ public class ContentTypeUtil {
 
 	public static String getContentType(String filename) {
 		if (mimeTypesMap == null) {
-			mimeTypesMap = new MimetypesFileTypeMap(ContentTypeUtil.class.getResourceAsStream("mime.types"));
+			mimeTypesMap = new MimetypesFileTypeMap();
 		}
 		return mimeTypesMap.getContentType(filename);
 	}

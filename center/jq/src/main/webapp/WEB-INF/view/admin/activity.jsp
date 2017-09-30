@@ -148,7 +148,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-default" type="button" id="copyBtn" data-clipboard-target="#copyContent">复制</button>
+					<button class="btn btn-primary" type="button" onclick="submit();">提交</button>
+					<button class="btn btn-default" type="button" onclick="cancel();">取消</button>
 				</div>
 			</div>
 		</div>
